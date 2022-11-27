@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { register, login, getMe } from '../controllers/auth.js'
+import { register, login, updateUser, getMe } from '../controllers/auth.js'
 import { checkAuth } from '../utils/checkAuth.js'
 const router = new Router()
 
@@ -10,6 +10,10 @@ router.post('/register', register)
 // Login
 // http://localhost:3002/api/auth/login
 router.post('/login', login)
+
+// Login
+// http://localhost:3002/api/auth/updateuser
+router.put('/updateuser',checkAuth, updateUser)
 
 // Get Me
 // http://localhost:3002/api/auth/me

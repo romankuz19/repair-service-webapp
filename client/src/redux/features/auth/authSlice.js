@@ -48,6 +48,23 @@ export const loginUser = createAsyncThunk(
     },
 )
 
+export const updateUser = createAsyncThunk('auth/updateUser',
+    async ({ firstname,secondname,city,phonenumber }) => {
+        try {
+            const { data } = await axios.put('/auth/updateuser', {
+              
+                firstname,
+                secondname,
+                city,
+                phonenumber
+            })
+            return data
+        } catch (error) {
+            console.log(error)
+        }
+    },
+)
+
 export const getMe = createAsyncThunk('auth/loginUser', async () => {
     try {
         const { data } = await axios.get('/auth/me')
@@ -96,6 +113,20 @@ export const authSlice = createSlice({
             state.token = action.payload.token
         },
         [loginUser.rejectWithValue]: (state, action) => {
+            state.status = action.payload.message
+            state.isLoading = false
+        },
+         // Update user
+         [updateUser.pending]: (state) => {
+            state.isLoading = true
+            state.status = null
+        },
+        [updateUser.fulfilled]: (state, action) => {
+            state.isLoading = false
+            state.status = action.payload.message
+            state.user = action.payload.user
+        },
+        [updateUser.rejectWithValue]: (state, action) => {
             state.status = action.payload.message
             state.isLoading = false
         },

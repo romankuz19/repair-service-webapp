@@ -4,7 +4,7 @@ import axios from '../../../utils/axios'
 const initialState = {
     posts: [],
     popularPosts: [],
-    users:[],
+    users: [],
     loading: false,
 }
 

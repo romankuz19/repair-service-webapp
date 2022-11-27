@@ -1,33 +1,56 @@
 import React from 'react'
 import { useEffect } from 'react'
-import { useState } from 'react'
+import { useState,useCallback } from 'react'
 import { PostItem } from '../components/PostItem'
 import axios from '../utils/axios'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { checkIsAuth, logout } from '../redux/features/auth/authSlice'
 import { toast } from 'react-toastify'
 import { useDispatch, useSelector } from 'react-redux'
-import { registerUser } from '../redux/features/auth/authSlice'
+import { updateUser } from '../redux/features/auth/authSlice'
 
 export const MyProfilePage = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+
     const [firstname, setName] = useState('')
     const [secondname, setSecondName] = useState('')
     const [city, setCity] = useState('')
     const [phonenumber, setPhonenumber] = useState('')
+
     const { status } = useSelector((state) => state.auth)
+    
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const isAuth = useSelector(checkIsAuth)
     const activeStyles = {
         color: 'white',
     }
+    
+    const fetchUser = useCallback(async () => {
+        const { data } = await axios.get('/auth/me')
+        //setUsername(data.username)
+       
+        console.log(data)
+        //setPassword('')
+        //setUsername('')
+        setName(data.user.firstname)
+        setSecondName(data.user.secondname)
+        setCity(data.user.city)
+        setPhonenumber(data.user.phonenumber)
+    })
+    useEffect(() => {
+        if (status) toast(status)
+        fetchUser()
+    },[status])
+    
+    
+    
     const handleSubmit = () => {
         try {
-            dispatch(registerUser({ username, password,firstname,secondname,city,phonenumber }))
-            setPassword('')
-            setUsername('')
+            dispatch(updateUser({ firstname,secondname,city,phonenumber }))
+            // setPassword('')
+            // setUsername('')
             setName('')
             setSecondName('')
             setCity('')
@@ -43,7 +66,7 @@ export const MyProfilePage = () => {
 
                     <li>
                         <NavLink
-                            to={'/posts'}
+                            to={'/services'}
                             href='/'
                             className='text-xs font-bold text-black-400 hover:text-white rounded-lg bg-pink-200 px-4 py-2'
                             style={({ isActive }) => isActive ? activeStyles : undefined}
@@ -68,7 +91,7 @@ export const MyProfilePage = () => {
         >
             <h1 className='text-lg text-black text-center'>Мои данные</h1>
 
-            <label className='text-xs text-gray-400'>
+            {/* <label className='text-xs text-gray-400'>
                 Логин:
                 <input
                     type='text'
@@ -88,8 +111,8 @@ export const MyProfilePage = () => {
                     placeholder='Пароль'
                     className='read-only:bg-gray-100 mt-1 text-black w-full rounded-lg bg-pink-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
                 />
-            </label>
-            <label className='text-xs text-gray-400'>
+            </label> */}
+            <label className='text-xs text-gray-600'>
                 Имя:
                 <input
                     type='text'
@@ -99,7 +122,7 @@ export const MyProfilePage = () => {
                     className='mt-1 text-black w-full rounded-lg bg-pink-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
                 />
             </label>
-            <label className='text-xs text-gray-400'>
+            <label className='text-xs text-gray-600'>
                 Фамилия:
                 <input
                     type='text'
@@ -109,7 +132,7 @@ export const MyProfilePage = () => {
                     className='mt-1 text-black w-full rounded-lg bg-pink-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
                 />
             </label>
-            <label className='text-xs text-gray-400'>
+            <label className='text-xs text-gray-600'>
                 Город:
                 <input
                     type='text'
@@ -119,7 +142,7 @@ export const MyProfilePage = () => {
                     className='mt-1 text-black w-full rounded-lg bg-pink-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
                 />
             </label>
-            <label className='text-xs text-gray-400'>
+            <label className='text-xs text-gray-600'>
                 Номер телефона:
                 <input
                     type='number'
@@ -136,14 +159,15 @@ export const MyProfilePage = () => {
                     onClick={handleSubmit}
                     className='font-bold bg-pink-200 text-xs text-black rounded-lg px-4 py-2 text-xs font-bold text-black-400 hover:text-white'
                 >
-                    Подтвердить
+                    Изменить
                 </button>
-                <Link
-                    to='/login'
+                <button
+                    type='submit'
+                    onClick={fetchUser}
                     className='font-bold bg-pink-200 text-xs text-black rounded-lg px-4 py-2 text-xs font-bold text-black-400 hover:text-white'
                 >
-                    Уже зарегистрированы ?
-                </Link>
+                    Отменить
+                </button>
             </div>
         </form>
                 

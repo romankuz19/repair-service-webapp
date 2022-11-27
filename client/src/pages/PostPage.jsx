@@ -35,7 +35,8 @@ export const PostPage = () => {
         try {
             dispatch(removePost(params.id))
             toast('Услуга была удалена')
-            navigate('/posts')
+            navigate('/')
+            window.location.reload(false);
         } catch (error) {
             console.log(error)
         }

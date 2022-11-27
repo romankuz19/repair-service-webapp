@@ -26,7 +26,7 @@ function App() {
         <Layout>
             <Routes>
                 <Route path='/' element={<MainPage />} />
-                <Route path='posts' element={<PostsPage />} />
+                <Route path='services' element={<PostsPage />} />
                 <Route path=':id' element={<PostPage />} />
                 <Route path=':id/edit' element={<EditPostPage />} />
                 <Route path='new' element={<AddPostPage />} />

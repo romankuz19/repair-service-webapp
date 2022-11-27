@@ -85,6 +85,29 @@ export const login = async (req, res) => {
     }
 }
 
+//update user
+export const updateUser = async (req, res) => {
+    try {
+        const user = await User.findById(req.userId)
+        const { firstname, secondname, city, phonenumber } = req.body
+
+
+        user.firstname = firstname
+        user.secondname = secondname
+        user.city = city
+        user.phonenumber = phonenumber
+
+        await user.save()
+        console.log(user)
+
+        res.json({user, message: 'Даныне успешно изменены.',})
+
+
+    } catch (error) {
+        res.json({ message: 'Ошибка при создании пользователя.' })
+    }
+}
+
 // Get Me
 export const getMe = async (req, res) => {
     try {

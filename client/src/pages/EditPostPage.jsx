@@ -17,7 +17,7 @@ export const EditPostPage = () => {
     const params = useParams()
 
     const fetchPost = useCallback(async () => {
-        const { data } = await axios.get(`/posts/${params.id}`)
+        const { data } = await axios.get(`/services/${params.id}`)
         setTitle(data.title)
         setText(data.text)
         setOldImage(data.imgUrl)
@@ -31,7 +31,8 @@ export const EditPostPage = () => {
             updatedPost.append('id', params.id)
             updatedPost.append('image', newImage)
             dispatch(updatePost(updatedPost))
-            navigate('/posts')
+            navigate('/services')
+            window.location.reload(false);
         } catch (error) {
             console.log(error)
         }

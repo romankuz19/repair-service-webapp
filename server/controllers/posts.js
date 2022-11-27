@@ -7,7 +7,7 @@ import { fileURLToPath } from 'url'
 // Create Post
 export const createPost = async (req, res) => {
     try {
-        const { title, text } = req.body
+        const { title, text, price } = req.body
         const user = await User.findById(req.userId)
 
         if (req.files) {
@@ -19,6 +19,7 @@ export const createPost = async (req, res) => {
                 username: user.username,
                 title,
                 text,
+                price,
                 imgUrl: fileName,
                 author: req.userId,
             })
@@ -35,7 +36,8 @@ export const createPost = async (req, res) => {
             username: user.username,
             title,
             text,
-            imgUrl: '',
+            price,
+            imgUrl: '149071.png',
             author: req.userId,
         })
         await newPostWithoutImage.save()
@@ -53,29 +55,34 @@ export const getAll = async (req, res) => {
     try {
         const posts = await Post.find().sort('-createdAt')
         const popularPosts = await Post.find().limit(5).sort('-views')
-        const userid = await Post.find({}).select('author -_id')
+        const users = await User.find()
 
-        console.log(userid)
-        var arrObj = userid;
-        var arrstring = JSON.stringify(arrObj)
-        const myArr = JSON.parse(arrstring);
+        //console.log(users)
 
-        var usersid=[]
 
-        for (var i = 0; i < myArr.length; i++) {
-            var object = myArr[i];
+        // const userid = await Post.find({}).select('author -_id')
+
+        // console.log(userid)
+        // var arrObj = userid;
+        // var arrstring = JSON.stringify(arrObj)
+        // const myArr = JSON.parse(arrstring);
+
+        // var usersid=[]
+
+        // for (var i = 0; i < myArr.length; i++) {
+        //     var object = myArr[i];
             
-            usersid[i]=object.author
-        }
-        console.log(usersid)
-        var users=[]
-        for (var i = 0; i < usersid.length; i++) {
-            users[i]=await User.find({}).where('_id').equals(usersid[i])
-        }
+        //     usersid[i]=object.author
+        // }
+        // console.log(usersid)
+        // var users=[]
+        // for (var i = 0; i < usersid.length; i++) {
+        //     users[i]=await User.find({}).where('_id').equals(usersid[i])
+        // }
 
-        var json1 = Object.assign({}, users);
+        // var json1 = Object.assign({}, users);
        
-        console.log(json1)
+        // console.log(json1)
 
         // var use =''
         // for (var i = 0; i < usersid.length; i++) {
@@ -115,7 +122,9 @@ export const getMyPosts = async (req, res) => {
             }),
         )
 
-        res.json(list)
+
+        console.log(list,user)
+        res.json({list,user})
     } catch (error) {
         res.json({ message: 'Что-то пошло не так.' })
     }
