@@ -1,9 +1,31 @@
 import React from 'react'
 import { AiFillEye, AiOutlineMessage } from 'react-icons/ai'
+import { useDispatch, useSelector } from 'react-redux'
 import Moment from 'react-moment'
 import { Link } from 'react-router-dom'
 
 export const PostItem = ({ post }) => {
+    // const dispatch = useDispatch()
+    // const { users } = useSelector((state) => state.post)
+
+
+    // console.log(users._id)
+    // var arrObj = user;
+    //     var arrstring = JSON.stringify(arrObj)
+    //     const myArr = JSON.parse(arrstring);
+    //     var firstname=''
+    //     var secondname=''
+    //     var city=''
+    //     var phonenumber=''
+    //     for (var i = 0; i < myArr.length; i++) {
+    //         var object = myArr[i];
+    //         firstname=object.firstname
+    //         secondname=object.secondname
+    //         city=object.city
+    //         phonenumber=object.phonenumber
+    //     }
+    //     console.log(firstname,secondname)
+        
     if (!post) {
         return (
             <div className='text-xl text-center text-black py-10'>
@@ -42,7 +64,10 @@ export const PostItem = ({ post }) => {
                 <div className='rightcard flex-1 w-64 pl-2'>
                 <div className='flex justify-around items-center '>
                     <div className='text-2xl text-black opacity-100'>
-                        {post.username}
+                        
+                    </div>
+                    <div className='text-2xl text-black opacity-100'>
+                        
                     </div>
                     <div className='text-xs text-black opacity-50'>
                         <Moment date={post.createdAt} format='D MMM YYYY' />

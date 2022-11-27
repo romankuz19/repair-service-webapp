@@ -7,9 +7,10 @@ import { getAllPosts } from '../redux/features/post/postSlice'
 
 export const MainPage = () => {
     const dispatch = useDispatch()
-    const { posts, popularPosts } = useSelector((state) => state.post)
+    const { posts, popularPosts, users } = useSelector((state) => state.post)
 
-    console.log(popularPosts)
+    
+    console.log(users)
 
     useEffect(() => {
         dispatch(getAllPosts())

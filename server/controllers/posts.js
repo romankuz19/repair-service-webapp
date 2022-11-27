@@ -53,12 +53,41 @@ export const getAll = async (req, res) => {
     try {
         const posts = await Post.find().sort('-createdAt')
         const popularPosts = await Post.find().limit(5).sort('-views')
+        const userid = await Post.find({}).select('author -_id')
 
+        console.log(userid)
+        var arrObj = userid;
+        var arrstring = JSON.stringify(arrObj)
+        const myArr = JSON.parse(arrstring);
+
+        var usersid=[]
+
+        for (var i = 0; i < myArr.length; i++) {
+            var object = myArr[i];
+            
+            usersid[i]=object.author
+        }
+        console.log(usersid)
+        var users=[]
+        for (var i = 0; i < usersid.length; i++) {
+            users[i]=await User.find({}).where('_id').equals(usersid[i])
+        }
+
+        var json1 = Object.assign({}, users);
+       
+        console.log(json1)
+
+        // var use =''
+        // for (var i = 0; i < usersid.length; i++) {
+        //     use.push(users[i])
+        // }
+        // console.log(use)
+        
         if (!posts) {
             return res.json({ message: 'Постов нет' })
         }
 
-        res.json({ posts, popularPosts })
+        res.json({ posts, popularPosts, users})
     } catch (error) {
         res.json({ message: 'Что-то пошло не так.' })
     }
