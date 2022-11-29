@@ -8,7 +8,7 @@ export const PopularPosts = ({ post }) => {
                 to={`${post._id}`}
                 className=' text-black-400 text-center text-xs p-2 font-bold hover:text-white'
             >
-                {post.title}
+                {post.text}
             </Link>
         </div>
     )

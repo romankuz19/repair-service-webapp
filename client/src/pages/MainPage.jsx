@@ -7,7 +7,7 @@ import { getAllPosts } from '../redux/features/post/postSlice'
 
 export const MainPage = () => {
     const dispatch = useDispatch()
-    const { posts, popularPosts } = useSelector((state) => state.post)
+    const { posts, popularPosts, users } = useSelector((state) => state.post)
 
     //console.log(popularPosts)
     //console.log(users)
@@ -29,7 +29,7 @@ export const MainPage = () => {
             <div className='flex justify-center gap-4'>
                 <div className='flex flex-col gap-10 basis-4/5'>
                     {posts?.map((post, idx) => (
-                        <PostItem key={idx} post={post} />
+                        <PostItem key={idx} post={post} user={users} />
                     ))}
                 </div>
                 <div className='basis-1/5'>

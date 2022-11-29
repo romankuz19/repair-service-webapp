@@ -21,7 +21,9 @@ export const RegisterPage = () => {
         if (status) {
             toast(status)
         }
-        if (isAuth) navigate('/')
+        if (isAuth) {navigate('/') 
+        //window.location.reload(false);
+    }
     }, [status, isAuth, navigate])
 
     const handleSubmit = () => {

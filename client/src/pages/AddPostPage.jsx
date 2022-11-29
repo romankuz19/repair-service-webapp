@@ -37,7 +37,7 @@ export const AddPostPage = () => {
             className='w-1/3 mx-auto py-10'
             onSubmit={(e) => e.preventDefault()}
         >
-            <label className='text-white py-2 bg-blue-600 rounded-lg text-m mt-2 flex items-center justify-center border-dashed border-2 border-pink-200 cursor-pointer'>
+            <label className='hover:text-black text-white py-2 bg-blue-600 rounded-lg text-m mt-2 flex items-center justify-center border-dashed border-2 border-pink-200 cursor-pointer'>
                 Прикрепите вашу фотографию:
                 <input
                     type='file'
@@ -89,14 +89,14 @@ export const AddPostPage = () => {
             <div className='flex gap-8 items-center justify-center mt-4'>
                 <button
                     onClick={submitHandler}
-                    className='flex justify-center items-center bg-blue-600 text-m text-white rounded-lg py-2 px-4'
+                    className='flex justify-center items-center bg-blue-600 text-m text-white rounded-lg py-2 px-4 hover:text-black'
                 >
                     Добавить
                 </button>
 
                 <button
                     onClick={clearFormHandler}
-                    className='flex justify-center items-center bg-red-500 text-m text-white rounded-lg py-2 px-4'
+                    className='flex justify-center items-center bg-red-500 text-m text-white rounded-lg py-2 px-4 hover:text-black'
                 >
                     Отменить
                 </button>

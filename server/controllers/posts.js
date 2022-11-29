@@ -106,13 +106,15 @@ export const getById = async (req, res) => {
         const post = await Post.findByIdAndUpdate(req.params.id, {
             $inc: { views: 1 },
         })
-        res.json(post)
+        const user = await User.find().where('username').equals(post.username)
+        console.log(user)
+        res.json({post, user})
     } catch (error) {
         res.json({ message: 'Что-то пошло не так.' })
     }
 }
 
-// Get All Posts
+// Get My Posts
 export const getMyPosts = async (req, res) => {
     try {
         const user = await User.findById(req.userId)
@@ -149,7 +151,7 @@ export const removePost = async (req, res) => {
 // Update post
 export const updatePost = async (req, res) => {
     try {
-        const { title, text, id } = req.body
+        const { title, text, price, id } = req.body
         const post = await Post.findById(id)
 
         if (req.files) {
@@ -161,7 +163,7 @@ export const updatePost = async (req, res) => {
 
         post.title = title
         post.text = text
-
+        post.price = price
         await post.save()
 
         res.json(post)

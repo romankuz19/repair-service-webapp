@@ -157,14 +157,14 @@ export const MyProfilePage = () => {
                 <button
                     type='submit'
                     onClick={handleSubmit}
-                    className='font-bold bg-pink-200 text-xs text-black rounded-lg px-4 py-2 text-xs font-bold text-black-400 hover:text-white'
+                    className='flex justify-center items-center bg-blue-600 text-xs text-white rounded-lg py-2 px-4 hover:text-black'
                 >
                     Изменить
                 </button>
                 <button
                     type='submit'
                     onClick={fetchUser}
-                    className='font-bold bg-pink-200 text-xs text-black rounded-lg px-4 py-2 text-xs font-bold text-black-400 hover:text-white'
+                    className='flex justify-center items-center bg-red-500 text-xs text-white rounded-lg py-2 px-4 hover:text-black'
                 >
                     Отменить
                 </button>
