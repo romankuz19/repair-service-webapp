@@ -1,4 +1,5 @@
 import User from '../models/User.js'
+import ChatMessage from '../models/ChatMessage.js'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 
@@ -89,16 +90,28 @@ export const login = async (req, res) => {
 export const updateUser = async (req, res) => {
     try {
         const user = await User.findById(req.userId)
+        const userId=req.userId
+        console.log('userId',userId)
+        
         const { firstname, secondname, city, phonenumber } = req.body
 
-
+        //console.log('user',user)
         user.firstname = firstname
         user.secondname = secondname
         user.city = city
         user.phonenumber = phonenumber
 
         await user.save()
-        console.log(user)
+        //const msg = await ChatMessage.find().where('senderId').equals(userId)
+        //console.log('msgs',msg)
+        await ChatMessage.updateMany( {senderId : userId}, { $set: { senderName : firstname } });
+        
+        // for (var i = 0; i < msg.length; i++){
+        //     msg[i].senderName=firstname
+        //     console.log('msg name',msg[i].senderName)
+        // }
+        //await msg.save()
+        //console.log('msgs',msg)
 
         res.json({user, message: 'Даныне успешно изменены.',})
 

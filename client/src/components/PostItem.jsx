@@ -47,6 +47,8 @@ export const PostItem = ({ post, user }) => {
         
         
     if (!post || !user) {
+        console.log('post',post)
+        console.log('user',user)
         return (
             <div className='text-xl text-center text-black py-10'>
                 Загрузка...

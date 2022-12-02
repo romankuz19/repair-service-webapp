@@ -7,6 +7,8 @@ import fileUpload from 'express-fileupload'
 import authRoute from './routes/auth.js'
 import postRoute from './routes/posts.js'
 import commentRoute from './routes/comments.js'
+import chatRoute from './routes/chat.js'
+import messagesRoute from './routes/messages.js'
 
 const app = express()
 dotenv.config()
@@ -28,7 +30,8 @@ app.use(express.static('uploads'))
 app.use('/api/auth', authRoute)
 app.use('/api/posts', postRoute)
 app.use('/api/comments', commentRoute)
-
+app.use('/api/chat', chatRoute)
+app.use('/api/messages', messagesRoute)
 // app.get('/',(req,res)=>{
 //     return res.json({message:'All is fine'})
 // })

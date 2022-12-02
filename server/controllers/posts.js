@@ -107,7 +107,7 @@ export const getById = async (req, res) => {
             $inc: { views: 1 },
         })
         const user = await User.find().where('username').equals(post.username)
-        console.log(user)
+        //console.log(user)
         res.json({post, user})
     } catch (error) {
         res.json({ message: 'Что-то пошло не так.' })

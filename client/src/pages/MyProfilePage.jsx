@@ -8,6 +8,7 @@ import { checkIsAuth, logout } from '../redux/features/auth/authSlice'
 import { toast } from 'react-toastify'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateUser } from '../redux/features/auth/authSlice'
+import { Chat } from '../components/Chat.jsx'
 
 export const MyProfilePage = () => {
     const [username, setUsername] = useState('')
@@ -17,6 +18,11 @@ export const MyProfilePage = () => {
     const [secondname, setSecondName] = useState('')
     const [city, setCity] = useState('')
     const [phonenumber, setPhonenumber] = useState('')
+    const [user, setUser] = useState('')
+    const [chats, setChats] = useState([])
+    const [chatUsers, setChatUsers] = useState([])
+    const [allMessages, setAllMessages] = useState([{}])
+
 
     const { status } = useSelector((state) => state.auth)
     
@@ -31,13 +37,14 @@ export const MyProfilePage = () => {
         const { data } = await axios.get('/auth/me')
         //setUsername(data.username)
        
-        console.log(data)
+        //console.log(data)
         //setPassword('')
         //setUsername('')
         setName(data.user.firstname)
         setSecondName(data.user.secondname)
         setCity(data.user.city)
         setPhonenumber(data.user.phonenumber)
+        setUser(data.user)
     })
     useEffect(() => {
         if (status) toast(status)
@@ -59,10 +66,42 @@ export const MyProfilePage = () => {
             console.log(error)
         }
     }
+    const getChats = async () =>{
+        try {
+            const { data } = await axios.get('/chat/getchats')    
+            // const { data } = await axios.get(`/chat/getchats`,{
+                
+            // //     {
+            // //     firstUserId: currentUser._id,
+            // //     secondUserId: user[0]._id,
+            //  }
+            // )
+       // console.log('user',user[0]._id)
+       // console.log('curuser',currentUser._id)
+        
+        //setChat(checkchat)        
+        //return checkchat[0]
+        //console.log('messages',data[0].messages)
+        //console.log('dada',data)
+        setChats(data.filtered)
+        setChatUsers(data.users)
+       // console.log('dada',chats)
+        //setTimeout(getMessages, 2000);
+        //getMessages()
+            
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    
+    //console.log(user._id)
+    //console.log('allchats',chats)
+    //console.log('all chat users', chatUsers)
+   
     return (
         <div className='w-1/2 mx-auto py-10 flex flex-col gap-10'>
             {isAuth && (
-                <><ul className='flex flex-col gap-8'>
+                <><ul className='flex justify-center flex-row gap-8'>
 
                     <li>
                         <NavLink
@@ -82,6 +121,17 @@ export const MyProfilePage = () => {
                             style={({ isActive }) => isActive ? activeStyles : undefined}
                         >
                             Добавить услугу
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            to={'#'}
+                            href='/'
+                            onClick={getChats}
+                            className='text-xs font-bold text-black-400 hover:text-white rounded-lg bg-pink-200 px-4 py-2'
+                            style={({ isActive }) => isActive ? activeStyles : undefined}
+                        >
+                            Мои чаты
                         </NavLink>
                     </li>
                 </ul>
@@ -170,10 +220,28 @@ export const MyProfilePage = () => {
                 </button>
             </div>
         </form>
-                
                 </>
                 
+                
+                
             )}
+
+            <div className='grid grid-cols-2 grid-flow-row gap-3'>
+
+            
+
+        
+              {isAuth && chats.length!==0 && ( 
+                chats?.map((chat , idx) => (
+                <Chat chat={chat} curuser={user} chatUsers={chatUsers} key={idx} />
+            )))
+            // : <div className='text-xl text-center text-white py-10'>
+            // Блабла
+           //</div>
+            }   
+            </div>
+
+
         </div>
     )
 }

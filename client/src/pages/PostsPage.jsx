@@ -34,7 +34,7 @@ export const PostsPage = () => {
     //     setEmpty(true)
     // } 
     // else {setEmpty(false)}
-    console.log(posts)
+    console.log('posts',posts)
     console.log(user)
     return (
         
