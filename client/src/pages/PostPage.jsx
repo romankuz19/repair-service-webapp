@@ -22,9 +22,11 @@ import {
 import { CommentItem } from '../components/CommentItem'
 import { MessageItem } from '../components/MessageItem.jsx'
 import { MessageItemRight } from '../components/MessageItemRight.jsx'
+import { checkIsAuth, logout } from '../redux/features/auth/authSlice'
 
 
 export const PostPage = () => {
+    const isAuth = useSelector(checkIsAuth)
     const [post, setPost] = useState(null)
     const [ownerUser, setOwnerUser] = useState(null)
     const [chat, setChat] = useState(null)
@@ -32,6 +34,7 @@ export const PostPage = () => {
     const [message, setMessage] = useState('')
     const [allMessages, setAllMessages] = useState([])
     const [currentUser, setCurrentOwner] = useState(null)
+    const [cmtUser, setCmtuser] = useState([])
     //const [ownerUser, setOwnerUser] = useState(null)
     const [btn, setBtn] = useState(false)
     const [isLoaded, setIsloaded] = useState(false)
@@ -91,6 +94,7 @@ export const PostPage = () => {
        
        // console.log(data.user)
        setCurrentOwner(data.user)
+       setCmtuser(data.user)
 
        //setOwnerUser(user)
     }
@@ -231,13 +235,19 @@ export const PostPage = () => {
     const handleSubmit = () => {
         try {
             const postId = params.id
-            dispatch(createComment({ postId, comment }))
+            
+            const authorName = currentUser.firstname
+            console.log('curus', authorName)
+            dispatch(createComment({ postId, comment, authorName }))
             setComment('')
         } catch (error) {
             console.log(error)
         }
     }
    
+    const toLogin = () => {
+        navigate('/login')
+    }
 
     if (!post) {
         return (
@@ -265,9 +275,7 @@ export const PostPage = () => {
                 <div className='py-5 min-w-[500px] '>
                     <div className='flex flex-col basis-1/4 flex-grow'>
                         <div
-                            className='object-cover h-40 w-40 rounded-lg'
-                            
-                        >
+                            className='object-cover h-40 w-40 rounded-lg'>
                             {post?.imgUrl && (
                                 <img
                                     src={`http://localhost:3002/${post.imgUrl}`}
@@ -295,11 +303,16 @@ export const PostPage = () => {
                 
                 <div className='text-black text-m'>{ownerUser[0].city}</div>
                 <div className='text-black text-m flex justify-between'>{post.title} 
-                {currentUser._id !== post.author && (
-                    <button onClick={handleCreateChat} className='bg-blue-400 text-xs text-white rounded-lg py-1 px-1 hover:text-black'>Напишите исполнителю</button>
-                )}
+                {isAuth && (
+                     currentUser._id !== post.author && (
+                    <button onClick={handleCreateChat} className='bg-blue-400 text-xs text-white rounded-lg py-1 px-1 hover:text-black'>Напишите исполнителю</button>)
+               
+               )}
                 {/* <button onClick={handleCreateChat} className='bg-blue-400 text-xs text-white rounded-lg py-1 px-1 hover:text-black'>Напишите исполнителю</button>
                  */}
+                 {!isAuth && (
+                 <button onClick={toLogin} className='bg-blue-400 text-xs text-white rounded-lg py-1 px-1 hover:text-black'>Напишите исполнителю</button>
+               )}
                 </div>
                 
                 <div className='flex justify-between items-center '>
@@ -378,7 +391,7 @@ export const PostPage = () => {
                
             </div>
              <div className='w-1/3 max-h-[400px] overflow-auto p-8 bg-blue-700 flex flex-col gap-2 rounded-lg'>
-                    <form
+                {isAuth && (<form
                         className='flex gap-2'
                         onSubmit={(e) => e.preventDefault()}
                     >
@@ -396,12 +409,14 @@ export const PostPage = () => {
                         >
                             Отправить
                         </button>
-                    </form>
+                    </form>)}
                     
                     
-                    {comments?.map((cmt) => (
-                        <CommentItem key={cmt._id} cmt={cmt} curuser={currentUser} />
-                    ))}
+                    <div className="text-white text-s">Отзывы на услугу</div>
+                    {comments.length!==0?
+                    comments?.map((cmt, idx) => (
+                        <CommentItem key={idx} cmt={cmt}  />
+                    )):<div className="text-white text-xs">Отзывов пока нет</div>}
                 </div> 
         </div>
     )

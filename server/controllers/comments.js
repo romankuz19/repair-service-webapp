@@ -3,12 +3,15 @@ import Post from '../models/Post.js'
 
 export const createComment = async (req, res) => {
     try {
-        const { postId, comment, author } = req.body
+        const { postId, comment, authorName } = req.body
 
         if (!comment)
             return res.json({ message: 'Комментарий не может быть пустым' })
 
-        const newComment = new Comment({ comment })
+        console.log('author',authorName)
+        console.log('comment',comment)
+        
+        const newComment = new Comment({ comment, authorName })
         await newComment.save()
         console.log(newComment)
 
