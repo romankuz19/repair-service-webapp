@@ -19,10 +19,11 @@ export const EditPostPage = () => {
 
     const fetchPost = useCallback(async () => {
         const { data } = await axios.get(`/posts/${params.id}`)
-        setTitle(data.title)
-        setText(data.text)
-        setPrice(data.price)
-        setOldImage(data.imgUrl)
+        //console.log('data',data)
+        setTitle(data.post.title)
+        setText(data.post.text)
+        setPrice(data.post.price)
+        setOldImage(data.post.imgUrl)
     }, [params.id])
 
     const submitHandler = () => {
@@ -51,6 +52,7 @@ export const EditPostPage = () => {
         fetchPost()
     }, [fetchPost])
 
+    //console.log('title',title)
     return (
         
         <><form

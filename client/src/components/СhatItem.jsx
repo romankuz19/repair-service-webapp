@@ -6,7 +6,7 @@ export const ChatItem = ({ messages}) => {
     // if(msg.senderId===userid1){
     //     sendmsg=msg.message
     // }
-    console.log('msg',messages)
+    //console.log('msg',messages)
     //console.log('name',senderName)
     return (
         

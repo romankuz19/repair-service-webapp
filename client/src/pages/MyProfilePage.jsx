@@ -222,15 +222,9 @@ export const MyProfilePage = () => {
         </form>
                 </>
                 
-                
-                
             )}
 
             <div className='grid grid-cols-2 grid-flow-row gap-3'>
-
-            
-
-        
               {isAuth && chats.length!==0 && ( 
                 chats?.map((chat , idx) => (
                 <Chat chat={chat} curuser={user} chatUsers={chatUsers} key={idx} />

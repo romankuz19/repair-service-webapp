@@ -33,6 +33,8 @@ export const PostPage = () => {
     const [allMessages, setAllMessages] = useState([])
     const [currentUser, setCurrentOwner] = useState(null)
     //const [ownerUser, setOwnerUser] = useState(null)
+    const [btn, setBtn] = useState(false)
+    const [isLoaded, setIsloaded] = useState(false)
 
     var chatId = ''
     var loading = true
@@ -43,6 +45,7 @@ export const PostPage = () => {
     const navigate = useNavigate()
     const params = useParams()
     const dispatch = useDispatch()
+    //var btn = false
 
     const removePostHandler = () => {
         try {
@@ -94,7 +97,7 @@ export const PostPage = () => {
 
     const handleCreateChat = async () => {
         try {
-
+            setBtn(true)
            //console.log('user',user[0]._id)
             //console.log('curuser',currentUser._id)
             
@@ -114,12 +117,13 @@ export const PostPage = () => {
             // // This will replace the current entry in the browser's history, without reloading
             // window.history.replaceState(nextState, nextTitle, nextURL);
                 
-                console.log(data)
+                //console.log(data)
                 setChat(data)
                 
                 //console.log(chat)
                 //return data
             //}
+            //console.log(btn)
 
         } catch (error) {
             console.log(error)
@@ -150,18 +154,38 @@ export const PostPage = () => {
         }
     }
     
-
     const isInitialMount = useRef(true);
+    useEffect(() => {
+        if (isInitialMount.current) {
+            isInitialMount.current = false;
+        } else {
+            // Your useEffect code here to be run on update
+            fetchMessages()
+            
+        }
+        },[message]);
+        
+    useEffect(() => {
+        if(btn){
+            //console.log('btn',btn)
+            //console.log('isload',isLoaded)
+            if(!isLoaded && chat){
+                setIsloaded(true)
+                fetchMessages()
+            }
+            
+        }
+        
+      });
+    
 
     useEffect(() => {
-    if (isInitialMount.current) {
-        isInitialMount.current = false;
-    } else {
-        // Your useEffect code here to be run on update
-        fetchMessages()
-        
-    }
-    },[message]);
+        if(btn && isLoaded){
+            const interval = setInterval(fetchMessages, 1000);
+            return () => clearInterval(interval);
+        }
+      });
+      
    
   
 
@@ -223,7 +247,7 @@ export const PostPage = () => {
         )
     }
     //console.log('commentes',comments)
-    console.log('allmsg',allMessages)
+    //console.log('allmsg',allMessages)
     //console.log('curuser',currentUser)
     //console.log('chat',chat[0]._id)
     //console.log(currentUser._id)
@@ -353,7 +377,7 @@ export const PostPage = () => {
                 
                
             </div>
-            {/* <div className='w-1/3 max-h-[400px] overflow-auto p-8 bg-blue-700 flex flex-col gap-2 rounded-lg'>
+             <div className='w-1/3 max-h-[400px] overflow-auto p-8 bg-blue-700 flex flex-col gap-2 rounded-lg'>
                     <form
                         className='flex gap-2'
                         onSubmit={(e) => e.preventDefault()}
@@ -376,9 +400,9 @@ export const PostPage = () => {
                     
                     
                     {comments?.map((cmt) => (
-                        <CommentItem key={cmt._id} cmt={cmt} />
+                        <CommentItem key={cmt._id} cmt={cmt} curuser={currentUser} />
                     ))}
-                </div> */}
+                </div> 
         </div>
     )
 }

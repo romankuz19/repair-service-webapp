@@ -12,7 +12,7 @@ import { ChatItem } from './СhatItem'
 export const Chat = ({ chat, curuser, chatUsers }) => {
     
     //const avatar = cmt.comment.trim().toUpperCase().split('').slice(0, 2)
-    console.log(chat)
+    //console.log(chat)
     const chatId=chat._id
     const [allMessages, setAllMessages] = useState([{}])
     const [message, setMessage] = useState('')
@@ -46,13 +46,22 @@ export const Chat = ({ chat, curuser, chatUsers }) => {
         setAllMessages(data)
        // console.log('data',data)
     })
-    useEffect(() => {
-        fetchMessages()
-    }, [message])
+    // useEffect(() => {
+    //     fetchMessages()
+    // }, [message])
     // useEffect(() => {
     //     const interval = setInterval(fetchMessages, 10000);
     //     return () => clearInterval(interval);
     //   }, []);
+
+    
+
+    useEffect(() => {
+        {
+            const interval = setInterval(fetchMessages, 1000);
+            return () => clearInterval(interval);
+        }
+      });
     const handleSendMessage  = async () => {
         try {
             //fetchMessages()
@@ -103,8 +112,8 @@ export const Chat = ({ chat, curuser, chatUsers }) => {
     
     if(allMessages[0]._id){
         check=true
-        console.log('messages',allMessages)
-        console.log('legnth',allMessages.length)
+        //console.log('messages',allMessages)
+        //console.log('legnth',allMessages.length)
 
     }
     
@@ -112,7 +121,7 @@ export const Chat = ({ chat, curuser, chatUsers }) => {
     if(check) 
     {
         return ( <div className=''>
-            <div className='max-h-[200px] text-white overflow-auto p-2 bg-blue-700 flex flex-col gap-2 rounded-lg'>
+            <div className='max-h-[200px] text-white overflow-auto p-2 bg-blue-700 flex flex-col gap-2 rounded-lg scroll-smooth'>
                 {allMessages.length!==0?
                 allMessages?.map((messages) => (
                 <ChatItem key={messages._id} messages={messages} />
