@@ -1,10 +1,15 @@
 import { Router } from 'express'
-const router = new Router()
 import { checkAuth } from '../utils/checkAuth.js'
-import { createComment } from '../controllers/comments.js'
+import { createComment, removeComment } from '../controllers/comments.js'
 
+const router = new Router()
 // Create Comment
 // http://localhost:3002/api/comments/:id
 router.post('/:id', checkAuth, createComment)
+
+// http://localhost:3002/api/comments/:id
+router.delete('/',
+ //checkAuth, 
+ removeComment)
 
 export default router

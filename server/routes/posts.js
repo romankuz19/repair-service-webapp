@@ -7,6 +7,7 @@ import {
     removePost,
     updatePost,
     getPostComments,
+    sortedPosts
 } from '../controllers/posts.js'
 import { checkAuth } from '../utils/checkAuth.js'
 const router = new Router()
@@ -18,6 +19,10 @@ router.post('/', checkAuth, createPost)
 // Get All Posts
 // http://localhost:3002/api/posts
 router.get('/', getAll)
+
+// Get sorted Posts
+// http://localhost:3002/api/posts/sorted/:name
+router.get('/sorted/:name', sortedPosts)
 
 // Get Post By Id
 // http://localhost:3002/api/posts/:id
@@ -33,7 +38,9 @@ router.get('/user/me', checkAuth, getMyPosts)
 
 // Remove Post
 // http://localhost:3002/api/posts/:id
-router.delete('/:id', checkAuth, removePost)
+router.delete('/:id', 
+checkAuth,
+ removePost)
 
 // Get Post Comments
 // http://localhost:3002/api/posts/comments/:id

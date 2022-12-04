@@ -9,6 +9,7 @@ import axios from '../utils/axios'
 export const EditPostPage = () => {
     const [title, setTitle] = useState('')
     const [text, setText] = useState('')
+    const [cat, setCat] = useState('')
     const [price, setPrice] = useState('')
     const [oldImage, setOldImage] = useState('')
     const [newImage, setNewImage] = useState('')
@@ -22,6 +23,7 @@ export const EditPostPage = () => {
         //console.log('data',data)
         setTitle(data.post.title)
         setText(data.post.text)
+        setCat(data.post.category)
         setPrice(data.post.price)
         setOldImage(data.post.imgUrl)
     }, [params.id])
@@ -31,6 +33,7 @@ export const EditPostPage = () => {
             const updatedPost = new FormData()
             updatedPost.append('title', title)
             updatedPost.append('text', text)
+            updatedPost.append('category', cat)
             updatedPost.append('price', price)
             updatedPost.append('id', params.id)
             updatedPost.append('image', newImage)
@@ -46,11 +49,34 @@ export const EditPostPage = () => {
         setTitle('')
         setText('')
         setPrice('')
+        setCat('')
     }
 
     useEffect(() => {
         fetchPost()
     }, [fetchPost])
+    const categoriesList = [
+       
+        {
+            id: 1,
+            value: 'Бытовые услуги'
+        }, {
+            id: 2,
+            value: 'Электроника'
+        }, {
+            id: 3,
+            value: 'Машины'
+        }
+        ];
+        
+        function Options({ options }) {
+            return (
+                options.map(option => 
+                            <option key={option.id} value={option.value}>                                   
+                            {option.value}
+                            </option>)
+                           );
+        }
 
     //console.log('title',title)
     return (
@@ -107,6 +133,18 @@ export const EditPostPage = () => {
                         placeholder='1000, 5000, 10000'
                         className='mt-1 text-black w-full rounded-lg bg-blue-400 border py-1 px-2 text-xl outline-none placeholder:text-gray-700' />
                 </label>
+                <label className='text-xl text-black opacity-90'>
+                    Категория
+                   
+                        
+                </label>
+                <input list="categories" id="catlist" 
+                        onChange={(e) => setCat(e.target.value)} 
+                        name="category" className='mt-1 text-black w-full rounded-lg bg-blue-400 border py-1 px-2 text-xl outline-none placeholder:text-gray-700 '>
+                        </input>
+                        <datalist id="categories">
+                            <Options options={categoriesList} />
+                        </datalist>
 
 
 

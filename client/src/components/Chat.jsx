@@ -118,6 +118,7 @@ export const Chat = ({ chat, curuser, chatUsers }) => {
     }
     
     //console.log('message sender name',messages[0])
+    console.log('check',check)
     if(check) 
     {
         return ( <div className=''>
@@ -127,7 +128,7 @@ export const Chat = ({ chat, curuser, chatUsers }) => {
                 <ChatItem key={messages._id} messages={messages} />
         
     )):
-    <div>Пока нет чатов</div>
+    <div className='items-center'>Пока нет чатов</div>
     }
             </div>
             <form
@@ -153,6 +154,10 @@ export const Chat = ({ chat, curuser, chatUsers }) => {
         
                  
                            
+    }
+    else {
+
+        return(<div className='items-center'>Пока нет чатов</div>)
     }
             
         // </div>

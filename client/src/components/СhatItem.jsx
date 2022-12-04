@@ -1,5 +1,6 @@
 import React from 'react'
 
+
 export const ChatItem = ({ messages}) => {
     //const avatar = cmt.comment.trim().toUpperCase().split('').slice(0, 2)
     // var sendmsg=''
@@ -16,6 +17,7 @@ export const ChatItem = ({ messages}) => {
             </div>
             
             <div className='flex text-white text-sm'> {messages.message}</div>
+
         </div>
     )
 }

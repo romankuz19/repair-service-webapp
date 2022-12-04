@@ -7,7 +7,7 @@ import { fileURLToPath } from 'url'
 // Create Post
 export const createPost = async (req, res) => {
     try {
-        const { title, text, price } = req.body
+        const { title, text, category, price } = req.body
         const user = await User.findById(req.userId)
 
         if (req.files) {
@@ -19,6 +19,7 @@ export const createPost = async (req, res) => {
                 username: user.username,
                 title,
                 text,
+                category,
                 price,
                 imgUrl: fileName,
                 author: req.userId,
@@ -36,6 +37,7 @@ export const createPost = async (req, res) => {
             username: user.username,
             title,
             text,
+            category,
             price,
             imgUrl: '149071.png',
             author: req.userId,
@@ -100,6 +102,30 @@ export const getAll = async (req, res) => {
     }
 }
 
+export const sortedPosts = async (req, res) => {
+    try {
+        console.log('req.params',req.params.name)
+        const sort= req.params.name
+        //console.log('sort',sort.sort)
+        
+       const sortedPosts = await Post.find().where('category').equals(sort)
+       console.log('sortedPosts',sortedPosts)
+        // const posts = await Post.find().sort('-createdAt')
+        // const popularPosts = await Post.find().limit(5).sort('-views')
+        // const users = await User.find()
+
+        
+        
+        if (!sort) {
+            return res.json({ message: 'Постов нет' })
+        }
+
+        res.json({sortedPosts})
+    } catch (error) {
+        res.json({ message: 'Что-то пошло не так.' })
+    }
+}
+
 // Get Post By Id
 export const getById = async (req, res) => {
     try {
@@ -125,7 +151,7 @@ export const getMyPosts = async (req, res) => {
         )
 
 
-        console.log(list,user)
+        //console.log(list,user)
         res.json({list,user})
     } catch (error) {
         res.json({ message: 'Что-то пошло не так.' })
@@ -151,7 +177,7 @@ export const removePost = async (req, res) => {
 // Update post
 export const updatePost = async (req, res) => {
     try {
-        const { title, text, price, id } = req.body
+        const { title, text, category, price, id } = req.body
         const post = await Post.findById(id)
 
         if (req.files) {
@@ -163,6 +189,7 @@ export const updatePost = async (req, res) => {
 
         post.title = title
         post.text = text
+        post.category = category
         post.price = price
         await post.save()
 

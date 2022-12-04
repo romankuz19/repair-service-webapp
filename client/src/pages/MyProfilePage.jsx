@@ -224,14 +224,17 @@ export const MyProfilePage = () => {
                 
             )}
 
+            {/* {user.admin?<div>Я админ</div>:<div>Я не админ</div>} */}
+
+
             <div className='grid grid-cols-2 grid-flow-row gap-3'>
-              {isAuth && chats.length!==0 && ( 
+              {isAuth && chats.length!==0 ? ( 
                 chats?.map((chat , idx) => (
                 <Chat chat={chat} curuser={user} chatUsers={chatUsers} key={idx} />
             )))
-            // : <div className='text-xl text-center text-white py-10'>
-            // Блабла
-           //</div>
+             : <div className='text-xl text-center text-white py-10'>
+             У вас нет чатов
+           </div>
             }   
             </div>
 

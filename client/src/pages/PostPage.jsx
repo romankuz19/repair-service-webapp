@@ -21,7 +21,6 @@ import {
 } from '../redux/features/comment/commentSlice'
 import { CommentItem } from '../components/CommentItem'
 import { MessageItem } from '../components/MessageItem.jsx'
-import { MessageItemRight } from '../components/MessageItemRight.jsx'
 import { checkIsAuth, logout } from '../redux/features/auth/authSlice'
 
 
@@ -38,7 +37,11 @@ export const PostPage = () => {
     //const [ownerUser, setOwnerUser] = useState(null)
     const [btn, setBtn] = useState(false)
     const [isLoaded, setIsloaded] = useState(false)
-
+    const words = [ 'сука' , 'сучка' , 'шлюха' ]
+    //const mat = /(?<=^|[^а-я])(([уyu]|[нзnz3][аa]|(хитро|не)?[вvwb][зz3]?[ыьъi]|[сsc][ьъ']|(и|[рpr][аa4])[зсzs]ъ?|([оo0][тбtb6]|[пp][оo0][дd9])[ьъ']?|(.\B)+?[оаеиeo])?-?([еёe][бb6](?!о[рй])|и[пб][ае][тц]).*?|([нn][иеаaie]|([дпdp]|[вv][еe3][рpr][тt])[оo0]|[рpr][аa][зсzc3]|[з3z]?[аa]|с(ме)?|[оo0]([тt]|дно)?|апч)?-?[хxh][уuy]([яйиеёюuie]|ли(?!ган)).*?|([вvw][зы3z]|(три|два|четыре)жды|(н|[сc][уuy][кk])[аa])?-?[бb6][лl]([яy](?!(х|ш[кн]|мб)[ауеыио]).*?|[еэe][дтdt][ь']?)|([рp][аa][сзc3z]|[знzn][аa]|[соsc]|[вv][ыi]?|[пp]([еe][рpr][еe]|[рrp][оиioеe]|[оo0][дd])|и[зс]ъ?|[аоao][тt])?[пpn][иеёieu][зz3][дd9].*?|([зz3][аa])?[пp][иеieu][дd][аоеaoe]?[рrp](ну.*?|[оаoa][мm]|([аa][сcs])?([иiu]([лl][иiu])?[нщктлtlsn]ь?)?|([оo](ч[еиei])?|[аa][сcs])?[кk]([оo]й)?|[юu][гg])[ауеыauyei]?|[мm][аa][нnh][дd]([ауеыayueiи]([лl]([иi][сзc3щ])?[ауеыauyei])?|[оo][йi]|[аоao][вvwb][оo](ш|sh)[ь']?([e]?[кk][ауеayue])?|юк(ов|[ауи])?)|[мm][уuy][дd6]([яyаиоaiuo0].*?|[еe]?[нhn]([ьюия'uiya]|ей))|мля([тд]ь)?|лять|([нз]а|по)х|м[ао]л[ао]фь([яию]|[её]й))(?=($|[^а-я]))/
+    //const mat = /([хx][уy])(?:[ёieеюийя]|ли[^а-я])|([пp][iие][3зс][дd])|(?:[^а-я]|(вы))([bб][lл][yя])|(?:[^а-я]|[^(колр)])((?:[еeё]|йо)[бb](?:[нn][уy]|[uу][4ч]|[оoаa@][тnкнt]|[лске@eыиаa][наоюи@вл]))|([pп][иeеi][дd][oоаыa@еeиi][рr])|[^а-я]([cсs][yуu][ч4]?[kк][a@аи])/
+    const mat = /(?<=^|[^а-я])(([уyu]|[нзnz3][аa]|(хитро|не)?[вvwb][зz3]?[ыьъi]|[сsc][ьъ']|(и|[рpr][аa4])[зсzs]ъ?|([оo0][тбtb6]|[пp][оo0][дd9])[ьъ']?|(.\B)+?[оаеиeo])?-?([еёe][бb6](?!о[рй])|и[пб][ае][тц]).*?|([нn][иеаaie]|([дпdp]|[вv][еe3][рpr][тt])[оo0]|[рpr][аa][зсzc3]|[з3z]?[аa]|с(ме)?|[оo0]([тt]|дно)?|апч)?-?[хxh][уuy]([яйиеёюuie]|ли(?!ган)).*?|([вvw][зы3z]|(три|два|четыре)жды|(н|[сc][уuy][кk])[аa])?-?[бb6][лl]([яy](?!(х|ш[кн]|мб)[ауеыио]).*?|[еэe][дтdt][ь']?)|([рp][аa][сзc3z]|[знzn][аa]|[соsc]|[вv][ыi]?|[пp]([еe][рpr][еe]|[рrp][оиioеe]|[оo0][дd])|и[зс]ъ?|[аоao][тt])?[пpn][иеёieu][зz3][дd9].*?|([зz3][аa])?[пp][иеieu][дd][аоеaoe]?[рrp](ну.*?|[оаoa][мm]|([аa][сcs])?([иiu]([лl][иiu])?[нщктлtlsn]ь?)?|([оo](ч[еиei])?|[аa][сcs])?[кk]([оo]й)?|[юu][гg])[ауеыauyei]?|[мm][аa][нnh][дd]([ауеыayueiи]([лl]([иi][сзc3щ])?[ауеыauyei])?|[оo][йi]|[аоao][вvwb][оo](ш|sh)[ь']?([e]?[кk][ауеayue])?|юк(ов|[ауи])?)|[мm][уuy][дd6]([яyаиоaiuo0].*?|[еe]?[нhn]([ьюия'uiya]|ей))|мля([тд]ь)?|лять|([нз]а|по)х|м[ао]л[ао]фь([яию]|[её]й))(?=($|[^а-я]))/
+    
     var chatId = ''
     var loading = true
     //var [chatId, setChatId] = useState('')
@@ -236,10 +239,32 @@ export const PostPage = () => {
         try {
             const postId = params.id
             
-            const authorName = currentUser.firstname
-            console.log('curus', authorName)
-            dispatch(createComment({ postId, comment, authorName }))
-            setComment('')
+            const author = currentUser
+            console.log('comment', comment.toLowerCase())
+            const result = comment.toLowerCase().match(mat)
+            console.log('result', result)
+            var firstCheck = true, secondCheck = true
+
+
+            if(result!==null) firstCheck=false
+            for(var i = 0;i<words.length;i++){
+                if(comment.toLowerCase()===words[i]){
+
+                    secondCheck=false
+
+                }
+            
+            }
+            if(firstCheck && secondCheck){
+                setComment('')
+                dispatch(createComment({ postId, comment, author }))
+            }
+            else{
+                alert("У нас нельзя ругаться")
+                    setComment('')
+            }
+            
+            
         } catch (error) {
             console.log(error)
         }
@@ -258,11 +283,12 @@ export const PostPage = () => {
     }
     //console.log('commentes',comments)
     //console.log('allmsg',allMessages)
-    //console.log('curuser',currentUser)
+    //console.log('curuser',currentUser._id)
     //console.log('chat',chat[0]._id)
     //console.log(currentUser._id)
-    //console.log(post.author)
+    //console.log('post author',post.author)
     //console.log(allMessages)
+
     return (
         <div className='max-w-[1200px] mx-auto py-10'>
             <button className='bg-blue-600 text-xs text-white rounded-lg py-2 px-4 hover:text-black'>
@@ -321,6 +347,7 @@ export const PostPage = () => {
                 <div className='text-blue-500 opacity-90 text-xl  line-clamp-4'>{post.price} ₽</div>
                      
                 </div>
+                <div className='text-blue-500 opacity-90 text-m  '>Категория: {post.category}</div>
                 
 
                     <div className='flex gap-3 items-center mt-2 justify-between'>
@@ -334,7 +361,22 @@ export const PostPage = () => {
                             </button>
                         </div>
 
-                        {currentUser?._id === post.author && (
+                        {(currentUser?._id === post.author) &&  (
+                            <div className='flex gap-3'>
+                                <button className='flex items-center justify-center gap-2 text-black opacity-80'>
+                                    <Link to={`/${params.id}/edit`}>
+                                        <AiTwotoneEdit />
+                                    </Link>
+                                </button>
+                                <button
+                                    onClick={removePostHandler}
+                                    className='flex items-center justify-center gap-2  text-black opacity-80'
+                                >
+                                    <AiFillDelete />
+                                </button>
+                            </div>
+                        )}
+                        {(currentUser?.admin===true) &&  (
                             <div className='flex gap-3'>
                                 <button className='flex items-center justify-center gap-2 text-black opacity-80'>
                                     <Link to={`/${params.id}/edit`}>
@@ -413,10 +455,17 @@ export const PostPage = () => {
                     
                     
                     <div className="text-white text-s">Отзывы на услугу</div>
-                    {comments.length!==0?
+                    {comments.length!==0 && isAuth && (
                     comments?.map((cmt, idx) => (
-                        <CommentItem key={idx} cmt={cmt}  />
-                    )):<div className="text-white text-xs">Отзывов пока нет</div>}
+                        <CommentItem key={idx} cmt={cmt} currentUser={currentUser} />
+                    )))}
+                    {comments.length!==0 && !isAuth && (
+                    comments?.map((cmt, idx) => (
+                        <CommentItem key={idx} cmt={cmt} currentUser={null} />
+                    )))}
+                    {comments.length===0 && (
+                    <div>Отзывов нет</div>
+                    )}
                 </div> 
         </div>
     )

@@ -103,6 +103,7 @@ export const PostItem = ({ post, user }) => {
                 <div className='text-blue-500 opacity-90 text-xl  line-clamp-4'>{post.price} ₽</div>
                      
                 </div>
+                <div className='text-blue-500 opacity-90 text-m  '>Категория: {post.category}</div>
                 </div>
             </div>
         </Link>

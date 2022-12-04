@@ -8,11 +8,11 @@ export const createChat = async (req, res) => {
         //const firstUserId = await User.findById(req.userId)
         const { firstUserId, secondUserId } = req.body
 
-        console.log('first',firstUserId)
-        console.log('second',secondUserId)
+        //console.log('first',firstUserId)
+        //console.log('second',secondUserId)
         const checkChat = await Chat.find().where('firstUserId').equals(firstUserId).where('secondUserId').equals(secondUserId)
         const checkChat2 = await Chat.find().where('firstUserId').equals(secondUserId).where('secondUserId').equals(firstUserId)
-        console.log('check',checkChat,checkChat2)
+        //console.log('check',checkChat,checkChat2)
         if (checkChat.length!=0 ){
             //console.log('if !=0',checkChat.length)
 
@@ -27,7 +27,7 @@ export const createChat = async (req, res) => {
         {
         const newChat = new Chat({ firstUserId,secondUserId })
         await newChat.save()
-        console.log('if == 0',checkChat.length)
+        //console.log('if == 0',checkChat.length)
         //console.log(firstUserId)
         //console.log(secondUserId)
         res.json(newChat)
@@ -72,7 +72,7 @@ export const getChats = async (req, res) => {
                 
             }
         }
-        console.log('users',users)
+        //console.log('users',users)
         var filtered = userChats.filter(function (el) {
             return el != null;
           });

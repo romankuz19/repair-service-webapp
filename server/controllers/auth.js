@@ -1,5 +1,6 @@
 import User from '../models/User.js'
 import ChatMessage from '../models/ChatMessage.js'
+import Comment from '../models/Comment.js'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 
@@ -105,6 +106,7 @@ export const updateUser = async (req, res) => {
         //const msg = await ChatMessage.find().where('senderId').equals(userId)
         //console.log('msgs',msg)
         await ChatMessage.updateMany( {senderId : userId}, { $set: { senderName : firstname } });
+        await Comment.updateMany( {author : userId}, { $set: { authorName : firstname } });
         
         // for (var i = 0; i < msg.length; i++){
         //     msg[i].senderName=firstname
