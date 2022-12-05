@@ -35,14 +35,18 @@ export const MyProfilePage = () => {
     
     const fetchUser = useCallback(async () => {
         const { data } = await axios.get('/auth/me')
-        //setUsername(data.username)
+        //console.log(data.user.firstname)
        
         //console.log(data)
         //setPassword('')
         //setUsername('')
+        //if(data.user.firstname!='')
         setName(data.user.firstname)
+        //if(data.user.secondname!='')
         setSecondName(data.user.secondname)
+        //if(data.user.city!='')
         setCity(data.user.city)
+        //if(data.user.setPhonenumber!='')
         setPhonenumber(data.user.phonenumber)
         setUser(data.user)
     })

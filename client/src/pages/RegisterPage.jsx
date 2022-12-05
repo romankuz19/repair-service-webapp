@@ -28,6 +28,9 @@ export const RegisterPage = () => {
 
     const handleSubmit = () => {
         try {
+            if(username.length<3 )alert("Логин слишком короткий или пустой")
+            else if(password.length<8) alert("Пароль слишком короткий")
+            else{
             dispatch(registerUser({ username, password,firstname,secondname,city,phonenumber }))
             setPassword('')
             setUsername('')
@@ -35,6 +38,7 @@ export const RegisterPage = () => {
             setSecondName('')
             setCity('')
             setPhonenumber('')
+            }
         } catch (error) {
             console.log(error)
         }
