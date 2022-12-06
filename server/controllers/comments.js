@@ -30,7 +30,7 @@ export const createComment = async (req, res) => {
             //console.log('some',some)
 
         } catch (error) {
-            console.log(error)
+            console.log(error)  
         }
         
         

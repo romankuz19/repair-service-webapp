@@ -38,9 +38,7 @@ router.get('/user/me', checkAuth, getMyPosts)
 
 // Remove Post
 // http://localhost:3002/api/posts/:id
-router.delete('/:id', 
-checkAuth,
- removePost)
+router.delete('/:id', checkAuth, removePost)
 
 // Get Post Comments
 // http://localhost:3002/api/posts/comments/:id

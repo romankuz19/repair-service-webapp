@@ -162,13 +162,13 @@ export const getMyPosts = async (req, res) => {
 export const removePost = async (req, res) => {
     try {
         const post = await Post.findByIdAndDelete(req.params.id)
-        if (!post) return res.json({ message: 'Такого поста не существует' })
+        if (!post) return res.json({ message: 'Такой услуги не существует' })
 
         await User.findByIdAndUpdate(req.userId, {
             $pull: { posts: req.params.id },
         })
 
-        res.json({ message: 'Пост был удален.' })
+        res.json({ message: 'Услуга была удалена.' })
     } catch (error) {
         res.json({ message: 'Что-то пошло не так.' })
     }
