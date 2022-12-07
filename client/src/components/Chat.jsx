@@ -16,6 +16,50 @@ export const Chat = ({ chat, curuser, chatUsers }) => {
     const chatId=chat._id
     const [allMessages, setAllMessages] = useState([{}])
     const [message, setMessage] = useState('')
+    var first, second =''
+    var firstId, secondId =''
+
+    var filtered = chatUsers.filter(function (el) {
+    return el != null;
+    });
+    console.log('chatUsers',filtered)
+    console.log('chat',chat)
+    // console.log('chat',chat)
+    var chatOpponent = ''
+    for(var i =0;i<filtered.length;i++){
+        if(filtered[i]._id===chat.firstUserId){
+            first=filtered[i].firstname
+            firstId=filtered[i]._id
+            if(filtered[i]._id===chat.secondUserId){
+                second=filtered[i].firstname
+                secondId=filtered[i]._id
+                break
+            }
+        }
+        if(filtered[i]._id===chat.secondUserId){
+            second=filtered[i].firstname
+            secondId=filtered[i]._id
+            if(filtered[i]._id===chat.firstUserId){
+                first=filtered[i].firstname
+                firstId=filtered[i]._id
+                break
+            }
+        }
+       
+    }
+
+    // if(curuser._id===firstId){
+    //     chatOpponent=second
+    // }
+    // else if(curuser._id===secondId){
+    //     chatOpponent=first
+    // }
+    if(first)chatOpponent=first
+    if(second)chatOpponent=second
+    console.log('first',first)
+    console.log('firstId',firstId)
+    console.log('second',second)
+    console.log('secondId',secondId)
     var check = false
     const timer = useRef(null);
     var messages =[{}]
@@ -117,7 +161,11 @@ export const Chat = ({ chat, curuser, chatUsers }) => {
             //console.log('legnth',allMessages.length)
     
         }
+        // else{
+        //     check=false
+        // }
     }
+    
     
     
     
@@ -125,7 +173,7 @@ export const Chat = ({ chat, curuser, chatUsers }) => {
     console.log('check',check)
     if(check) 
     {
-        return ( <div className=''>
+        return ( <div className='text-center text-blue-500 text-xl'> Чат с пользователем {chatOpponent}
             <div className='max-h-[200px] text-white overflow-auto p-2 bg-blue-700 flex flex-col gap-2 rounded-lg scroll-smooth'>
                 {allMessages.length!==0?
                 allMessages?.map((messages) => (

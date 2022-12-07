@@ -231,7 +231,7 @@ export const MyProfilePage = () => {
             {/* {user.admin?<div>Я админ</div>:<div>Я не админ</div>} */}
 
 
-            <div className='flex justify-center'>
+            <div className='grid grid-cols-2 grid-flow-row gap-4'>
               {isAuth && chats.length!==0 && ( 
                 
                 chats?.map((chat , idx) => (
