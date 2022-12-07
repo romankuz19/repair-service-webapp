@@ -132,8 +132,8 @@ export const MyProfilePage = () => {
                             to={'#'}
                             href='/'
                             onClick={getChats}
-                            className='text-xs font-bold text-black-400 hover:text-white rounded-lg bg-pink-200 px-4 py-2'
-                            style={({ isActive }) => isActive ? activeStyles : undefined}
+                            className='text-xs font-bold text-black-400 hover:text-white rounded-lg bg-pink-200 px-4 py-2 hover:text-black'
+                            
                         >
                             Мои чаты
                         </NavLink>
@@ -231,14 +231,14 @@ export const MyProfilePage = () => {
             {/* {user.admin?<div>Я админ</div>:<div>Я не админ</div>} */}
 
 
-            <div className='grid grid-cols-2 grid-flow-row gap-3'>
-              {isAuth && chats.length!==0 ? ( 
+            <div className='flex justify-center'>
+              {isAuth && chats.length!==0 && ( 
+                
                 chats?.map((chat , idx) => (
+                    
                 <Chat chat={chat} curuser={user} chatUsers={chatUsers} key={idx} />
             )))
-             : <div className='text-xl text-center text-white py-10'>
-             У вас нет чатов
-           </div>
+            
             }   
             </div>
 

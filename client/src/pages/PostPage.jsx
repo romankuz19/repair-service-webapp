@@ -42,6 +42,8 @@ export const PostPage = () => {
     //const mat = /([хx][уy])(?:[ёieеюийя]|ли[^а-я])|([пp][iие][3зс][дd])|(?:[^а-я]|(вы))([bб][lл][yя])|(?:[^а-я]|[^(колр)])((?:[еeё]|йо)[бb](?:[нn][уy]|[uу][4ч]|[оoаa@][тnкнt]|[лске@eыиаa][наоюи@вл]))|([pп][иeеi][дd][oоаыa@еeиi][рr])|[^а-я]([cсs][yуu][ч4]?[kк][a@аи])/
     const mat = /(?<=^|[^а-я])(([уyu]|[нзnz3][аa]|(хитро|не)?[вvwb][зz3]?[ыьъi]|[сsc][ьъ']|(и|[рpr][аa4])[зсzs]ъ?|([оo0][тбtb6]|[пp][оo0][дd9])[ьъ']?|(.\B)+?[оаеиeo])?-?([еёe][бb6](?!о[рй])|и[пб][ае][тц]).*?|([нn][иеаaie]|([дпdp]|[вv][еe3][рpr][тt])[оo0]|[рpr][аa][зсzc3]|[з3z]?[аa]|с(ме)?|[оo0]([тt]|дно)?|апч)?-?[хxh][уuy]([яйиеёюuie]|ли(?!ган)).*?|([вvw][зы3z]|(три|два|четыре)жды|(н|[сc][уuy][кk])[аa])?-?[бb6][лl]([яy](?!(х|ш[кн]|мб)[ауеыио]).*?|[еэe][дтdt][ь']?)|([рp][аa][сзc3z]|[знzn][аa]|[соsc]|[вv][ыi]?|[пp]([еe][рpr][еe]|[рrp][оиioеe]|[оo0][дd])|и[зс]ъ?|[аоao][тt])?[пpn][иеёieu][зz3][дd9].*?|([зz3][аa])?[пp][иеieu][дd][аоеaoe]?[рrp](ну.*?|[оаoa][мm]|([аa][сcs])?([иiu]([лl][иiu])?[нщктлtlsn]ь?)?|([оo](ч[еиei])?|[аa][сcs])?[кk]([оo]й)?|[юu][гg])[ауеыauyei]?|[мm][аa][нnh][дd]([ауеыayueiи]([лl]([иi][сзc3щ])?[ауеыauyei])?|[оo][йi]|[аоao][вvwb][оo](ш|sh)[ь']?([e]?[кk][ауеayue])?|юк(ов|[ауи])?)|[мm][уuy][дd6]([яyаиоaiuo0].*?|[еe]?[нhn]([ьюия'uiya]|ей))|мля([тд]ь)?|лять|([нз]а|по)х|м[ао]л[ао]фь([яию]|[её]й))(?=($|[^а-я]))/
     
+    const blockurl = /^(https?:\/\/)?([\w-]{1,32}\.[\w-]{1,32}) [^\s@]*$/gm
+    
     var chatId = ''
     var loading = true
     //var [chatId, setChatId] = useState('')
@@ -240,10 +242,12 @@ export const PostPage = () => {
             const postId = params.id
             
             const author = currentUser
-            console.log('comment', comment.toLowerCase())
+            //console.log('comment', comment.toLowerCase())
             const result = comment.toLowerCase().match(mat)
-            console.log('result', result)
+            //const result1 = comment.toLowerCase().match(blockurl)
+            //console.log('blockurl', result1)
             var firstCheck = true, secondCheck = true
+            //if(blockurl)
 
 
             if(result!==null) firstCheck=false
@@ -260,7 +264,8 @@ export const PostPage = () => {
                 dispatch(createComment({ postId, comment, author }))
             }
             else{
-                alert("У нас нельзя ругаться")
+                alert("У нас нельзя ругаться!")
+                toast("У нас нельзя ругаться!")
                     setComment('')
             }
             
@@ -297,8 +302,8 @@ export const PostPage = () => {
                 </Link>
             </button>
 
-            <div className='flex justify-between mx-auto py-8'>
-                <div className='py-5 min-w-[500px] '>
+            <div className='flex justify-center mx-auto  py-8'>
+                <div className='py-5 min-w-[550px] mr-5'>
                     <div className='flex flex-col basis-1/4 flex-grow'>
                         <div
                             className='object-cover h-40 w-40 rounded-lg'>
@@ -396,7 +401,7 @@ export const PostPage = () => {
 
 
                 {chat && (
-                            <div className='w-1/3'>
+                            <div className='w-1/3 ml-5'>
                             <div className='max-h-[400px] text-white overflow-auto p-2 bg-blue-700 flex flex-col gap-2 rounded-lg'>
                                 {allMessages.length!==0?
                                 allMessages?.map((msg) => (
@@ -432,8 +437,9 @@ export const PostPage = () => {
                 
                
             </div>
-             <div className='w-1/3 max-h-[400px] overflow-auto p-8 bg-blue-700 flex flex-col gap-2 rounded-lg'>
-                {isAuth && (<form
+             <div className='w-1/3 mx-auto max-h-[400px] overflow-auto p-8 bg-blue-700 flex flex-col gap-2 rounded-lg'>
+                {isAuth && !(currentUser?._id === post.author) && ( 
+                <form
                         className='flex gap-2'
                         onSubmit={(e) => e.preventDefault()}
                     >
@@ -452,6 +458,25 @@ export const PostPage = () => {
                             Отправить
                         </button>
                     </form>)}
+                    {isAuth &&  (currentUser?._id === post.author) 
+                    }
+
+                    {!isAuth && (<form
+                    className='flex gap-2'
+                    onSubmit={(e) => e.preventDefault()}
+                >
+                    <input
+                        type='text'
+                        readOnly
+                        value={comment}
+                        onChange={(e) => setComment(e.target.value)}
+                        placeholder='Авторизируйтесь, чтобы оставить отзыв'
+                        className='text-black w-full rounded-lg bg-blue-400 border p-2 text-xs outline-none placeholder:text-white'
+                    />
+                    
+                </form>)}
+                    
+                    
                     
                     
                     <div className="text-white text-s">Отзывы на услугу</div>

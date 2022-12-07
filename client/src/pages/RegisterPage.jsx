@@ -28,8 +28,8 @@ export const RegisterPage = () => {
 
     const handleSubmit = () => {
         try {
-            if(username.length<3 )alert("Логин слишком короткий или пустой")
-            else if(password.length<8) alert("Пароль слишком короткий")
+            if(username.length<3 )toast("Логин слишком короткий или пустой")
+            else if(password.length<8) toast("Пароль слишком короткий")
             else{
             dispatch(registerUser({ username, password,firstname,secondname,city,phonenumber }))
             setPassword('')

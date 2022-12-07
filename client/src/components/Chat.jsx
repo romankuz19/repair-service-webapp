@@ -109,13 +109,17 @@ export const Chat = ({ chat, curuser, chatUsers }) => {
     //     }
 
     // }
-    
-    if(allMessages[0]._id){
-        check=true
-        //console.log('messages',allMessages)
-        //console.log('legnth',allMessages.length)
 
+    if(allMessages.length!=0){
+        if(allMessages[0]._id){
+            check=true
+            //console.log('messages',allMessages)
+            //console.log('legnth',allMessages.length)
+    
+        }
     }
+    
+    
     
     //console.log('message sender name',messages[0])
     console.log('check',check)

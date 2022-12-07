@@ -54,8 +54,10 @@ export const login = async (req, res) => {
     try {
         const { username, password } = req.body
         const user = await User.findOne({ username })
-
+        //console.log('user',username, password)
+        //console.log('user',user)
         if (!user) {
+            //console.log('dasdsadsa',user)
             return res.json({
                 message: 'Такого юзера не существует.',
             })

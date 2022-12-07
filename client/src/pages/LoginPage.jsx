@@ -8,14 +8,17 @@ export const LoginPage = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
-    const { status } = useSelector((state) => state.auth)
+    var { status } = useSelector((state) => state.auth)
     const isAuth = useSelector(checkIsAuth)
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    var goodAuth, badAuth = ''
 
     useEffect(() => {
-        if (status) toast(status)
+        //if (status) toast(status)
         if (isAuth) {navigate('/') 
+        goodAuth="Успешный вход"
+        toast(goodAuth)
         //window.location.reload(false);
     }
     }, [status, isAuth, navigate])
@@ -23,10 +26,19 @@ export const LoginPage = () => {
     const handleSubmit = () => {
         try {
             dispatch(loginUser({ username, password }))
+            // if(!isAuth){
+            //     badAuth="Неверный логин или пароль"
+            //     toast(badAuth)
+            //     console.log('qqqqq')
+            // }
+            // if(status===null){
+            //     alert("Такого пользователя не существует")
+            // }
         } catch (error) {
             console.log(error)
         }
     }
+    
     return (
         <form
             onSubmit={(e) => e.preventDefault()}
@@ -34,23 +46,23 @@ export const LoginPage = () => {
         >
             <h1 className='text-lg text-black text-center'>Авторизация</h1>
             <label className='text-xs text-gray-400'>
-                Username:
+                Логин:
                 <input
                     type='text'
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
-                    placeholder='Username'
+                    placeholder='Логин'
                     className='mt-1 text-black w-full rounded-lg bg-pink-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
                 />
             </label>
 
             <label className='text-xs text-gray-400'>
-                Password:
+                Пароль:
                 <input
                     type='password'
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    placeholder='Password'
+                    placeholder='Пароль'
                     className='mt-1 text-black w-full rounded-lg bg-pink-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
                 />
             </label>
