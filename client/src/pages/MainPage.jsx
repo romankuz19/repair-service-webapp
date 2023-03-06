@@ -106,6 +106,17 @@ export const MainPage = () => {
     //console.log('length',sortedPosts.length)
 
 
+    const intNum=[-1,2,-3,4,-5,6,-7,0,-8];
+    const sign = function(array){
+        let result =0;
+        for (let i =0;i<array.length; ++i){
+            if(Math.sign(array[i])!== 1 && array[i] !==0){
+                ++result;
+            }
+        }
+        return result
+    }
+    console.log('result',sign(intNum))
     
     return (
         
