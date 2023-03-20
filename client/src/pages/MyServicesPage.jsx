@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { PostItem } from '../components/PostItem'
 import axios from '../utils/axios'
 
-export const PostsPage = () => {
+export const MyServicesPage = () => {
     const [posts, setPosts] = useState([])
     const [user, setUser] = useState([])
     //const [isEmpty, setEmpty] = useState(false)

@@ -2,17 +2,17 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from '../../../utils/axios'
 
 const initialState = {
-    posts: [],
-    popularPosts: [],
+    tasks: [],
     users: null,
     loading: false,
 }
 
-export const createPost = createAsyncThunk(
-    'post/createPost',
+export const createTask = createAsyncThunk(
+    'task/createTask',
     async (params) => {
         try {
-            const { data } = await axios.post('/posts', params)
+            const { data } = await axios.post('/tasks', params)
+            console.log('dataTaskSlice', data)
             return data
         } catch (error) {
             console.log(error)
@@ -20,9 +20,9 @@ export const createPost = createAsyncThunk(
     },
 )
 
-export const getAllPosts = createAsyncThunk('post/getAllPosts', async () => {
+export const getAllTasks = createAsyncThunk('task/getAllTasks', async () => {
     try {
-        const { data } = await axios.get('/posts')
+        const { data } = await axios.get('/tasks')
         return data
     } catch (error) {
         console.log(error)
@@ -53,33 +53,32 @@ export const updatePost = createAsyncThunk(
     },
 )
 
-export const postSlice = createSlice({
-    name: 'post',
+export const taskSlice = createSlice({
+    name: 'task',
     initialState,
     reducers: {},
     extraReducers: {
         // Создание поста
-        [createPost.pending]: (state) => {
+        [createTask.pending]: (state) => {
             state.loading = true
         },
-        [createPost.fulfilled]: (state, action) => {
+        [createTask.fulfilled]: (state, action) => {
             state.loading = false
-            state.posts.push(action.payload)
+            state.tasks.push(action.payload)
         },
-        [createPost.rejected]: (state) => {
+        [createTask.rejected]: (state) => {
             state.loading = false
         },
         // Получение всех постов
-        [getAllPosts.pending]: (state) => {
+        [getAllTasks.pending]: (state) => {
             state.loading = true
         },
-        [getAllPosts.fulfilled]: (state, action) => {
+        [getAllTasks.fulfilled]: (state, action) => {
             state.loading = false
-            state.posts = action.payload.posts
-            state.popularPosts = action.payload.popularPosts
+            state.tasks = action.payload.tasks
             state.users = action.payload.users
         },
-        [getAllPosts.rejected]: (state) => {
+        [getAllTasks.rejected]: (state) => {
             state.loading = false
         },
         // Удаление поста
@@ -112,4 +111,4 @@ export const postSlice = createSlice({
     },
 })
 
-export default postSlice.reducer
+export default taskSlice.reducer

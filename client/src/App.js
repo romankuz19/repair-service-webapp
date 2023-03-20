@@ -1,14 +1,15 @@
 import { Layout } from './components/Layout.jsx'
 import { Routes, Route } from 'react-router-dom'
-
-import { MainPage } from './pages/MainPage'
-import { PostsPage } from './pages/PostsPage'
+import {ServicesPage} from './pages/ServicesPage'
+import {TasksPage} from './pages/TasksPage'
+import { MyServicesPage } from './pages/MyServicesPage'
 import { PostPage } from './pages/PostPage'
 import { AddPostPage } from './pages/AddPostPage'
 import { MyProfilePage } from './pages/MyProfilePage'
 import { RegisterPage } from './pages/RegisterPage'
 import { LoginPage } from './pages/LoginPage'
 import { EditPostPage } from './pages/EditPostPage'
+import {AddTaskPage} from './pages/AddTaskPage'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { useDispatch } from 'react-redux'
@@ -25,11 +26,13 @@ function App() {
     return (
         <Layout>
             <Routes>
-                <Route path='/' element={<MainPage />} />
-                <Route path='services' element={<PostsPage />} />
+                <Route path='/' element={<ServicesPage />} />
+                <Route path='tasks' element={<TasksPage />} />
+                <Route path='myservices' element={<MyServicesPage />} />
                 <Route path=':id' element={<PostPage />} />
                 <Route path=':id/edit' element={<EditPostPage />} />
-                <Route path='new' element={<AddPostPage />} />
+                <Route path='createservice' element={<AddPostPage />} />
+                <Route path='createtask' element={<AddTaskPage />} />
                 <Route path='register' element={<RegisterPage />} />
                 <Route path='login' element={<LoginPage />} />
                 <Route path='myprofile' element={<MyProfilePage />} />

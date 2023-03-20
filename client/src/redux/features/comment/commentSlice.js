@@ -28,7 +28,7 @@ export const getPostComments = createAsyncThunk(
     async (postId) => {
         try {
             const { data } = await axios.get(`/posts/comments/${postId}`)
-            console.log('data',data)
+            //console.log('data',data)
             return data
         } catch (error) {
             console.log(error)

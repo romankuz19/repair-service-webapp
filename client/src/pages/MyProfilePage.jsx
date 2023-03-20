@@ -105,13 +105,13 @@ export const MyProfilePage = () => {
     return (
         <div className='w-1/2 mx-auto py-10 flex flex-col gap-10'>
             {isAuth && (
-                <><ul className='flex justify-center flex-row gap-8'>
+                <><ul className='grid grid-cols-2 gap-8'>
 
                     <li>
                         <NavLink
-                            to={'/services'}
+                            to={'/myservices'}
                             href='/'
-                            className='text-xs font-bold text-black-400 hover:text-white rounded-lg bg-pink-200 px-4 py-2'
+                            className='text-l font-bold text-black-400  hover:text-white rounded-lg bg-pink-200 px-4 py-2'
                             style={({ isActive }) => isActive ? activeStyles : undefined}
                         >
                             Мои услуги
@@ -119,9 +119,9 @@ export const MyProfilePage = () => {
                     </li>
                     <li>
                         <NavLink
-                            to={'/new'}
+                            to={'/createservice'}
                             href='/'
-                            className='text-xs font-bold text-black-400 hover:text-white rounded-lg bg-pink-200 px-4 py-2'
+                            className='text-l font-bold text-black-400 hover:text-white rounded-lg bg-pink-200 px-4 py-2'
                             style={({ isActive }) => isActive ? activeStyles : undefined}
                         >
                             Добавить услугу
@@ -129,10 +129,30 @@ export const MyProfilePage = () => {
                     </li>
                     <li>
                         <NavLink
+                            to={'/createtask'}
+                            href='/'
+                            className='text-l font-bold text-black-400 hover:text-white rounded-lg bg-pink-200 px-4 py-2'
+                            style={({ isActive }) => isActive ? activeStyles : undefined}
+                        >
+                            Создать задание
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            to={'/mytasks'}
+                            href='/'
+                            className='text-l font-bold text-black-400 hover:text-white rounded-lg bg-pink-200 px-4 py-2'
+                            style={({ isActive }) => isActive ? activeStyles : undefined}
+                        >
+                             Мои задания
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
                             to={'#'}
                             href='/'
                             onClick={getChats}
-                            className='text-xs font-bold text-black-400 hover:text-white rounded-lg bg-pink-200 px-4 py-2 hover:text-black'
+                            className='text-l font-bold text-black-400 hover:text-white rounded-lg bg-pink-200 px-4 py-2 hover:text-black'
                             
                         >
                             Мои чаты
@@ -211,14 +231,14 @@ export const MyProfilePage = () => {
                 <button
                     type='submit'
                     onClick={handleSubmit}
-                    className='flex justify-center items-center bg-blue-600 text-xs text-white rounded-lg py-2 px-4 hover:text-black'
+                    className='flex justify-center items-center bg-blue-600 text-l text-white rounded-lg py-2 px-4 hover:text-black'
                 >
                     Изменить
                 </button>
                 <button
                     type='submit'
                     onClick={fetchUser}
-                    className='flex justify-center items-center bg-red-500 text-xs text-white rounded-lg py-2 px-4 hover:text-black'
+                    className='flex justify-center items-center bg-red-500 text-l text-white rounded-lg py-2 px-4 hover:text-black'
                 >
                     Отменить
                 </button>

@@ -19,21 +19,39 @@ export const Navbar = () => {
     }
 
     return (
-        <div className='flex py-4 px-10 justify-between items-center'>
-             <div className='flex justify-center items-center font-bold bg-pink-200 text-xs text-black rounded-lg px-4 py-2'>
+        <div className='flex pt-10 pl-20 pr-20 justify-between items-center'>
+            <div className='flex gap-8 '>
+            <div className='flex justify-center items-center font-bold bg-pink-200 rounded-lg px-4 py-2'>
                 {
                     <><NavLink
                         to={'/'}
                         href='/'
-                        className='da text-xs font-bold text-black-400 hover:text-white'
+                        className='da text-l font-bold text-black-400 hover:text-white'
                         
                     >
-                        Главная
+                        Услуги
                     </NavLink>
                     </>
                 }
             </div>
-            {/* <span className='flex justify-center items-center w-6 h-6 bg-gray-600 text-xs text-white rounded-sm'>
+
+            <div className='flex justify-center items-center font-bold bg-pink-200 rounded-lg px-4 py-2'>
+                {
+                    <><NavLink
+                        to={'/tasks'}
+                        href='/tasks'
+                        className='da text-l font-bold text-black-400 hover:text-white'
+                        
+                    >
+                        Задания
+                    </NavLink>
+                    </>
+                }
+            </div>
+
+            </div>
+             
+            {/* <span className='flex justify-center items-center w-6 h-6 bg-gray-600 text-l text-white rounded-sm'>
                 Мой профиль
             </span> */}
 
@@ -44,7 +62,7 @@ export const Navbar = () => {
                         <NavLink
                             to={'/posts'}
                             href='/'
-                            className='text-xs font-bold text-black-400 hover:text-white'
+                            className='text-l font-bold text-black-400 hover:text-white'
                             style={({ isActive }) =>
                                 isActive ? activeStyles : undefined
                             }
@@ -56,7 +74,7 @@ export const Navbar = () => {
                         <NavLink
                             to={'/new'}
                             href='/'
-                            className='text-xs font-bold text-black-400 hover:text-white'
+                            className='text-l font-bold text-black-400 hover:text-white'
                             style={({ isActive }) =>
                                 isActive ? activeStyles : undefined
                             }
@@ -73,7 +91,7 @@ export const Navbar = () => {
                     <><NavLink
                         to={'/myprofile'}
                         href='/'
-                        className='font-bold bg-pink-200 text-xs text-black rounded-lg px-4 py-2 text-xs font-bold text-black-400 hover:text-white'
+                        className='font-bold bg-pink-200 text-l text-black rounded-lg px-4 py-2 text-l font-bold text-black-400 hover:text-white'
                         
                     >
                         Мой профиль
@@ -83,7 +101,7 @@ export const Navbar = () => {
                         to={'/'}
                         href='/'
                         onClick={logoutHandler}
-                        className='font-bold bg-pink-200 text-xs text-black rounded-lg px-4 py-2 text-xs font-bold text-black-400 hover:text-white'
+                        className='font-bold bg-pink-200 text-l text-black rounded-lg px-4 py-2 text-l font-bold text-black-400 hover:text-white'
                         
                     >
                         Выйти
@@ -96,7 +114,7 @@ export const Navbar = () => {
                 to={'/login'}
                 href='/'
     
-                className='font-bold bg-pink-200 text-xs text-black rounded-lg px-4 py-2 text-xs font-bold text-black-400 hover:text-white'
+                className='font-bold bg-pink-200 text-l text-black rounded-lg px-4 py-2 text-l font-bold text-black-400 hover:text-white'
                 // style={({ isActive }) => isActive ? activeStyles : undefined}
             >
                 Войти

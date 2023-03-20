@@ -42,7 +42,13 @@ export const PostPage = () => {
     //const mat = /([хx][уy])(?:[ёieеюийя]|ли[^а-я])|([пp][iие][3зс][дd])|(?:[^а-я]|(вы))([bб][lл][yя])|(?:[^а-я]|[^(колр)])((?:[еeё]|йо)[бb](?:[нn][уy]|[uу][4ч]|[оoаa@][тnкнt]|[лске@eыиаa][наоюи@вл]))|([pп][иeеi][дd][oоаыa@еeиi][рr])|[^а-я]([cсs][yуu][ч4]?[kк][a@аи])/
     const mat = /(?<=^|[^а-я])(([уyu]|[нзnz3][аa]|(хитро|не)?[вvwb][зz3]?[ыьъi]|[сsc][ьъ']|(и|[рpr][аa4])[зсzs]ъ?|([оo0][тбtb6]|[пp][оo0][дd9])[ьъ']?|(.\B)+?[оаеиeo])?-?([еёe][бb6](?!о[рй])|и[пб][ае][тц]).*?|([нn][иеаaie]|([дпdp]|[вv][еe3][рpr][тt])[оo0]|[рpr][аa][зсzc3]|[з3z]?[аa]|с(ме)?|[оo0]([тt]|дно)?|апч)?-?[хxh][уuy]([яйиеёюuie]|ли(?!ган)).*?|([вvw][зы3z]|(три|два|четыре)жды|(н|[сc][уuy][кk])[аa])?-?[бb6][лl]([яy](?!(х|ш[кн]|мб)[ауеыио]).*?|[еэe][дтdt][ь']?)|([рp][аa][сзc3z]|[знzn][аa]|[соsc]|[вv][ыi]?|[пp]([еe][рpr][еe]|[рrp][оиioеe]|[оo0][дd])|и[зс]ъ?|[аоao][тt])?[пpn][иеёieu][зz3][дd9].*?|([зz3][аa])?[пp][иеieu][дd][аоеaoe]?[рrp](ну.*?|[оаoa][мm]|([аa][сcs])?([иiu]([лl][иiu])?[нщктлtlsn]ь?)?|([оo](ч[еиei])?|[аa][сcs])?[кk]([оo]й)?|[юu][гg])[ауеыauyei]?|[мm][аa][нnh][дd]([ауеыayueiи]([лl]([иi][сзc3щ])?[ауеыauyei])?|[оo][йi]|[аоao][вvwb][оo](ш|sh)[ь']?([e]?[кk][ауеayue])?|юк(ов|[ауи])?)|[мm][уuy][дd6]([яyаиоaiuo0].*?|[еe]?[нhn]([ьюия'uiya]|ей))|мля([тд]ь)?|лять|([нз]а|по)х|м[ао]л[ао]фь([яию]|[её]й))(?=($|[^а-я]))/
     
-    const blockurl = /^(https?:\/\/)?([\w-]{1,32}\.[\w-]{1,32}) [^\s@]*$/gm
+    const blockurl = /^(https?:\/\/)?([\w-]{1,32}\.[\w-]{1,32}) [^\s@]*$/
+
+    const blockurl1 = /^https?:\/\/(\w+:?\w*@)?(\S+(?::\S*))(:[0-9]+)?(\/|\/([\w#!:.?+=&%@\-/]))?/
+
+    const blockurl2 = /^(http|https|ftp|)\/|[a-zA-Z0-9\-\.]+\.[a-zA-Z](:[a-zA-Z0-9]*)?/
+    
+    // /?([a-zA-Z0-9\-\._\?\,\'/\\\+&amp;%\$#\=~])*[^\.\,\)\(\s]$/
     
     var chatId = ''
     var loading = true
@@ -242,15 +248,20 @@ export const PostPage = () => {
             const postId = params.id
             
             const author = currentUser
-            //console.log('comment', comment.toLowerCase())
+            console.log('comment', comment.toLowerCase())
             const result = comment.toLowerCase().match(mat)
-            //const result1 = comment.toLowerCase().match(blockurl)
-            //console.log('blockurl', result1)
+            const result1 = comment.toLowerCase().match(blockurl2)
+            //console.log('mat', result)
+            console.log('blockurl', result1)
             var firstCheck = true, secondCheck = true
+            var adcheck = true
             //if(blockurl)
 
 
+
+
             if(result!==null) firstCheck=false
+            if(result1!==null) adcheck=false
             for(var i = 0;i<words.length;i++){
                 if(comment.toLowerCase()===words[i]){
 
@@ -259,13 +270,18 @@ export const PostPage = () => {
                 }
             
             }
-            if(firstCheck && secondCheck){
+            if(firstCheck && secondCheck && adcheck){
                 setComment('')
-                dispatch(createComment({ postId, comment, author }))
+                //dispatch(createComment({ postId, comment, author }))
             }
-            else{
+            else if(!firstCheck || !secondCheck){
                 alert("У нас нельзя ругаться!")
                 toast("У нас нельзя ругаться!")
+                    setComment('')
+            }
+            else if(!adcheck){
+                alert("У нас нельзя рекламировать!")
+                toast("У нас нельзя рекламировать!")
                     setComment('')
             }
             

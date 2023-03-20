@@ -10,6 +10,7 @@ city: {type: String,default: '' },
 phonenumber: {type: Number,default: ''},
 admin: {type: Boolean, default: false },
 posts: [{type: mongoose.Schema.Types.ObjectId,ref: 'Post',},],
+tasks: [{type: mongoose.Schema.Types.ObjectId,ref: 'Task',},],
 },
     { timestamps: true },
 )

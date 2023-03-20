@@ -9,7 +9,7 @@ import { getAllPosts } from '../redux/features/post/postSlice'
 import axios from '../utils/axios'
 //import { Button } from 'react-bootstrap';
 
-export const MainPage = () => {
+export const ServicesPage = () => {
     const dispatch = useDispatch()
     const { posts, popularPosts, users } = useSelector((state) => state.post)
     const [cat, setCat] = useState('')
@@ -106,17 +106,17 @@ export const MainPage = () => {
     //console.log('length',sortedPosts.length)
 
 
-    const intNum=[-1,2,-3,4,-5,6,-7,0,-8];
-    const sign = function(array){
-        let result =0;
-        for (let i =0;i<array.length; ++i){
-            if(Math.sign(array[i])!== 1 && array[i] !==0){
-                ++result;
-            }
-        }
-        return result
-    }
-    console.log('result',sign(intNum))
+    // const intNum=[-1,2,-3,4,-5,6,-7,0,-8];
+    // const sign = function(array){
+    //     let result =0;
+    //     for (let i =0;i<array.length; ++i){
+    //         if(Math.sign(array[i])!== 1 && array[i] !==0){
+    //             ++result;
+    //         }
+    //     }
+    //     return result
+    // }
+    // console.log('result',sign(intNum))
     
     return (
         
@@ -124,10 +124,11 @@ export const MainPage = () => {
         
         <div className='max-w-[900px] mx-auto py-10'>
                 <div className='mx-auto mb-10 flex flex-col items-center justify-center'>
-                    <div><p className='m-0 pb-2  text-blue-700 text-xl'>Сортировка по категориям</p>
+                    <div className='flex flex-col items-center'>
+                        <p className=' text-blue-700 text-xl font-bold'>Сортировка по категориям</p>
                         <input list="categories" id="catlist" 
                         onChange={(e) => setCat(e.target.value)} 
-                        name="category" className='ml-6 mb-2 pl-5 max-w-[200px] text-black text-center rounded-lg bg-white border text-xl '>
+                        name="category" className='max-w-[200px] text-black text-center rounded-lg bg-white border text-xl my-3'>
                         </input>
                         <datalist id="categories">
                             <Options options={categoriesList} />
@@ -137,12 +138,12 @@ export const MainPage = () => {
                         <button
 
                             onClick={handleSort}
-                            className=' bg-blue-600 text-xs text-white rounded-lg py-2 px-2  hover:text-black'
+                            className=' bg-blue-600 text-l font-bold text-white rounded-lg py-2 px-2  hover:text-black'
                         >Применить</button>
                         <button
 
                             onClick={cancelSort}
-                            className=' bg-red-400 text-xs text-white rounded-lg py-2 px-2 ml-2 hover:text-black'
+                            className=' bg-red-400 text-l font-bold text-white rounded-lg py-2 px-2 ml-2 hover:text-black'
                         >Сбросить</button>
                     </div>
 

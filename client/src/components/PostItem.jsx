@@ -13,6 +13,7 @@ export const PostItem = ({ post, user }) => {
     //console.log('users',user)
     //console.log('post',post)
     //console.log('user length',user.username)
+    const [isShown, setIsShown] = useState(false);
     if(user.length>1){
         var arrObj = user;
         //console.log('users:',users)
@@ -57,7 +58,7 @@ export const PostItem = ({ post, user }) => {
     }
     return (
         <Link to={`/${post._id}`}>
-            <div className='flex flex-grow'>
+            <div className='flex flex-grow border-2 border-pink-200 rounded-lg p-2'>
                 <div className='leftcard flex-none'>
                 <div
                     className={
@@ -88,9 +89,14 @@ export const PostItem = ({ post, user }) => {
                     <div className='text-2xl text-blue-600 font-bold opacity-100'>
                     {user.length>1?firstname:user.firstname} {user.length>1?secondname:user.secondname}
                     </div>
-                    <div className='text-m text-blue-600 font-bold opacity-100'>
-                       Телефон:  {user.length>1?phonenumber:user.phonenumber}
-                    </div>
+                    <button className='text-m text-black font-bold opacity-100 rounded-lg bg-pink-100 p-1' onMouseEnter={() => setIsShown(true)}>
+                       Телефон  {isShown && (
+        <>
+          {user.length>1?phonenumber:user.phonenumber}
+        </>
+      )}
+                    </button>
+
                     
                     <div className='text-xs text-black opacity-80'>
                         <Moment date={post.createdAt} format='D MMM YYYY' />
