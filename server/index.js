@@ -44,7 +44,6 @@ async function start() {
             
              `mongodb+srv://${DB_USER}:${DB_PASSWORD}@cluster0.p3elhhy.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`
             //`mongodb+srv://${DB_USER}:${DB_PASSWORD}@cluster0.p3elhhy.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`,
-            //'mongodb+srv://admin:admin@cluster0.p3elhhy.mongodb.net/?retryWrites=true&w=majority'
         )
 
         app.listen(PORT, () => console.log(`Server started on port: ${PORT}`))
