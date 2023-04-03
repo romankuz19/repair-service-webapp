@@ -55,17 +55,20 @@ export const PostPage = () => {
     //var [chatId, setChatId] = useState('')
     
     const { comments } = useSelector((state) => state.comment)
+
     
     const navigate = useNavigate()
     const params = useParams()
+    //console.log('comments',comments)
     const dispatch = useDispatch()
     //var btn = false
 
     const removePostHandler = () => {
         try {
+            console.log('params',params)
             dispatch(removePost(params.id))
             toast('Услуга была удалена')
-            navigate('/')
+            //navigate('/')
             window.location.reload(false);
         } catch (error) {
             console.log(error)
@@ -113,10 +116,10 @@ export const PostPage = () => {
     const handleCreateChat = async () => {
         try {
             setBtn(true)
-           //console.log('user',user[0]._id)
-            //console.log('curuser',currentUser._id)
+            console.log('user1',currentUser._id)
+            console.log('user2',ownerUser[0]._id)
             
-            const { data } = await axios.post(`/chat/`, {
+            const { data } = await axios.post(`/chat/create`, {
                 firstUserId: currentUser._id,
                 secondUserId: ownerUser[0]._id,
             })
@@ -275,13 +278,13 @@ export const PostPage = () => {
                 //dispatch(createComment({ postId, comment, author }))
             }
             else if(!firstCheck || !secondCheck){
-                alert("У нас нельзя ругаться!")
-                toast("У нас нельзя ругаться!")
+                alert("Данный контент нельзя вставить!")
+                toast("Данный контент нельзя вставить!")
                     setComment('')
             }
             else if(!adcheck){
-                alert("У нас нельзя рекламировать!")
-                toast("У нас нельзя рекламировать!")
+                alert("Данный контент нельзя вставить!")
+                toast("Данный контент нельзя вставить!")
                     setComment('')
             }
             
@@ -382,10 +385,10 @@ export const PostPage = () => {
                             </button>
                         </div>
 
-                        {(currentUser?._id === post.author) &&  (
+                        {((currentUser?._id === post.author) || (currentUser?.admin===true)) &&  (
                             <div className='flex gap-3'>
                                 <button className='flex items-center justify-center gap-2 text-black opacity-80'>
-                                    <Link to={`/${params.id}/edit`}>
+                                    <Link to={`/service/${params.id}/edit`}>
                                         <AiTwotoneEdit />
                                     </Link>
                                 </button>
@@ -397,10 +400,10 @@ export const PostPage = () => {
                                 </button>
                             </div>
                         )}
-                        {(currentUser?.admin===true) &&  (
+                        {/* {(currentUser?.admin===true) &&   (
                             <div className='flex gap-3'>
                                 <button className='flex items-center justify-center gap-2 text-black opacity-80'>
-                                    <Link to={`/${params.id}/edit`}>
+                                    <Link to={`/service/${params.id}/edit`}>
                                         <AiTwotoneEdit />
                                     </Link>
                                 </button>
@@ -411,7 +414,7 @@ export const PostPage = () => {
                                     <AiFillDelete />
                                 </button>
                             </div>
-                        )}
+                        )} */}
                     </div>
                 </div>
 

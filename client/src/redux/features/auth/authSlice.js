@@ -41,7 +41,7 @@ export const loginUser = createAsyncThunk(
             if (data.token) {
                 window.localStorage.setItem('token', data.token)
             }
-            //console.log(data)
+            console.log('data',data)
             return data
         } catch (error) {
             console.log(error)
@@ -66,7 +66,7 @@ export const updateUser = createAsyncThunk('auth/updateUser',
     },
 )
 
-export const getMe = createAsyncThunk('auth/loginUser', async () => {
+export const getMe = createAsyncThunk('auth/getMe', async () => {
     try {
         const { data } = await axios.get('/auth/me')
         return data

@@ -33,9 +33,11 @@ export const getMessages = async (req, res) => {
     try {
         const {chatId} = req.params
        // console.log(chatId)
-        const result = await ChatMessage.find({chatId})
-        //console.log(result)
-        res.json(result)
+        const messages = await ChatMessage.find({chatId})
+        //console.log('messages',messages)
+        console.log('TESTEST')
+        //res.json(messages)
+        res.json({ messages: messages })
         
     } catch (error) {
         res.json({ message: 'Что-то пошло не так.' })

@@ -12,6 +12,7 @@ export const RegisterPage = () => {
     const [city, setCity] = useState('')
     const [phonenumber, setPhonenumber] = useState('')
     const { status } = useSelector((state) => state.auth)
+    console.log('status',status)
     const isAuth = useSelector(checkIsAuth)
 
     const navigate = useNavigate()

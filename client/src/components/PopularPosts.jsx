@@ -5,7 +5,7 @@ export const PopularPosts = ({ post }) => {
     return (
         <div className='bg-pink-200 my-1 text-center'>
             <Link
-                to={`${post._id}`}
+                to={`/service/${post._id}`}
                 className=' text-black-400 text-center text-xs p-2 font-bold hover:text-white'
             >
                 {post.text}

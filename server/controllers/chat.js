@@ -10,16 +10,16 @@ export const createChat = async (req, res) => {
 
         //console.log('first',firstUserId)
         //console.log('second',secondUserId)
-        const checkChat = await Chat.find().where('firstUserId').equals(firstUserId).where('secondUserId').equals(secondUserId)
-        const checkChat2 = await Chat.find().where('firstUserId').equals(secondUserId).where('secondUserId').equals(firstUserId)
+        const checkChat = await Chat.findOne().where('firstUserId').equals(firstUserId).where('secondUserId').equals(secondUserId)
+        const checkChat2 = await Chat.findOne().where('firstUserId').equals(secondUserId).where('secondUserId').equals(firstUserId)
         //console.log('check',checkChat,checkChat2)
-        if (checkChat.length!=0 ){
+        if (checkChat){
             //console.log('if !=0',checkChat.length)
 
             res.json(checkChat)
             //return res.json({ message: 'Такой чат уже существует' })
         }
-        else if(checkChat2.length!=0){
+        else if(checkChat2){
             res.json(checkChat2)
         }
 

@@ -122,7 +122,7 @@ export const ServicesPage = () => {
         
         <>
         
-        <div className='max-w-[900px] mx-auto py-10'>
+        <div className='max-w-[950px] mx-auto py-10'>
                 <div className='mx-auto mb-10 flex flex-col items-center justify-center'>
                     <div className='flex flex-col items-center'>
                         <p className=' text-blue-700 text-xl font-bold'>Сортировка по категориям</p>

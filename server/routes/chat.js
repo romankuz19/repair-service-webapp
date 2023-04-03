@@ -4,8 +4,8 @@ import { createChat, getChats } from '../controllers/chat.js'
 
 const router = new Router()
 // Create Chat
-// http://localhost:3002/api/chat/ (id of the chat creator, not owner of the service)
-router.post('/', 
+// http://localhost:3002/api/chat/create (id of the chat creator, not owner of the service)
+router.post('/create', 
  checkAuth,
  createChat)
 

@@ -46,6 +46,20 @@ export const getAll = async (req, res) => {
     }
 }
 
+// Get Post By Id
+export const getById = async (req, res) => {
+    try {
+        const task = await Task.findByIdAndUpdate(req.params.id, {
+            $inc: { views: 1 },
+        })
+        //console.log('taskAuthor',task.author);
+        const user = await User.findOne().where('_id').equals(task.author)
+        //console.log('user',user)
+        res.json({task, user})
+    } catch (error) {
+        res.json({ message: 'Что-то пошло не так.' })
+    }
+}
 
 
 

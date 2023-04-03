@@ -57,7 +57,7 @@ export const PostItem = ({ post, user }) => {
         )
     }
     return (
-        <Link to={`/${post._id}`}>
+        <Link to={`/service/${post._id}`}>
             <div className='flex flex-grow border-2 border-pink-200 rounded-lg p-2'>
                 <div className='leftcard flex-none'>
                 <div
@@ -102,14 +102,17 @@ export const PostItem = ({ post, user }) => {
                         <Moment date={post.createdAt} format='D MMM YYYY' />
                     </div>
                 </div>
-                <div className='text-black text-m'>{user.length>1?city:user.city}</div>
-                <div className='text-black text-m'>{post.title}</div>
                 <div className='flex justify-between items-center '>
                 <div className='text-blue-500 opacity-90 text-xl  line-clamp-4'>{post.text}</div>
                 <div className='text-blue-500 opacity-90 text-xl  line-clamp-4'>{post.price} ₽</div>
                      
                 </div>
                 <div className='text-blue-500 opacity-90 text-m  '>Категория: {post.category}</div>
+                <div className='text-black text-m'>{post.title}</div>
+                <div className='text-black text-m'>{user.length>1?city:user.city}</div>
+                
+                
+                
                 </div>
             </div>
         </Link>

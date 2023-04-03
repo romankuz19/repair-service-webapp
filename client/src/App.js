@@ -4,6 +4,7 @@ import {ServicesPage} from './pages/ServicesPage'
 import {TasksPage} from './pages/TasksPage'
 import { MyServicesPage } from './pages/MyServicesPage'
 import { PostPage } from './pages/PostPage'
+import { TaskPage } from './pages/TaskPage.jsx'
 import { AddPostPage } from './pages/AddPostPage'
 import { MyProfilePage } from './pages/MyProfilePage'
 import { RegisterPage } from './pages/RegisterPage'
@@ -29,8 +30,10 @@ function App() {
                 <Route path='/' element={<ServicesPage />} />
                 <Route path='tasks' element={<TasksPage />} />
                 <Route path='myservices' element={<MyServicesPage />} />
-                <Route path=':id' element={<PostPage />} />
-                <Route path=':id/edit' element={<EditPostPage />} />
+                <Route path='service/:id' element={<PostPage />} />
+                <Route path='service/:id/edit' element={<EditPostPage />} />
+                <Route path='task/:id' element={<TaskPage />} />
+                {/* <Route path='task/:id/edit' element={<EditTaskPage />} /> */}
                 <Route path='createservice' element={<AddPostPage />} />
                 <Route path='createtask' element={<AddTaskPage />} />
                 <Route path='register' element={<RegisterPage />} />
