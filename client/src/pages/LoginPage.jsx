@@ -7,6 +7,7 @@ import { toast } from 'react-toastify'
 export const LoginPage = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const [btn, setBtn] = useState(false);
 
     const {  status } = useSelector((state) => state.auth)
     console.log('status',status)
@@ -15,6 +16,7 @@ export const LoginPage = () => {
     const navigate = useNavigate()
     var goodAuth, badAuth = ''
     console.log('isAuth',isAuth)
+    //var btn = false;
 
 
     useEffect(() => {
@@ -24,22 +26,25 @@ export const LoginPage = () => {
         goodAuth="Успешный вход"
         toast(goodAuth)
 
-
         //window.location.reload(false);
     }
+    else{
+        if(btn){
+            badAuth="Неверный логин или пароль"
+            toast(badAuth)
+            //console.log('qqqqq')
+        }
+    }
+    
+    
     }, [status, isAuth, navigate])
+
 
     const handleSubmit = () => {
         try {
             dispatch(loginUser({ username, password }))
-            if(!isAuth){
-                badAuth="Неверный логин или пароль"
-                toast(badAuth)
-                //console.log('qqqqq')
-            }
-            if(status===null){
-                alert("Такого пользователя не существует")
-            }
+            setBtn('true');
+            
         } catch (error) {
             console.log(error)
         }
