@@ -73,12 +73,15 @@ export const getChats = async (req, res) => {
             }
         }
         //console.log('users',users)
-        var filtered = userChats.filter(function (el) {
+        var filteredChats = userChats.filter(function (el) {
+            return el != null;
+          });
+          var filteredUsers = users.filter(function (el) {
             return el != null;
           });
         //console.log(userChats)
-        //console.log('messages',filtered.messages)
-        res.json({filtered, users})
+       //console.log('filteredUsers',filteredUsers)
+        res.json({filteredChats, filteredUsers})
     
     } catch (error) {
         res.json({ message: 'Что-то пошло не так.' })

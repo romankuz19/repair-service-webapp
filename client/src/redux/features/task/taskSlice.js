@@ -29,22 +29,22 @@ export const getAllTasks = createAsyncThunk('task/getAllTasks', async () => {
     }
 })
 
-export const removePost = createAsyncThunk('post/removePost', async (id) => {
+export const removeTask = createAsyncThunk('task/removeTask', async (id) => {
     try {
-        const { data } = await axios.delete(`/posts/${id}`, id)
+        const { data } = await axios.delete(`/tasks/${id}`, id)
         return data
     } catch (error) {
         console.log(error)
     }
 })
 
-export const updatePost = createAsyncThunk(
-    'post/updatePost',
-    async (updatedPost) => {
+export const updateTask = createAsyncThunk(
+    'task/updateTask',
+    async (updatedTask) => {
         try {
             const { data } = await axios.put(
-                `/posts/${updatedPost.id}`,
-                updatedPost,
+                `/tasks/${updatedTask.id}`,
+                updatedTask,
             )
             return data
         } catch (error) {
@@ -82,30 +82,30 @@ export const taskSlice = createSlice({
             state.loading = false
         },
         // Удаление поста
-        [removePost.pending]: (state) => {
+        [removeTask.pending]: (state) => {
             state.loading = true
         },
-        [removePost.fulfilled]: (state, action) => {
+        [removeTask.fulfilled]: (state, action) => {
             state.loading = false
-            state.posts = state.posts.filter(
-                (post) => post._id !== action.payload._id,
+            state.tasks = state.tasks.filter(
+                (task) => task._id !== action.payload._id,
             )
         },
-        [removePost.rejected]: (state) => {
+        [removeTask.rejected]: (state) => {
             state.loading = false
         },
-        // Обновление поста
-        [updatePost.pending]: (state) => {
+        // Обновление taska
+        [updateTask.pending]: (state) => {
             state.loading = true
         },
-        [updatePost.fulfilled]: (state, action) => {
+        [updateTask.fulfilled]: (state, action) => {
             state.loading = false
-            const index = state.posts.findIndex(
-                (post) => post._id === action.payload._id,
+            const index = state.tasks.findIndex(
+                (task) => task._id === action.payload._id,
             )
-            state.posts[index] = action.payload
+            state.tasks[index] = action.payload
         },
-        [updatePost.rejected]: (state) => {
+        [updateTask.rejected]: (state) => {
             state.loading = false
         },
     },

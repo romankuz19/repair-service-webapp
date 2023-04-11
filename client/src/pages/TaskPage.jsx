@@ -14,12 +14,13 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 import axios from '../utils/axios'
-import { removetask } from '../redux/features/task/taskSlice'
+import { removeTask, removetask } from '../redux/features/task/taskSlice'
 //import {createChat} from '../redux/features/chat/chatSlice.js'
 import { CommentItem } from '../components/CommentItem'
 import { MessageItem } from '../components/MessageItem.jsx'
 import { checkIsAuth, logout } from '../redux/features/auth/authSlice'
 import { createChat, getChatMessages, createMessage } from '../redux/features/chat/chatSlice'
+import { Chat } from '../components/Chat.jsx'
 
 
 export const TaskPage = () => {
@@ -33,9 +34,11 @@ export const TaskPage = () => {
     const [allMessages, setAllMessages] = useState([])
     const [currentUser, setCurrentUser] = useState(null)
     const [cmtUser, setCmtuser] = useState([])
+    
     //const [ownerTaskUser, setownerTaskUser] = useState(null)
     const [btn, setBtn] = useState(false)
     const [isLoaded, setIsloaded] = useState(false)
+    const [chatUsers, setChatUsers] = useState([])
     // console.log('curUser',currentUser);
     // console.log('owmerUser',ownerTaskUser);
    
@@ -85,6 +88,10 @@ export const TaskPage = () => {
     //console.log('ownerTaskUser._id',ownerTaskUser._id)
     var firstUserId = currentUser._id;
     var secondUserId= ownerTaskUser._id;
+    //const chatU = []
+    chatUsers.push(ownerTaskUser);
+    console.log('chatUsers',chatUsers)
+
     const { data } = await axios.post(`/chat/create`, {
         firstUserId,
         secondUserId,
@@ -119,17 +126,26 @@ export const TaskPage = () => {
 
 
     const removeTaskHandler = async () =>{
-
+        try {
+            console.log('params',params)
+            dispatch(removeTask(params.id))
+            toast('Задание было удалено')
+            navigate('/tasks')
+            //window.location.reload(false);
+        } catch (error) {
+            console.log(error)
+        }
     }
+    
 
     const fetchMessages = async () => {
         try {
-            // if(chat){
-            //     const { data } = await axios.get(`/messages/${chat._id}`)
-            //     //console.log(data)
-            //     setAllMessages(data)
-            // }
-            //dispatch(getChatMessages(chat._id))
+            if(chat){
+                const { data } = await axios.get(`/messages/${chat._id}`)
+                //console.log(data)
+                setAllMessages(data.messages)
+            }
+            dispatch(getChatMessages(chat._id))
             
         } catch (error) {
             console.log(error)
@@ -144,20 +160,18 @@ export const TaskPage = () => {
             isInitialMount.current = false;
         } else {
             // Your useEffect code here to be run on update
-            setAllMessages(messages)
-            //fetchMessages()
+            fetchMessages()
             
         }
-        },[messages]);
+        },[message]);
         
     useEffect(() => {
         if(btn){
             //console.log('btn',btn)
             //console.log('isload',isLoaded)
             if(!isLoaded && chat){
-                setIsloaded('true')
-                setAllMessages(messages)
-                //fetchMessages()
+                setIsloaded(true)
+                fetchMessages()
             }
             
         }
@@ -166,12 +180,6 @@ export const TaskPage = () => {
     
 
     useEffect(() => {
-        if(btn && !isLoaded && chat){
-            setIsloaded('true')
-            setAllMessages(messages)
-            //fetchMessages()
-        }
-
         if(btn && isLoaded){
             const interval = setInterval(fetchMessages, 1000);
             return () => clearInterval(interval);
@@ -201,7 +209,7 @@ export const TaskPage = () => {
                    // console.log('message',message);
                   // dispatch(createMessage({chatId, senderId, senderName, message}));
                     setMessage('')
-                    getMessages()
+                    //getMessages()
                     
                     return data
                 } catch (error) {
@@ -213,6 +221,8 @@ export const TaskPage = () => {
             console.log(error)
         }
     }
+
+    
 
     
     //console.log('allmsg',allMessages)
@@ -362,6 +372,11 @@ export const TaskPage = () => {
                                 </form>
                             </div>
                         )}
+
+
+
+                        {/* {chat && (<Chat chat={chat} curuser={currentUser} chatUsers={chatUsers} />)} */}
+                        
             </div>
             
         </div>

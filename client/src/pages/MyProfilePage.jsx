@@ -87,8 +87,8 @@ export const MyProfilePage = () => {
         //return checkchat[0]
         //console.log('messages',data[0].messages)
         //console.log('dada',data)
-        setChats(data.filtered)
-        setChatUsers(data.users)
+        setChats(data.filteredChats)
+        setChatUsers(data.filteredUsers)
        // console.log('dada',chats)
         //setTimeout(getMessages, 2000);
         //getMessages()
@@ -100,12 +100,12 @@ export const MyProfilePage = () => {
     
     //console.log(user._id)
     //console.log('allchats',chats)
-    //console.log('all chat users', chatUsers)
+    console.log('all chat users', chatUsers)
    
     return (
         <div className='w-1/2 mx-auto py-10 flex flex-col gap-10'>
             {isAuth && (
-                <><ul className='grid grid-cols-2 gap-8'>
+                <><ul className='grid justify-items-center grid-cols-2 gap-8'>
 
                     <li>
                         <NavLink

@@ -93,7 +93,7 @@ export const AddTaskPage = () => {
                         type='text'
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
-                        placeholder='Как назвать задание?'
+                        placeholder='Название задания'
                         className='mt-1 text-black w-full rounded-lg bg-blue-400 border py-1 px-2 text-xl outline-none placeholder:text-gray-700' />
                 </label>
 

@@ -69,11 +69,13 @@ export const TaskItem = ({ task, user }) => {
                     <div className='text-m text-blue-600  opacity-100'>
                        {task.category}
                     </div>
-
+                    <div>до {task.date}</div>
                     <div className='flex-none'>
+                
                         <button className='flex items-center justify-center gap-2 text-xs text-black opacity-50'>
                             <AiFillEye /> <span>{task.views}</span>
                         </button>
+                        
                     </div>
 
 

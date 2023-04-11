@@ -5,27 +5,75 @@ import Moment from 'react-moment'
 import { Link } from 'react-router-dom'
 import { useEffect, useRef } from 'react'
 import { useState,useCallback } from 'react'
+
 import axios from '../utils/axios'
 import { MessageItem } from '../components/MessageItem.jsx'
 import { ChatItem } from './СhatItem'
+import {io} from 'socket.io-client'
+import { current } from '@reduxjs/toolkit'
+
+import { createChat, getChatMessages, createMessage } from '../redux/features/chat/chatSlice'
+
 
 export const Chat = ({ chat, curuser, chatUsers }) => {
     
     //const avatar = cmt.comment.trim().toUpperCase().split('').slice(0, 2)
-    //console.log(chat)
+    //console.log('chatUsers',chatUsers)
     const chatId=chat._id
     const [allMessages, setAllMessages] = useState([{}])
     const [message, setMessage] = useState('')
+    const socket = useRef()
+    const [onlineUsers, setOnlineUsers] = useState([{}])
+    const [sendMessage, setSendMessage] = useState(null)
+    const [receiveMessage, setReceiveMessage] = useState(null)
+    const dispatch = useDispatch()
+    const { messages } = useSelector((state) => state.chat)
+    const scroll = useRef()
+
+    //console.log('messages',messages)
+    // console.log('chatUsers',chatUsers)
+
+    useEffect(()=>{
+        socket.current = io('http://localhost:8800');
+        socket.current.emit("new-user-add",curuser._id)
+        socket.current.on('get-users', (users)=>{
+            //console.log('users',users)
+            
+            setOnlineUsers(users);
+            //console.log('onlineUsers',onlineUsers)
+        })
+
+    }, [curuser])
+
+    useEffect(()=>{
+       if(sendMessage!==null){
+        socket.current.emit('send-message', sendMessage)
+       }
+
+    }, )
+
+    useEffect(()=>{
+        console.log('receiveMessage',receiveMessage)
+            socket.current.on('receive-message', (message)=>{
+                console.log('dadadsadsd')
+                setReceiveMessage(message)
+            })
+     }, )
+    
+
     var first, second =''
     var firstId, secondId =''
+
+
 
     var filtered = chatUsers.filter(function (el) {
     return el != null;
     });
-    console.log('chatUsers',filtered)
-    console.log('chat',chat)
+    // console.log('chatUsers',filtered)
+    // console.log('chat',chat)
     // console.log('chat',chat)
     var chatOpponent = ''
+    var chatOpponentId= ''
     for(var i =0;i<filtered.length;i++){
         if(filtered[i]._id===chat.firstUserId){
             first=filtered[i].firstname
@@ -54,15 +102,21 @@ export const Chat = ({ chat, curuser, chatUsers }) => {
     // else if(curuser._id===secondId){
     //     chatOpponent=first
     // }
-    if(first)chatOpponent=first
-    if(second)chatOpponent=second
-    console.log('first',first)
-    console.log('firstId',firstId)
-    console.log('second',second)
-    console.log('secondId',secondId)
+    if(first){
+        chatOpponent=first
+        chatOpponentId = firstId
+    }
+    if(second){
+        chatOpponent=second
+        chatOpponentId = secondId
+    }
+    // console.log('first',first)
+    // console.log('firstId',firstId)
+    // console.log('second',second)
+    // console.log('secondId',secondId)
     var check = false
     const timer = useRef(null);
-    var messages =[{}]
+    //var messages =[{}]
     // const getMessages = async () => {
     //     try {
         
@@ -84,35 +138,19 @@ export const Chat = ({ chat, curuser, chatUsers }) => {
     //         console.log(error)
     //     }
     // }
-    const fetchMessages = (async () => {
-        const { data } = await axios.get(`/messages/${chat._id}`)
-
-        setAllMessages(data)
-       // console.log('data',data)
-    })
-    // useEffect(() => {
-    //     fetchMessages()
-    // }, [message])
-    // useEffect(() => {
-    //     const interval = setInterval(fetchMessages, 10000);
-    //     return () => clearInterval(interval);
-    //   }, []);
-
-    
-
-    useEffect(() => {
-        {
-            const interval = setInterval(fetchMessages, 1000);
-            return () => clearInterval(interval);
-        }
-      });
     const handleSendMessage  = async () => {
         try {
-            //fetchMessages()
+            
             
             //console.log('chatId',chatId)
             const senderId = curuser._id
+            //const receiverId= 
+            console.log('firstId', firstId)
+            console.log('secondId', secondId)
             const senderName = curuser.firstname
+            setSendMessage(message);
+            var receiverId = chatOpponentId
+            setSendMessage({message, receiverId})
             //console.log('senderId',senderId)
             //console.log('senderName',senderName)
             //console.log('message',message)
@@ -128,12 +166,92 @@ export const Chat = ({ chat, curuser, chatUsers }) => {
                 } catch (error) {
                     console.log(error)
                 }
+
+                //send message to socket server
+               // console.log('sendmessage',sendMessage)
+               fetchMessages()
             
             
         } catch (error) {
             console.log(error)
         }
     }
+    //console.log('sendmessage',sendMessage)
+
+    const fetchMessages = useCallback(async () => {
+        const { data } = await axios.get(`/messages/${chat._id}`)
+
+        setAllMessages(data.messages)
+        //console.log('data',data)
+    })
+
+    const getMessages = useCallback(async () => {
+        try {
+           // var chatId = chat._id
+           //console.log('chatId',chatId)
+           if(chat)
+           {
+            dispatch(getChatMessages(chat._id))
+            setAllMessages(messages)
+           }
+            
+        } catch (error) {
+            console.log(error)
+        }
+    }, [chat?._id, dispatch])
+
+    // useEffect(() => {
+    //     getMessages()
+    // }, [getMessages])
+
+    useEffect(() => {
+        fetchMessages()
+    }, [])
+
+    const isInitialMount = useRef(true);
+    useEffect(() => {
+        if (isInitialMount.current) {
+            isInitialMount.current = false;
+        } else {
+            // Your useEffect code here to be run on update
+            setAllMessages(messages)
+            fetchMessages()
+        }
+        },[messages]);
+        
+    // useEffect(() => {
+    //     if(btn){
+    //         //console.log('btn',btn)
+    //         //console.log('isload',isLoaded)
+    //         if(!isLoaded && chat){
+    //             setIsloaded('true')
+    //             setAllMessages(messages)
+    //             //fetchMessages()
+    //         }
+            
+    //     }
+        
+    //   });
+
+
+    
+
+
+
+    // useEffect(() => {
+    //     const interval = setInterval(fetchMessages, 10000);
+    //     return () => clearInterval(interval);
+    //   }, []);
+
+    
+
+    useEffect(() => {
+        {
+            const interval = setInterval(fetchMessages, 1000);
+            return () => clearInterval(interval);
+        }
+      });
+    
     //getMessages()
     
     //console.log('all messages chat',allMessages)
@@ -153,9 +271,11 @@ export const Chat = ({ chat, curuser, chatUsers }) => {
     //     }
 
     // }
+    //console.log('messages',messages)
+   // console.log('allMessages',allMessages)
 
-    if(allMessages.length!=0){
-        if(allMessages[0]._id){
+    if(allMessages?.length!=0){
+        if(allMessages[0]?._id){
             check=true
             //console.log('messages',allMessages)
             //console.log('legnth',allMessages.length)
@@ -166,18 +286,30 @@ export const Chat = ({ chat, curuser, chatUsers }) => {
         // }
     }
     
+    // useEffect (()=>{
+    //     scroll.current?.scrollIntoView({behavior:"smooth"})
+    // }, [allMessages, messages, message])
     
+    const messagesEndRef = useRef(null)
+
+    const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+      }
     
-    
+      useEffect(() => {
+        scrollToBottom()
+      }, [allMessages]);
+      
     //console.log('message sender name',messages[0])
-    console.log('check',check)
+    //console.log('chatOpponent',chatOpponent)
     if(check) 
     {
         return ( <div className='text-center text-blue-500 text-xl'> Чат с пользователем {chatOpponent}
-            <div className='max-h-[200px] text-white overflow-auto p-2 bg-blue-700 flex flex-col gap-2 rounded-lg scroll-smooth'>
+            <div ref={messagesEndRef}
+             className='max-h-[200px] text-white overflow-auto p-2 bg-blue-700 flex flex-col gap-2 rounded-lg scroll-smooth'>
                 {allMessages.length!==0?
                 allMessages?.map((messages) => (
-                <ChatItem key={messages._id} messages={messages} />
+                <ChatItem  key={messages._id} messages={messages} />
         
     )):
     <div className='items-center'>Пока нет чатов</div>

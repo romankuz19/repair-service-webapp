@@ -88,7 +88,16 @@ export const Navbar = () => {
             <div className='flex gap-8 '>
                 {isAuth ? 
                     <>
-                    <><NavLink
+                    <NavLink
+                        to={'/chats'}
+                        href='/'
+                        className='font-bold bg-pink-200 text-l text-black rounded-lg px-4 py-2 text-l font-bold text-black-400 hover:text-white'
+                        
+                    >
+                        Чаты
+                    </NavLink>
+                    <>
+                    <NavLink
                         to={'/myprofile'}
                         href='/'
                         className='font-bold bg-pink-200 text-l text-black rounded-lg px-4 py-2 text-l font-bold text-black-400 hover:text-white'
