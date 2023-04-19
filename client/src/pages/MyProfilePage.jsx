@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { useState,useCallback } from 'react'
-import { PostItem } from '../components/PostItem'
+
 import axios from '../utils/axios'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { checkIsAuth, logout } from '../redux/features/auth/authSlice'
@@ -109,7 +109,7 @@ export const MyProfilePage = () => {
 
                     <li>
                         <NavLink
-                            to={'/myservices'}
+                            to={'/my-services'}
                             href='/'
                             className='text-l font-bold text-black-400  hover:text-white rounded-lg bg-pink-200 px-4 py-2'
                             style={({ isActive }) => isActive ? activeStyles : undefined}
@@ -119,27 +119,7 @@ export const MyProfilePage = () => {
                     </li>
                     <li>
                         <NavLink
-                            to={'/createservice'}
-                            href='/'
-                            className='text-l font-bold text-black-400 hover:text-white rounded-lg bg-pink-200 px-4 py-2'
-                            style={({ isActive }) => isActive ? activeStyles : undefined}
-                        >
-                            Добавить услугу
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink
-                            to={'/createtask'}
-                            href='/'
-                            className='text-l font-bold text-black-400 hover:text-white rounded-lg bg-pink-200 px-4 py-2'
-                            style={({ isActive }) => isActive ? activeStyles : undefined}
-                        >
-                            Создать задание
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink
-                            to={'/mytasks'}
+                            to={'/my-tasks'}
                             href='/'
                             className='text-l font-bold text-black-400 hover:text-white rounded-lg bg-pink-200 px-4 py-2'
                             style={({ isActive }) => isActive ? activeStyles : undefined}
@@ -149,6 +129,27 @@ export const MyProfilePage = () => {
                     </li>
                     <li>
                         <NavLink
+                            to={'/create-service'}
+                            href='/'
+                            className='text-l font-bold text-black-400 hover:text-white rounded-lg bg-pink-200 px-4 py-2'
+                            style={({ isActive }) => isActive ? activeStyles : undefined}
+                        >
+                            Добавить услугу
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            to={'/create-task'}
+                            href='/'
+                            className='text-l font-bold text-black-400 hover:text-white rounded-lg bg-pink-200 px-4 py-2'
+                            style={({ isActive }) => isActive ? activeStyles : undefined}
+                        >
+                            Создать задание
+                        </NavLink>
+                    </li>
+                    
+                    {/* <li>
+                        <NavLink
                             to={'#'}
                             href='/'
                             onClick={getChats}
@@ -157,7 +158,7 @@ export const MyProfilePage = () => {
                         >
                             Мои чаты
                         </NavLink>
-                    </li>
+                    </li> */}
                 </ul>
                 <form
             onSubmit={(e) => e.preventDefault()}

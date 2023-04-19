@@ -21,12 +21,12 @@ export const Navbar = () => {
     return (
         <div className='flex pt-10 pl-20 pr-20 justify-between items-center'>
             <div className='flex gap-8 '>
-            <div className='flex justify-center items-center font-bold bg-pink-200 rounded-lg px-4 py-2'>
+            <div className='flex justify-center items-center font-bold btn-color rounded-lg px-4 py-2 hover:bg-blue-800 shadow-lg shadow-blue-500/50'>
                 {
                     <><NavLink
                         to={'/'}
                         href='/'
-                        className='da text-l font-bold text-black-400 hover:text-white'
+                        className=' text-l font-bold text-white '
                         
                     >
                         Услуги
@@ -35,15 +35,15 @@ export const Navbar = () => {
                 }
             </div>
 
-            <div className='flex justify-center items-center font-bold bg-pink-200 rounded-lg px-4 py-2'>
+            <div className='flex justify-center items-center font-bold btn-color rounded-lg px-4 py-2 hover:bg-blue-800 shadow-lg shadow-blue-500/50'>
                 {
                     <><NavLink
                         to={'/tasks'}
                         href='/tasks'
-                        className='da text-l font-bold text-black-400 hover:text-white'
+                        className=' text-l font-bold text-white '
                         
                     >
-                        Задания
+                        Заказы
                     </NavLink>
                     </>
                 }
@@ -62,7 +62,7 @@ export const Navbar = () => {
                         <NavLink
                             to={'/posts'}
                             href='/'
-                            className='text-l font-bold text-black-400 hover:text-white'
+                            className='text-l font-bold text-white '
                             style={({ isActive }) =>
                                 isActive ? activeStyles : undefined
                             }
@@ -74,7 +74,7 @@ export const Navbar = () => {
                         <NavLink
                             to={'/new'}
                             href='/'
-                            className='text-l font-bold text-black-400 hover:text-white'
+                            className='text-l font-bold text-white '
                             style={({ isActive }) =>
                                 isActive ? activeStyles : undefined
                             }
@@ -88,46 +88,62 @@ export const Navbar = () => {
             <div className='flex gap-8 '>
                 {isAuth ? 
                     <>
+                    <div className='flex justify-center items-center font-bold btn-color rounded-lg px-4 py-2 hover:bg-blue-800 shadow-lg shadow-blue-500/50'>
                     <NavLink
                         to={'/chats'}
                         href='/'
-                        className='font-bold bg-pink-200 text-l text-black rounded-lg px-4 py-2 text-l font-bold text-black-400 hover:text-white'
+                        className='text-l font-bold text-white '
                         
                     >
                         Чаты
                     </NavLink>
+                    </div>
+                    
                     <>
+                    <div className='flex justify-center items-center font-bold btn-color rounded-lg px-4 py-2 hover:bg-blue-800 shadow-lg shadow-blue-500/50'>
                     <NavLink
-                        to={'/myprofile'}
+                        to={'/profile'}
                         href='/'
-                        className='font-bold bg-pink-200 text-l text-black rounded-lg px-4 py-2 text-l font-bold text-black-400 hover:text-white'
+                        className='text-l font-bold text-white '
                         
                     >
                         Мой профиль
                     </NavLink>
+
+                    </div>
+                    
                     </>
-                    <><NavLink
+                    <>
+                    <div className='flex justify-center items-center font-bold btn-color rounded-lg px-4 py-2 hover:bg-blue-800 shadow-lg shadow-blue-500/50'>
+                    <NavLink
                         to={'/'}
                         href='/'
                         onClick={logoutHandler}
-                        className='font-bold bg-pink-200 text-l text-black rounded-lg px-4 py-2 text-l font-bold text-black-400 hover:text-white'
+                        className='text-l font-bold text-white  '
                         
                     >
                         Выйти
                     </NavLink>
+
+                    </div>
+                    
                     </>
                    
                     </>
                 : 
-                <><NavLink
-                to={'/login'}
-                href='/'
-    
-                className='font-bold bg-pink-200 text-l text-black rounded-lg px-4 py-2 text-l font-bold text-black-400 hover:text-white'
-                // style={({ isActive }) => isActive ? activeStyles : undefined}
-            >
-                Войти
-            </NavLink>
+                <>
+                <div className='flex justify-center items-center font-bold btn-color rounded-lg px-4 py-2 hover:bg-blue-800 shadow-lg shadow-blue-500/50'>
+                    <NavLink
+                    to={'/login'}
+                    href='/'
+        
+                    className='text-l font-bold text-white '
+                    // style={({ isActive }) => isActive ? activeStyles : undefined}
+                >
+                    Войти
+                </NavLink>
+                </div>
+                    
             </>
                 }
             </div>

@@ -1,9 +1,9 @@
 import Comment from '../models/Comment.js'
-import Post from '../models/Post.js'
+import Service from '../models/Service.js'
 
 export const createComment = async (req, res) => {
     try {
-        const { postId, comment, author } = req.body
+        const { serviceId, comment, author } = req.body
 
         if (!comment)
             return res.json({ message: 'Комментарий не может быть пустым' })
@@ -20,7 +20,7 @@ export const createComment = async (req, res) => {
         //const some = Comment.find().populate({ author: author });
 
         try {
-            await Post.findByIdAndUpdate(postId, {
+            await Service.findByIdAndUpdate(serviceId, {
                 $push: { comments: newComment._id },
             })
             //Comment.populated('author')
@@ -41,21 +41,21 @@ export const createComment = async (req, res) => {
 }
 
 
-// Remove post
+// Remove service
 export const removeComment = async (req, res) => {
     try {
-        const {commentId, postId} = req.body
+        const {commentId, serviceId} = req.body
         //const commentId = req.body.commentId
-        //const  postId = req.body.postId
+        //const  serviceId = req.body.serviceId
         //const com = req.params.id
       
         console.log("commentId",commentId)
 
-        console.log("postId",postId)
+        console.log("serviceId",serviceId)
         const comment = await Comment.findByIdAndDelete(commentId)
         if (!comment) return res.json({ message: 'Такого комментария не существует' })
 
-        await Post.findByIdAndUpdate(postId, {
+        await Service.findByIdAndUpdate(serviceId, {
             $pull: { comments: commentId },
         })
         

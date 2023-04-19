@@ -31,7 +31,7 @@ export const AddTaskPage = () => {
             data.append('category', cat)
             data.append('price', price)
             dispatch(createTask(data))
-            navigate('/tasks')
+            navigate('/my-tasks')
             window.location.reload(false);
         } catch (error) {
             console.log(error)

@@ -2,12 +2,12 @@ import React from 'react'
 
 
 
-export const CategoryItem = (categories) => {
+export const CategoryItem = (category) => {
     //console.log(id)
 
     
     return (
-        <option value={categories}>{categories}</option>
+        <input type="checkbox" checked={false} >{category}</input>
         
     )
 }

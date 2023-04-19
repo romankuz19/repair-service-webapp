@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom'
 import {ServicesPage} from './pages/ServicesPage'
 import {TasksPage} from './pages/TasksPage'
 import { MyServicesPage } from './pages/MyServicesPage'
+import { MyTasksPage } from './pages/MyTasksPage.jsx'
 import { ServicePage } from './pages/ServicePage'
 import { TaskPage } from './pages/TaskPage.jsx'
 import { AddServicePage } from './pages/AddServicePage'
@@ -31,16 +32,17 @@ function App() {
             <Routes>
                 <Route path='/' element={<ServicesPage />} />
                 <Route path='tasks' element={<TasksPage />} />
-                <Route path='myservices' element={<MyServicesPage />} />
+                <Route path='my-services' element={<MyServicesPage />} />
+                <Route path='my-tasks' element={<MyTasksPage />} />
                 <Route path='service/:id' element={<ServicePage />} />
                 <Route path='service/:id/edit' element={<EditServicePage />} />
                 <Route path='task/:id' element={<TaskPage />} />
                 <Route path='task/:id/edit' element={<EditTaskPage />} />
-                <Route path='createservice' element={<AddServicePage />} />
-                <Route path='createtask' element={<AddTaskPage />} />
+                <Route path='create-service' element={<AddServicePage />} />
+                <Route path='create-task' element={<AddTaskPage />} />
                 <Route path='register' element={<RegisterPage />} />
                 <Route path='login' element={<LoginPage />} />
-                <Route path='myprofile' element={<MyProfilePage />} />
+                <Route path='profile' element={<MyProfilePage />} />
                 <Route path='chats' element={<ChatsPage />} />
             </Routes>
 

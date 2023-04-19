@@ -5,11 +5,42 @@
 @layer base {
   body {
     font-family: 'Poppins', sans-serif;
-    background: #141E30;  /* fallback for old browsers */
+    /* background: #141E30;  /* fallback for old browsers */
     /* background: -webkit-linear-gradient(to right, #243B55, #141E30);  /* Chrome 10-25, Safari 5.1-6 */
     /*background: linear-gradient(to right, #243B55, #141E30); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */  
-    background: rgb(238,174,202);
-    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+    /*background: rgb(243,197,202);*/ 
+    /* background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);  */
+    /* background: rgb(228,228,228); */
+    /* background: radial-gradient(circle, rgba(228,228,228,1) 0%, rgba(115,123,162,1) 100%); */
+    background: rgb(255, 255, 255);
     min-height: 100vh;
   }
+
+  .btn-color{
+    background-color: #3e52b4;
+  }
+
+  .border-color{
+    border-color: #ffffff;
+    /* border-color: cyan; */
+  }
+
+  .text-color{
+    color: #2fc3d6;
+  }
+
+  .text-small-color{
+    color: #000000;
+  }
+
+  .text-cat-color{
+    color: #4e4e4e;
+  }
+
+  
+}
+
+.outline {
+  -webkit-text-stroke-width: 0.5px;
+  -webkit-text-stroke-color: black;
 }

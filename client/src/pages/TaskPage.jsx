@@ -9,6 +9,8 @@ import {
     AiTwotoneEdit,
     AiFillDelete,
 } from 'react-icons/ai'
+import {  HiPhone } from 'react-icons/hi'
+import { BsFillChatDotsFill} from 'react-icons/bs'
 import Moment from 'react-moment'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
@@ -28,6 +30,7 @@ export const TaskPage = () => {
     const [task, setTask] = useState(null)
     const [ownerTaskUser, setownerTaskUser] = useState(null)
     const [chat, setChat] = useState(null)
+    const [phone, setPhone] = useState('Телефон')
 
     const [comment, setComment] = useState('')
     const [message, setMessage] = useState('')
@@ -96,6 +99,7 @@ export const TaskPage = () => {
         firstUserId,
         secondUserId,
     })
+    navigate('/chats')
     //console.log('data',data);
     //dispatch(createChat({firstUserId, secondUserId}));
     setChat(data);
@@ -187,6 +191,7 @@ export const TaskPage = () => {
       });
 
 
+
     
     //console.log('messages',messages)
    //console.log('a',chat)
@@ -251,7 +256,7 @@ export const TaskPage = () => {
             </button>
             <div className='mx-auto max-w-[900px] py-8'>
             <div className='flex justify-around gap-4 border-2 border-pink-200 rounded-lg p-2'>
-                <div className='flex leftcard flex-col gap-2'>
+                <div className='flex leftcard justify-center flex-col gap-2'>
                     <div className='text-2xl text-blue-600 font-bold opacity-100'>Задача </div>
                     <div className='text-m text-blue-600  opacity-100'>
                        Адрес 
@@ -263,13 +268,10 @@ export const TaskPage = () => {
                     <div className='text-m text-blue-600  opacity-100'>
                     Категория 
                     </div>
-                    
-                    
-
-
+            
                 </div>
                 
-            <div className='midcard flex flex-col gap-2 justify-center'>
+                <div className='midcard flex flex-col gap-2 justify-center'>
 
                 <div className='text-2xl text-blue-600 font-bold opacity-100'>{task.title}</div>
                 <div className='text-m text-blue-600  opacity-100'>{task.address}</div>
@@ -281,32 +283,51 @@ export const TaskPage = () => {
 
                 <div className='rightcard flex flex-col gap-2 justify-center'>
                 <div className='text-2xl text-blue-600 font-bold opacity-100'>Оплата: {task.price} ₽</div>
-                <button className='text-m font-bold rounded-lg bg-pink-100 p-1'
-                    onMouseEnter={() => setIsShown(true)}>
-                    Телефон
-                </button>
-                {isShown && (
+                <div className='flex gap-5 text-black text-m py-3'>
+                        <div className='flex flex-wrap justify-center content-center text-m font-bold min-w-[150px] rounded-lg bg-pink-100 p-1'
+                >
+                   <HiPhone className='my-1 mr-1'/>
+                {ownerTaskUser.phonenumber}
+              </div>
+              { 
+                isAuth && (currentUser._id !== ownerTaskUser._id) ? (<div className='flex text-m font-bold rounded-lg bg-pink-100 p-1 cursor-pointer hover:text-blue-200 '
+                onClick={handleCreateChat}>
+                <BsFillChatDotsFill className='my-1 mr-1' />
+                  Чат
+                </div>) 
+                : !isAuth ? (<div className='flex text-m font-bold rounded-lg bg-pink-100 p-1 cursor-pointer hover:text-blue-200 '
+                onClick={()=> {navigate('/login');toast('Сперва войдите в аккаунт')}}>
+                <BsFillChatDotsFill className='my-1 mr-1' />
+                  Чат
+                </div>)
+                : isAuth && (currentUser._id === ownerTaskUser._id) ? (<div></div>):(<div></div>)}
+              
+              
+                        
+                {/* {isShown && (
                     <div className='text-m font-bold text-center'>
                     {ownerTaskUser.phonenumber}
                     </div>
-                        )}
+                        )} */}
                 
                 
-                {isAuth && (
+                {/* {isAuth && (
                      currentUser._id !== ownerTaskUser._id && (
                     <button onClick={handleCreateChat} className='bg-blue-400 text-xs text-white rounded-lg py-1 px-1 hover:text-black'>Напишите заказчику</button>)
                
-               )}
+               )} */}
                 {/* <button onClick={handleCreateChat} className='bg-blue-400 text-xs text-white rounded-lg py-1 px-1 hover:text-black'>Напишите исполнителю</button>
                  */}
-                 {!isAuth && (
+                 {/* {!isAuth && (
                  <a href='/login' className='bg-blue-400 text-xs text-white rounded-lg py-1 px-1 hover:text-black'>Напишите заказчику</a>
-               )}
+               )} */}
+               </div>
+               {((currentUser?._id === ownerTaskUser._id) || (currentUser?.admin===true)) ?  (
                     <div className='flex flex-row justify-between'>
                         <button className='flex items-center justify-center gap-2 text-xs text-black opacity-50'>
                             <AiFillEye /> <span>{task.views}</span>
                         </button>
-                        {((currentUser?._id === ownerTaskUser._id) || (currentUser?.admin===true)) &&  (
+                        
                             <div className='flex flex-row gap-3 justify-end'>
                                 <div className='flex'>
                                 <button className='flex items-center justify-center gap-2 text-black opacity-80'>
@@ -325,14 +346,24 @@ export const TaskPage = () => {
                                 </div>
                                 
                             </div>
-                        )}
+                       
                         
                     </div>
+                     ):
+                     (<div className='flex justify-center'>
+                     <button className='flex items-center justify-center gap-2 text-xs text-black opacity-50'>
+                         <AiFillEye /> <span>{task.views}</span>
+                     </button>
+                     
+                     
+                     </div>)
+                     }
 
                     
         
 
                 </div>
+                 
                 
             </div>
 

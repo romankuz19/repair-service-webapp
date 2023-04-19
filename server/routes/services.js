@@ -8,7 +8,7 @@ import {
     updatePost,
     getPostComments,
     sortedPosts
-} from '../controllers/posts.js'
+} from '../controllers/services.js'
 import { checkAuth } from '../utils/checkAuth.js'
 const router = new Router()
 

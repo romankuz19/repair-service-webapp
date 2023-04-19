@@ -1,4 +1,4 @@
-import Post from '../models/Post.js'
+import Post from '../models/Service.js'
 import User from '../models/User.js'
 import Comment from '../models/Comment.js'
 import path, { dirname } from 'path'
@@ -107,8 +107,13 @@ export const sortedPosts = async (req, res) => {
         console.log('req.params',req.params.name)
         const sort= req.params.name
         //console.log('sort',sort.sort)
+        const s = sort;
+        const regex = new RegExp(s, 'i') // i for case insensitive
+        //Posts.find({title: {$regex: regex}})
         
-       const sortedPosts = await Post.find().where('category').equals(sort)
+    //    const sortedPosts = await Post.find().where('category').equals(sort)
+        // const sortedPosts = await Post.find().where('text').equals({sort}+"%")
+        const sortedPosts = await Post.find({text: {$regex: regex}})
        console.log('sortedPosts',sortedPosts)
         // const posts = await Post.find().sort('-createdAt')
         // const popularPosts = await Post.find().limit(5).sort('-views')
@@ -132,7 +137,7 @@ export const getById = async (req, res) => {
         const post = await Post.findByIdAndUpdate(req.params.id, {
             $inc: { views: 1 },
         })
-        const user = await User.find().where('username').equals(post.username)
+        const user = await User.findOne().where('username').equals(post.username)
         //console.log(user)
         res.json({post, user})
     } catch (error) {

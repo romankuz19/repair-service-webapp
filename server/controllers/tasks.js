@@ -1,3 +1,4 @@
+import Service from '../models/Service.js'
 import Task from '../models/Task.js'
 import User from '../models/User.js'
 
@@ -56,6 +57,26 @@ export const getById = async (req, res) => {
         const user = await User.findOne().where('_id').equals(task.author)
         //console.log('user',user)
         res.json({task, user})
+    } catch (error) {
+        res.json({ message: 'Что-то пошло не так.' })
+    }
+}
+
+export const getMyTasks = async (req, res) => {
+    try {
+
+        const user = await User.findById(req.userId)
+        //console.log('user',user)
+        const list = await Promise.all(
+            user.tasks.map((task) => {
+                return Task.findById(task._id)
+            }),
+        )
+
+
+
+        //console.log(list,user)
+        res.json({list,user})
     } catch (error) {
         res.json({ message: 'Что-то пошло не так.' })
     }

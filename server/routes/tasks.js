@@ -3,6 +3,7 @@ import {
     createTask,
     getAll,
     getById,
+    getMyTasks,
     removeTask,
     updateTask
    
@@ -17,6 +18,10 @@ router.post('/', checkAuth, createTask)
 // Get All Tasks
 // http://localhost:3002/api/tasks
 router.get('/', getAll)
+
+// Get My Tasks
+// http://localhost:3002/api/tasks/user/me
+router.get('/user/me', checkAuth, getMyTasks)
 
 // Get Task By Id
 // http://localhost:3002/api/tasks/:id
