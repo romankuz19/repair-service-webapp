@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-04-20T10:58:20.025Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36" etag="n_iuZXJHdTwRi84BHwWc" version="20.6.2" type="github">
+<mxfile host="app.diagrams.net" modified="2023-04-20T10:58:57.912Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36" etag="paRUlhZC_0iDUGcRzIZJ" version="20.6.2" type="github">
   <diagram id="gd0Vs7x8epCB3-VAoTR1" name="Page-1">
     <mxGraphModel dx="1673" dy="896" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200" math="0" shadow="0">
       <root>
@@ -64,10 +64,10 @@
         <mxCell id="JAu2rXF-X8iYknNwJSAS-11" value="Ответ клиенту" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=14;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;fontStyle=2" parent="1" vertex="1">
           <mxGeometry x="811" y="562.88" width="95" height="29" as="geometry" />
         </mxCell>
-        <mxCell id="AHjrq2r-RXmyC5x76Tg_-5" value="Сервер" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeWidth=1;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;" vertex="1" parent="1">
+        <mxCell id="AHjrq2r-RXmyC5x76Tg_-5" value="Сервер" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeWidth=1;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;dashed=1;" vertex="1" parent="1">
           <mxGeometry x="31" y="221" width="85" height="44" as="geometry" />
         </mxCell>
-        <mxCell id="AHjrq2r-RXmyC5x76Tg_-9" value="Клиент" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeWidth=1;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;" vertex="1" parent="1">
+        <mxCell id="AHjrq2r-RXmyC5x76Tg_-9" value="Клиент" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeWidth=1;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;dashed=1;" vertex="1" parent="1">
           <mxGeometry x="904" y="220" width="85" height="44" as="geometry" />
         </mxCell>
         <mxCell id="AHjrq2r-RXmyC5x76Tg_-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;fontSize=14;startArrow=classic;startFill=1;endArrow=none;endFill=0;fontStyle=2" edge="1" parent="1" source="riICpPSAZor0eneKkd08-4" target="JAu2rXF-X8iYknNwJSAS-1">
@@ -135,7 +135,7 @@
         <mxCell id="AHjrq2r-RXmyC5x76Tg_-22" value="" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;strokeWidth=1;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;" vertex="1" parent="1">
           <mxGeometry x="902" y="834" width="692" height="144" as="geometry" />
         </mxCell>
-        <mxCell id="AHjrq2r-RXmyC5x76Tg_-23" value="Сокет сервер" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeWidth=1;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;" vertex="1" parent="1">
+        <mxCell id="AHjrq2r-RXmyC5x76Tg_-23" value="Сокет сервер" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeWidth=1;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;dashed=1;" vertex="1" parent="1">
           <mxGeometry x="902" y="834" width="85" height="44" as="geometry" />
         </mxCell>
         <mxCell id="AHjrq2r-RXmyC5x76Tg_-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;startArrow=none;startFill=0;endArrow=classic;endFill=1;" edge="1" parent="1" source="AHjrq2r-RXmyC5x76Tg_-24" target="JAu2rXF-X8iYknNwJSAS-1">
