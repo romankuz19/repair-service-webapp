@@ -33,6 +33,7 @@ export const ServicesPage = () => {
     const [checkedState, setCheckedState] = useState(
         new Array(categoriesList.length).fill(true)
     );
+    const [checkedStateAll, setCheckedStateAll] = useState(true);
     const [sortCategories, setSortCategories]= useState([])
     
 
@@ -187,7 +188,7 @@ export const ServicesPage = () => {
     
     
 
-    const handleOnChange = (position, value) => {
+    const handleOnChangeSort = (position, value) => {
         const updatedCheckedState = checkedState.map((item, index) =>
           {
             if(index===position){
@@ -214,6 +215,21 @@ export const ServicesPage = () => {
         
         //setSortCategories([...value])
     }
+    const handleOnChangeAllSort = () => {
+        
+        if(checkedStateAll){
+            setCheckedStateAll(false)
+            setCheckedState(new Array(categoriesList.length).fill(false))
+        }
+        else{
+            setCheckedStateAll(true)
+            setCheckedState(new Array(categoriesList.length).fill(true))
+        }
+        
+
+    }
+
+    
     console.log(sortCategories);
     
     return (
@@ -283,6 +299,20 @@ export const ServicesPage = () => {
                     </div>
                     <div className='basis-1/5'>
                         <div className='text-xs text-center font-bold uppercase text-black'>
+                        <div className="toppings-list-item">
+                                        <div className="left-section">
+                                        <input
+                                            type="checkbox"
+                                            
+                                            value="Все категории"
+                                            checked={checkedStateAll}
+                                            onChange={() => handleOnChangeAllSort()}
+                                        />
+                                        <label> Все категории</label>
+                                        </div>
+                                        
+                        </div>
+                            
                             Категории:
                         </div>
                         {/* {categoriesList.map((category,idx) => <CategoryItem key={idx} category={category.value}/>)} */}
@@ -301,7 +331,7 @@ export const ServicesPage = () => {
                                             name={value}
                                             value={value}
                                             checked={checkedState[index]}
-                                            onChange={() => handleOnChange(index, value)}
+                                            onChange={() => handleOnChangeSort(index, value)}
                                         />
                                         <label htmlFor={`custom-checkbox-${index}`}> {value}</label>
                                         </div>

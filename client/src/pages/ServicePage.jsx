@@ -71,6 +71,7 @@ export const ServicePage = () => {
     }
 
     const fetchComments = useCallback(async () => {
+        console.log('fetchingComments')
         try {
             dispatch(getPostComments(params.id))
         } catch (error) {
@@ -254,16 +255,17 @@ export const ServicePage = () => {
             
             }
             if(firstCheck && secondCheck && adcheck){
+                console.log('cmt',comment)
                 setComment('')
                 dispatch(createComment({ postId, comment, author }))
             }
             else if(!firstCheck || !secondCheck){
-                alert("Данный контент нельзя вставить!")
+                //alert("Данный контент нельзя вставить!")
                 toast("Данный контент нельзя вставить!")
                     setComment('')
             }
             else if(!adcheck){
-                alert("Данный контент нельзя вставить!")
+                //alert("Данный контент нельзя вставить!")
                 toast("Данный контент нельзя вставить!")
                     setComment('')
             }
@@ -328,32 +330,20 @@ export const ServicePage = () => {
                 <div className='text-small-color  opacity-90 text-2xl  line-clamp-4'>{post.price} ₽</div>
                      
                 </div>
-                    <div className='flex justify-around gap-4 '>
-                
-                
-                <div className='left-card flex flex-col gap-2 justify-center'>
-
-               
-                
-               
-                
-                </div>
-
-                <div className='rightcard flex flex-col gap-2 justify-center'>
-                
+                <div className='flex justify-around'>
                 <div className='flex gap-5 text-black text-m pb-2 pt-3 '>
-                        <div className=' flex flex-wrap justify-center content-center text-m font-bold min-w-[150px] rounded-lg bg-pink-100 p-1'
+                        <div className=' flex flex-wrap justify-center content-center text-m text-white font-bold min-w-[150px] rounded-lg btn-color hover:bg-blue-800 p-1 cursor-pointer'
                 >
                    <HiPhone className='my-1 mr-1'/>
                 {ownerUser.phonenumber}
               </div>
               { 
-                isAuth && (currentUser?._id !== ownerUser?._id) ? (<div className='flex text-m font-bold rounded-lg bg-pink-100 p-1 cursor-pointer hover:text-blue-200 '
+                isAuth && (currentUser?._id !== ownerUser?._id) ? (<div className='flex text-m font-bold text-white rounded-lg btn-color p-1 cursor-pointer hover:bg-blue-800'
                 onClick={handleCreateChat}>
                 <BsFillChatDotsFill className='my-1 mr-1' />
                   Чат
                 </div>) 
-                : !isAuth ? (<div className=' flex text-m font-bold rounded-lg bg-pink-100 p-1 cursor-pointer hover:text-blue-200 '
+                : !isAuth ? (<div className=' flex text-m font-bold text-white rounded-lg btn-color p-1 cursor-pointer hover:bg-blue-800'
                 onClick={()=> {navigate('/login');toast('Сперва войдите в аккаунт')}}>
                 <BsFillChatDotsFill className='my-1 mr-1' />
                   Чат
@@ -362,47 +352,67 @@ export const ServicePage = () => {
      
                </div>
 
+
                {((currentUser?._id === post.author) || (currentUser?.admin===true)) ?  (
 
-               <div className='flex gap-3 items-center mt-2 justify-between'>
-                        <div className='flex gap-3'>
-                            <button className='flex items-center justify-center gap-2 text-xs text-black opacity-80'>
-                                <AiFillEye /> <span>{post.views}</span>
-                            </button>
-                            <button className='flex items-center justify-center gap-2 text-xs text-black opacity-80'>
-                                <AiOutlineMessage />{' '}
-                                <span>{post.comments?.length || 0} </span>
-                            </button>
-                        </div>
+<div className='flex flex-col gap-2 items-center mt-2 '>
+         <div className='flex gap-3'>
+             <div className='flex items-center justify-center gap-1 text-xs text-black opacity-80'>
+                 <AiFillEye /> <span>{post.views}</span>
+             </div>
+             <div className='flex items-center justify-center gap-1 text-xs text-black opacity-80'>
+                 <AiOutlineMessage />{' '}
+                 <span>{post.comments?.length || 0} </span>
+             </div>
+         </div>
 
-                        
-                            <div className='flex gap-3'>
-                                <button className='flex items-center justify-center gap-2 text-black opacity-80'>
-                                    <Link to={`/service/${params.id}/edit`}>
-                                        <AiTwotoneEdit />
-                                    </Link>
-                                </button>
-                                <button
-                                    onClick={removePostHandler}
-                                    className='flex items-center justify-center gap-2  text-black opacity-80'
-                                >
-                                    <AiFillDelete />
-                                </button>
-                            </div>
-                       
-                       
-                    </div>
-                    ):
-                    <div className='flex justify-between'>
-                            <button className='flex items-center justify-center gap-2 text-m text-black opacity-80'>
-                                <AiFillEye /> <span>{post.views}</span>
-                            </button>
-                            <button className='flex items-center justify-center gap-2 text-m text-black opacity-80'>
-                                <AiOutlineMessage />{' '}
-                                <span>{post.comments?.length || 0} </span>
-                            </button>
-                        </div>
-                    }
+         <div className='flex gap-3'>
+                 <button className='flex items-center justify-center gap-2 text-black opacity-80'>
+                     <Link to={`/service/${params.id}/edit`}>
+                         <AiTwotoneEdit />
+                     </Link>
+                 </button>
+                 <button
+                     onClick={removePostHandler}
+                     className='flex items-center justify-center gap-2  text-black opacity-80'
+                 >
+                     <AiFillDelete />
+                 </button>
+             </div>
+
+         
+             
+        
+        
+     </div>
+     ):
+     <div className='flex gap-5 ml-5'>
+             <div className='flex items-center justify-center gap-1 text-xs text-black opacity-80'>
+                 <AiFillEye /> <span>{post.views}</span>
+             </div>
+             <div className='flex items-center justify-center gap-1 text-xs text-black opacity-80'>
+                 <AiOutlineMessage />{' '}
+                 <span>{post.comments?.length || 0} </span>
+             </div>
+         </div>
+     }
+
+
+
+                </div>
+                    <div className='flex justify-around gap-4 '>
+                
+                
+                <div className='left-card flex flex-col gap-2 justify-center'>
+
+            
+                </div>
+
+                <div className='rightcard flex flex-col gap-2 justify-center'>
+                
+                
+
+               
 
     
                 </div>
@@ -451,6 +461,7 @@ export const ServicePage = () => {
                 
                
             </div>
+            <div className='text-center font-bold'>Отзывы</div>
              <div className='w-1/3 mx-auto max-h-[400px] overflow-auto p-8  flex flex-col gap-2 border-2 shadow-2xl rounded-lg p-2 '>
                 {isAuth && !(currentUser?._id === post.author) && ( 
                 <form
@@ -462,7 +473,7 @@ export const ServicePage = () => {
                             value={comment}
                             onChange={(e) => setComment(e.target.value)}
                             placeholder='Оставьте отзыв'
-                            className='text-black w-full rounded-lg bg-blue-400 border p-2 text-xs outline-none placeholder:text-white'
+                            className='text-white w-full rounded-lg bg-blue-400 border p-2 text-xs outline-none placeholder:text-white'
                         />
                         <button
                             type='submit'
@@ -493,7 +504,7 @@ export const ServicePage = () => {
                     
                     
                     
-                    <div className="text-black text-s">Отзывы на услугу</div>
+                    
                     {comments.length!==0 && isAuth && (
                     comments?.map((cmt, idx) => (
                         <CommentItem key={idx} cmt={cmt} currentUser={currentUser} />

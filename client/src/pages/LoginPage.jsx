@@ -53,7 +53,7 @@ export const LoginPage = () => {
     return (
         <form
             onSubmit={(e) => e.preventDefault()}
-            className='w-1/4 h-60 mx-auto mt-40'
+            className='w-1/4 h-60 mx-auto mt-40 border-2 shadow-lg rounded-lg p-2'
         >
             <h1 className='text-lg text-black text-center'>Авторизация</h1>
             <label className='text-xs text-gray-400'>
@@ -63,7 +63,7 @@ export const LoginPage = () => {
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     placeholder='Логин'
-                    className='mt-1 text-black w-full rounded-lg bg-pink-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
+                    className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
                 />
             </label>
 
@@ -74,21 +74,21 @@ export const LoginPage = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder='Пароль'
-                    className='mt-1 text-black w-full rounded-lg bg-pink-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
+                    className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
                 />
             </label>
 
-            <div className='flex gap-8 justify-center mt-4'>
+            <div className='flex gap-8 justify-center mt-7'>
                 <button
                     type='submit'
                     onClick={handleSubmit}
-                    className='font-bold bg-pink-200 text-xs text-black rounded-lg px-4 py-2 text-xs font-bold text-black-400 hover:text-white'
+                    className='font-bold text-white rounded-lg px-4 py-2 text-xs  btn-color p-1 cursor-pointer hover:bg-blue-800'
                 >
                     Войти
                 </button>
                 <Link
                     to='/register'
-                    className='font-bold bg-pink-200 text-xs text-black rounded-lg px-4 py-2 text-xs font-bold text-black-400 hover:text-white'
+                    className='font-bold text-white rounded-lg px-4 py-2 text-xs btn-color p-1 cursor-pointer hover:bg-blue-800'
                 >
                     Нет аккаунта ?
                 </Link>

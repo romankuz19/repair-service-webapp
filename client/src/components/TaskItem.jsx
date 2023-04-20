@@ -115,7 +115,7 @@ export const TaskItem = ({ task, user }) => {
                 {/* </div>
             </div> */}
 
-            <div className='flex flex-grow border-2 shadow-lg rounded-lg p-2'>
+            <div className='flex flex-grow border-2 shadow-lg rounded-lg p-4'>
                 
                 
                 <div className='rightcard flex-1 gap-2 w-64 pl-4'>

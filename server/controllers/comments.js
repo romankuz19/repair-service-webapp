@@ -3,7 +3,8 @@ import Service from '../models/Service.js'
 
 export const createComment = async (req, res) => {
     try {
-        const { serviceId, comment, author } = req.body
+        const { postId, comment, author } = req.body
+        //console.log(req.body)
 
         if (!comment)
             return res.json({ message: 'Комментарий не может быть пустым' })
@@ -11,7 +12,7 @@ export const createComment = async (req, res) => {
         
         //console.log('comment',comment)
         const authorName = author.firstname
-        console.log('author',authorName)
+        //console.log('author',authorName)
         const newComment = new Comment({ comment, authorName, author })
         await newComment.save()
         console.log(newComment)
@@ -20,7 +21,7 @@ export const createComment = async (req, res) => {
         //const some = Comment.find().populate({ author: author });
 
         try {
-            await Service.findByIdAndUpdate(serviceId, {
+            await Service.findByIdAndUpdate(postId, {
                 $push: { comments: newComment._id },
             })
             //Comment.populated('author')
@@ -44,18 +45,18 @@ export const createComment = async (req, res) => {
 // Remove service
 export const removeComment = async (req, res) => {
     try {
-        const {commentId, serviceId} = req.body
+        const {commentId, postId} = req.body
         //const commentId = req.body.commentId
         //const  serviceId = req.body.serviceId
         //const com = req.params.id
       
         console.log("commentId",commentId)
 
-        console.log("serviceId",serviceId)
+        console.log("postId",postId)
         const comment = await Comment.findByIdAndDelete(commentId)
         if (!comment) return res.json({ message: 'Такого комментария не существует' })
 
-        await Service.findByIdAndUpdate(serviceId, {
+        await Service.findByIdAndUpdate(postId, {
             $pull: { comments: commentId },
         })
         

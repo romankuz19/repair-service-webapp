@@ -249,13 +249,13 @@ export const TaskPage = () => {
 
     return (
         <div className='max-w-[1200px] mx-auto py-10'>
-            <button className='bg-blue-600 text-xs text-white rounded-lg py-2 px-4 hover:text-black'>
+            {/* <button className='bg-blue-600 text-xs text-white rounded-lg py-2 px-4 hover:text-black'>
                 <Link className='flex' to={'/tasks'}>
                     Назад
                 </Link>
-            </button>
+            </button> */}
             <div className='mx-auto max-w-[900px] py-8'>
-            <div className='flex justify-around gap-4 border-2 border-pink-200 rounded-lg p-2'>
+            <div className='flex justify-around gap-4 border-2 border-2 shadow-lg rounded-lg p-2'>
                 <div className='flex leftcard justify-center flex-col gap-2'>
                     <div className='text-2xl text-blue-600 font-bold opacity-100'>Задача </div>
                     <div className='text-m text-blue-600  opacity-100'>
@@ -265,9 +265,9 @@ export const TaskPage = () => {
                       Заказчик 
                     </div>
 
-                    <div className='text-m text-blue-600  opacity-100'>
+                    {/* <div className='text-m text-blue-600  opacity-100'>
                     Категория 
-                    </div>
+                    </div> */}
             
                 </div>
                 

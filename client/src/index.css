@@ -26,7 +26,7 @@
   }
 
   .text-color{
-    color: #2fc3d6;
+    color: #2fc2d6ea;
   }
 
   .text-small-color{
@@ -36,6 +36,17 @@
   .text-cat-color{
     color: #4e4e4e;
   }
+
+  input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
 
   
 }
