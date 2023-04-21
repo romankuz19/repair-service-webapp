@@ -62,7 +62,7 @@ export const ServicePage = () => {
         try {
             console.log('params',params)
             dispatch(removePost(params.id))
-            toast('Услуга была удалена')
+            toast.info('Услуга была удалена')
             navigate('/')
             window.location.reload(false);
         } catch (error) {
@@ -261,12 +261,12 @@ export const ServicePage = () => {
             }
             else if(!firstCheck || !secondCheck){
                 //alert("Данный контент нельзя вставить!")
-                toast("Данный контент нельзя вставить!")
+                toast.info("Данный контент нельзя вставить!")
                     setComment('')
             }
             else if(!adcheck){
                 //alert("Данный контент нельзя вставить!")
-                toast("Данный контент нельзя вставить!")
+                toast.info("Данный контент нельзя вставить!")
                     setComment('')
             }
             
@@ -324,7 +324,7 @@ export const ServicePage = () => {
                                 <div className='text-s'>Обо мне: {post.title}</div>
 
                     </div>
-                    <div className='flex justify-around items-center '>
+                    <div className='flex justify-around items-center pb-3'>
                 <div className='text-small-color opacity-90 text-2xl   line-clamp-4'>{post.text}</div>
                 
                 <div className='text-small-color  opacity-90 text-2xl  line-clamp-4'>{post.price} ₽</div>
@@ -344,7 +344,7 @@ export const ServicePage = () => {
                   Чат
                 </div>) 
                 : !isAuth ? (<div className=' flex text-m font-bold text-white rounded-lg btn-color p-1 cursor-pointer hover:bg-blue-800'
-                onClick={()=> {navigate('/login');toast('Сперва войдите в аккаунт')}}>
+                onClick={()=> {navigate('/login');toast.info('Сперва войдите в аккаунт')}}>
                 <BsFillChatDotsFill className='my-1 mr-1' />
                   Чат
                 </div>)

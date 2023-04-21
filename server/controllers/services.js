@@ -102,30 +102,72 @@ export const getAll = async (req, res) => {
     }
 }
 
-export const sortedPosts = async (req, res) => {
+export const sortedServicesCat = async (req, res) => {
+    const categoriesList = [
+       
+        {
+            id: 1,
+            value: 'Бытовые услуги'
+        } , {
+            id: 2,
+            value: 'Цифровая техника'
+        }, {
+            id: 3,
+            value: 'Транспорт'
+        },
+        {
+            id: 4,
+            value: 'Ремонт и строительство'
+        },
+       
+        ];
+
+        const arr = req.params.name.split(' ');
+        console.log('arr',arr)
+        const newArr = Array();
+        const sortedServicesCat=[]
+
+        categoriesList.forEach(element => {
+            for (let i = 0; i < arr.length; i++) {
+                console.log(arr[i])
+                if (element.value.indexOf(arr[i])!==-1 && arr[i]!=='и') {
+                    newArr.push(element.value)
+                    break;
+                }
+              }
+        });
+
+        for (const item of newArr){
+            sortedServicesCat.push(await Post.findOne({category: item}))
+        }
+        console.log('newArr',newArr)
+        console.log(sortedServicesCat)
+
+        res.json({sortedServicesCat})
+
+}
+
+
+export const sortedServices = async (req, res) => {
     try {
-        console.log('req.params',req.params.name)
+        
+        console.log('req.params',req.params)
+       
         const sort= req.params.name
-        //console.log('sort',sort.sort)
+    
         const s = sort;
         const regex = new RegExp(s, 'i') // i for case insensitive
-        //Posts.find({title: {$regex: regex}})
         
-    //    const sortedPosts = await Post.find().where('category').equals(sort)
-        // const sortedPosts = await Post.find().where('text').equals({sort}+"%")
-        const sortedPosts = await Post.find({text: {$regex: regex}})
-       console.log('sortedPosts',sortedPosts)
-        // const posts = await Post.find().sort('-createdAt')
-        // const popularPosts = await Post.find().limit(5).sort('-views')
-        // const users = await User.find()
-
-        
+        const sortedServices = await Post.find({text: {$regex: regex}})
+       
         
         if (!sort) {
             return res.json({ message: 'Постов нет' })
         }
+      
+        res.json({sortedServices})
 
-        res.json({sortedPosts})
+        
     } catch (error) {
         res.json({ message: 'Что-то пошло не так.' })
     }

@@ -149,7 +149,7 @@ useEffect(()=> {
                         : "message "
                     }
                   >
-                    <span className="">{message.message}</span>{" "}
+                    <span className="font-bold">{message.message}</span>{" "}
                     <span className="font-mono ">{format(message.createdAt, 'ru')}</span>
                   </div>
                 </>

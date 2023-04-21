@@ -82,7 +82,7 @@ export const AddServicePage = () => {
             className='w-1/3 mx-auto py-10'
             onSubmit={(e) => e.preventDefault()}
         >
-                <label className='hover:text-black text-white py-2 bg-blue-600 rounded-lg text-m mt-2 flex items-center justify-center border-dashed border-2 border-pink-200 cursor-pointer'>
+                <label className='hover:bg-blue-800 font-bold text-white py-2 btn-color rounded-lg text-m mt-2 flex items-center justify-center border-2 cursor-pointer'>
                     Прикрепите вашу фотографию:
                     <input
                         type='file'
@@ -105,7 +105,7 @@ export const AddServicePage = () => {
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
                         placeholder='Кто вы и чем занимаетесь'
-                        className='mt-1 text-black w-full rounded-lg bg-blue-400 border py-1 px-2 text-xl outline-none placeholder:text-gray-700' />
+                        className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-xl outline-none placeholder:text-gray-700' />
                 </label>
 
                 <label className='text-xl text-black opacity-90'>
@@ -114,7 +114,7 @@ export const AddServicePage = () => {
                         onChange={(e) => setText(e.target.value)}
                         value={text}
                         placeholder='Починка телефона, стиральной машинки и т.д.'
-                        className='mt-1 text-black w-full rounded-lg bg-blue-400 border py-1 px-2 text-xl outline-none resize-none h-20 placeholder:text-gray-700' />
+                        className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-xl outline-none resize-none h-20 placeholder:text-gray-700' />
                 </label>
 
                 <label className='text-xl text-black opacity-90'>
@@ -124,7 +124,7 @@ export const AddServicePage = () => {
                         onChange={(e) => setPrice(e.target.value)}
                         value={price}
                         placeholder='1000, 5000, 10000'
-                        className='mt-1 text-black w-full rounded-lg bg-blue-400 border py-1 px-2 text-xl outline-none placeholder:text-gray-700' />
+                        className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-xl outline-none placeholder:text-gray-700' />
                 </label>
                 <label className='text-xl text-black opacity-90'>
                     Категория
@@ -133,7 +133,7 @@ export const AddServicePage = () => {
                 </label>
                 <input list="categories" id="catlist" 
                         onChange={(e) => setCat(e.target.value)} 
-                        name="category" className='mt-1 text-black w-full rounded-lg bg-blue-400 border py-1 px-2 text-xl outline-none placeholder:text-gray-700 '>
+                        name="category" className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-xl outline-none placeholder:text-gray-700 '>
                         </input>
                         <datalist id="categories">
                             <Options options={categoriesList} />
@@ -153,14 +153,14 @@ export const AddServicePage = () => {
                 <div className='flex gap-8 items-center justify-center mt-4'>
                     <button
                         onClick={submitHandler}
-                        className='flex justify-center items-center bg-blue-600 text-m text-white rounded-lg py-2 px-4 hover:text-black'
+                        className='flex justify-center font-bold items-center btn-color text-m text-white rounded-lg py-2 px-4 hover:bg-blue-800'
                     >
                         Добавить
                     </button>
 
                     <button
                         onClick={clearFormHandler}
-                        className='flex justify-center items-center bg-red-500 text-m text-white rounded-lg py-2 px-4 hover:text-black'
+                        className='flex justify-center font-bold items-center bg-red-500 text-m text-white rounded-lg py-2 px-4 hover:text-black'
                     >
                         Отменить
                     </button>

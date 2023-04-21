@@ -51,7 +51,7 @@ export const MyProfilePage = () => {
         setUser(data.user)
     })
     useEffect(() => {
-        if (status) toast(status)
+        if (status) toast.info(status)
         fetchUser()
     },[status])
     
@@ -111,7 +111,7 @@ export const MyProfilePage = () => {
                         <NavLink
                             to={'/my-services'}
                             href='/'
-                            className='text-l font-bold text-black-400  hover:text-white rounded-lg bg-pink-200 px-4 py-2'
+                            className='text-l font-bold text-black-400  hover:text-white rounded-lg btn-color text-white hover:bg-blue-800  px-4 py-2'
                             style={({ isActive }) => isActive ? activeStyles : undefined}
                         >
                             Мои услуги
@@ -121,7 +121,7 @@ export const MyProfilePage = () => {
                         <NavLink
                             to={'/my-tasks'}
                             href='/'
-                            className='text-l font-bold text-black-400 hover:text-white rounded-lg bg-pink-200 px-4 py-2'
+                            className='text-l font-bold  rounded-lg btn-color text-white hover:bg-blue-800 px-4 py-2'
                             style={({ isActive }) => isActive ? activeStyles : undefined}
                         >
                              Мои задания
@@ -131,7 +131,7 @@ export const MyProfilePage = () => {
                         <NavLink
                             to={'/create-service'}
                             href='/'
-                            className='text-l font-bold text-black-400 hover:text-white rounded-lg bg-pink-200 px-4 py-2'
+                            className='text-l font-bold  rounded-lg btn-color text-white hover:bg-blue-800 px-4 py-2'
                             style={({ isActive }) => isActive ? activeStyles : undefined}
                         >
                             Добавить услугу
@@ -141,7 +141,7 @@ export const MyProfilePage = () => {
                         <NavLink
                             to={'/create-task'}
                             href='/'
-                            className='text-l font-bold text-black-400 hover:text-white rounded-lg bg-pink-200 px-4 py-2'
+                            className='text-l font-bold  rounded-lg btn-color text-white hover:bg-blue-800 px-4 py-2'
                             style={({ isActive }) => isActive ? activeStyles : undefined}
                         >
                             Создать задание
@@ -153,7 +153,7 @@ export const MyProfilePage = () => {
                             to={'#'}
                             href='/'
                             onClick={getChats}
-                            className='text-l font-bold text-black-400 hover:text-white rounded-lg bg-pink-200 px-4 py-2 hover:text-black'
+                            className='text-l font-bold  rounded-lg btn-color text-white hover:bg-blue-800 px-4 py-2 hover:text-black'
                             
                         >
                             Мои чаты
@@ -173,7 +173,7 @@ export const MyProfilePage = () => {
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     placeholder='Логин'
-                    className='read-only:bg-gray-100 mt-1 text-black w-full rounded-lg bg-pink-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
+                    className='read-only:bg-gray-100 mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
                 />
             </label>
 
@@ -184,7 +184,7 @@ export const MyProfilePage = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder='Пароль'
-                    className='read-only:bg-gray-100 mt-1 text-black w-full rounded-lg bg-pink-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
+                    className='read-only:bg-gray-100 mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
                 />
             </label> */}
             <label className='text-xs text-gray-600'>
@@ -194,7 +194,7 @@ export const MyProfilePage = () => {
                     value={firstname}
                     onChange={(e) => setName(e.target.value)}
                     placeholder='Имя'
-                    className='mt-1 text-black w-full rounded-lg bg-pink-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
+                    className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
                 />
             </label>
             <label className='text-xs text-gray-600'>
@@ -204,7 +204,7 @@ export const MyProfilePage = () => {
                     value={secondname}
                     onChange={(e) => setSecondName(e.target.value)}
                     placeholder='Фамилия'
-                    className='mt-1 text-black w-full rounded-lg bg-pink-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
+                    className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
                 />
             </label>
             <label className='text-xs text-gray-600'>
@@ -214,7 +214,7 @@ export const MyProfilePage = () => {
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
                     placeholder='Город'
-                    className='mt-1 text-black w-full rounded-lg bg-pink-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
+                    className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
                 />
             </label>
             <label className='text-xs text-gray-600'>
@@ -224,7 +224,7 @@ export const MyProfilePage = () => {
                     value={phonenumber}
                     onChange={(e) => setPhonenumber(e.target.value)}
                     placeholder='Номер телефона'
-                    className='mt-1 text-black w-full rounded-lg bg-pink-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
+                    className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
                 />
             </label>
 
@@ -232,14 +232,14 @@ export const MyProfilePage = () => {
                 <button
                     type='submit'
                     onClick={handleSubmit}
-                    className='flex justify-center items-center bg-blue-600 text-l text-white rounded-lg py-2 px-4 hover:text-black'
+                    className='flex justify-center items-center btn-color text-l text-white rounded-lg py-2 px-4 hover:bg-blue-800 font-bold'
                 >
                     Изменить
                 </button>
                 <button
                     type='submit'
                     onClick={fetchUser}
-                    className='flex justify-center items-center bg-red-500 text-l text-white rounded-lg py-2 px-4 hover:text-black'
+                    className='flex justify-center items-center bg-red-500 text-l text-white rounded-lg py-2 px-4 hover:text-black font-bold'
                 >
                     Отменить
                 </button>

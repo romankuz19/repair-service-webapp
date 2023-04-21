@@ -8,6 +8,7 @@ export const LoginPage = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [btn, setBtn] = useState(false);
+    
 
     const {  status } = useSelector((state) => state.auth)
     console.log('status',status)
@@ -24,14 +25,14 @@ export const LoginPage = () => {
         if (isAuth) {
         navigate('/') 
         goodAuth="Успешный вход"
-        toast(goodAuth)
+        toast.info(goodAuth)
 
         //window.location.reload(false);
     }
     else{
         if(btn){
             badAuth="Неверный логин или пароль"
-            toast(badAuth)
+            toast.info(badAuth)
             //console.log('qqqqq')
         }
     }
@@ -84,13 +85,13 @@ export const LoginPage = () => {
                     onClick={handleSubmit}
                     className='font-bold text-white rounded-lg px-4 py-2 text-xs  btn-color p-1 cursor-pointer hover:bg-blue-800'
                 >
-                    Войти
+                    Вход
                 </button>
                 <Link
                     to='/register'
                     className='font-bold text-white rounded-lg px-4 py-2 text-xs btn-color p-1 cursor-pointer hover:bg-blue-800'
                 >
-                    Нет аккаунта ?
+                    Регистрация
                 </Link>
             </div>
         </form>

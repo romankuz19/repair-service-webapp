@@ -15,7 +15,7 @@ export const Navbar = () => {
     const logoutHandler = () => {
         dispatch(logout())
         window.localStorage.removeItem('token')
-        toast('Вы вышли из системы')
+        toast.info('Вы вышли из системы')
     }
 
     return (

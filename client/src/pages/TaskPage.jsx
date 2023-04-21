@@ -133,7 +133,7 @@ export const TaskPage = () => {
         try {
             console.log('params',params)
             dispatch(removeTask(params.id))
-            toast('Задание было удалено')
+            toast.info('Задание было удалено')
             navigate('/tasks')
             //window.location.reload(false);
         } catch (error) {
@@ -255,12 +255,13 @@ export const TaskPage = () => {
                 </Link>
             </button> */}
             <div className='mx-auto max-w-[900px] py-8'>
-            <div className='flex justify-around gap-4 border-2 border-2 shadow-lg rounded-lg p-2'>
+            <div className='flex justify-around min-h-[170px] gap-4 border-2 border-2 shadow-lg rounded-lg p-2'>
                 <div className='flex leftcard justify-center flex-col gap-2'>
-                    <div className='text-2xl text-blue-600 font-bold opacity-100'>Задача </div>
-                    <div className='text-m text-blue-600  opacity-100'>
+                    <div className='text-2xl text-color font-bold opacity-100'>Задача </div>
+                    <div className='text-m   opacity-100'>
                        Адрес 
                     </div>
+                   
                     <div className='text-m font-bold'>
                       Заказчик 
                     </div>
@@ -273,30 +274,30 @@ export const TaskPage = () => {
                 
                 <div className='midcard flex flex-col gap-2 justify-center'>
 
-                <div className='text-2xl text-blue-600 font-bold opacity-100'>{task.title}</div>
-                <div className='text-m text-blue-600  opacity-100'>{task.address}</div>
+                <div className='text-2xl text-color font-bold opacity-100'>{task.title}</div>
+                <div className='text-m opacity-100'>{task.address}</div>
+                
                 <div className='text-m font-bold'>{ownerTaskUser.firstname} {ownerTaskUser.secondname}</div>
-                <div className='text-m text-blue-600  opacity-100'>
-                    {task.category}
-                    </div>
+                
                 </div>
 
                 <div className='rightcard flex flex-col gap-2 justify-center'>
-                <div className='text-2xl text-blue-600 font-bold opacity-100'>Оплата: {task.price} ₽</div>
-                <div className='flex gap-5 text-black text-m py-3'>
-                        <div className='flex flex-wrap justify-center content-center text-m font-bold min-w-[150px] rounded-lg bg-pink-100 p-1'
+                <div className='text-2xl text-color font-bold opacity-100'>Оплата: {task.price} ₽</div>
+                <div className='text-m  opacity-100'>до {task.date}</div>
+                <div className='flex gap-5 text-black text-m '>
+                        <div className='flex flex-wrap justify-center content-center text-m font-bold min-w-[150px] text-white rounded-lg btn-color p-1 hover:bg-blue-800'
                 >
                    <HiPhone className='my-1 mr-1'/>
                 {ownerTaskUser.phonenumber}
               </div>
               { 
-                isAuth && (currentUser._id !== ownerTaskUser._id) ? (<div className='flex text-m font-bold rounded-lg bg-pink-100 p-1 cursor-pointer hover:text-blue-200 '
+                isAuth && (currentUser._id !== ownerTaskUser._id) ? (<div className='flex text-m font-bold text-white rounded-lg btn-color p-1 cursor-pointer hover:bg-blue-800 '
                 onClick={handleCreateChat}>
                 <BsFillChatDotsFill className='my-1 mr-1' />
                   Чат
                 </div>) 
-                : !isAuth ? (<div className='flex text-m font-bold rounded-lg bg-pink-100 p-1 cursor-pointer hover:text-blue-200 '
-                onClick={()=> {navigate('/login');toast('Сперва войдите в аккаунт')}}>
+                : !isAuth ? (<div className='flex text-m font-bold rounded-lg btn-color p-1 text-white cursor-pointer hover:bg-blue-800 '
+                onClick={()=> {navigate('/login');toast.info('Сперва войдите в аккаунт')}}>
                 <BsFillChatDotsFill className='my-1 mr-1' />
                   Чат
                 </div>)
@@ -351,9 +352,9 @@ export const TaskPage = () => {
                     </div>
                      ):
                      (<div className='flex justify-center'>
-                     <button className='flex items-center justify-center gap-2 text-xs text-black opacity-50'>
+                     {/* <button className='flex items-center justify-center gap-2 text-xs text-black opacity-50'>
                          <AiFillEye /> <span>{task.views}</span>
-                     </button>
+                     </button> */}
                      
                      
                      </div>)

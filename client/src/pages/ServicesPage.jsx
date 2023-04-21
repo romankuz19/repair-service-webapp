@@ -1,6 +1,7 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useSearchParams } from 'react-router-dom';
 import { PopularPosts } from '../components/PopularPosts'
 import { CategoryItem } from '../components/CategoryItem.jsx'
 
@@ -9,27 +10,35 @@ import axios from '../utils/axios'
 import { ServiceItem } from '../components/ServiceItem'
 import { Toast } from 'bootstrap'
 import { toast } from 'react-toastify'
+import { async } from 'react-input-emoji'
 //import { Button } from 'react-bootstrap';
 
 export const ServicesPage = () => {
-    const categoriesList = [
+const categoriesList = [
        
         {
             id: 1,
             value: 'Бытовые услуги'
-        }, {
+        } , {
             id: 2,
-            value: 'Электроника'
+            value: 'Цифровая техника'
         }, {
             id: 3,
-            value: 'Машины'
-        }
+            value: 'Транспорт'
+        },
+        {
+            id: 4,
+            value: 'Ремонт и строительство'
+        },
+       
+        
         ];
     const dispatch = useDispatch()
+    const [searchParams, setSearchParams] = useSearchParams();
     const { posts, popularPosts, users } = useSelector((state) => state.post)
     const [cat, setCat] = useState('')
     const [search, setSearch] = useState('')
-    const [sortedPosts, setSortedPosts]= useState([])
+    const [sortedServices, setSortedServices]= useState([])
     const [checkedState, setCheckedState] = useState(
         new Array(categoriesList.length).fill(true)
     );
@@ -59,7 +68,7 @@ export const ServicesPage = () => {
                 console.log('cat',cat)
             const data = await axios.get(`/posts/sorted/${cat}`);
             console.log('data',data)
-            if(data.data.sortedPosts.length==0){
+            if(data.data.sortedServices.length==0){
                 alert('Неверное значение сортировки, выберите из списка')
                 setCat('')
                 let element = document.getElementById('catlist');
@@ -67,10 +76,10 @@ export const ServicesPage = () => {
                 
             }
             else{
-                setSortedPosts(data.data.sortedPosts)
+                setSortedServices(data.data.sortedServices)
             }
            // const { data } = await axios.get('/posts')
-            console.log('sortedPosts',data.data.sortedPosts)
+            console.log('sortedServices',data.data.sortedServices)
             
             }
             //return data
@@ -83,7 +92,7 @@ export const ServicesPage = () => {
 
     const cancelSort = async () => {
         try {
-            setSortedPosts([])
+            setSortedServices([])
             setCat('')
             let element = document.getElementById('catlist');
             element.value = '';
@@ -106,23 +115,23 @@ export const ServicesPage = () => {
             console.log('search',search)
            
             if(!search){
-                toast('Заполните поиск')
+                toast.info('Заполните поиск')
             }
             else
             {
                 console.log('cat',cat)
             const data = await axios.get(`/posts/sorted/${search}`);
             console.log('data',data)
-            if(data.data.sortedPosts.length==0){
-                toast('По такому запросу ничего не нашлось :( \n Попробуйте снова')
+            if(data.data.sortedServices.length==0){
+                toast.info('По такому запросу ничего не нашлось :( \n Попробуйте снова')
                 setSearch('')
 
             }
             else{
-                setSortedPosts(data.data.sortedPosts)
+                setSortedServices(data.data.sortedServices)
             }
            
-            console.log('sortedPosts',data.data.sortedPosts)
+            console.log('sortedServices',data.data.sortedServices)
             
             }
             
@@ -131,13 +140,19 @@ export const ServicesPage = () => {
         }
     }
 
+    const fetchSort = () =>{
+        categoriesList.forEach(element => {
+            setSortCategories(sortCategories => [...sortCategories, element.value]);
+        });
+    }
+
     const cancelSearch = async (e) => {
         try {
             e.preventDefault()
-            setSortedPosts([])
+            setSortedServices([])
             setSearch('')
             
-            console.log('sort',sortedPosts)
+            console.log('sort',sortedServices)
 
             // var select = document.getElementById('catlist1');
             // var value = select.options[select.selectedIndex].value;
@@ -152,6 +167,9 @@ export const ServicesPage = () => {
     useEffect(() => {
         
     }, [search])
+    useEffect(() => {
+        fetchSort()
+    }, [])
 
     if (!posts.length) {
         return (
@@ -171,7 +189,7 @@ export const ServicesPage = () => {
                            );
         }
     //console.log('qqq',cat)
-    //console.log('length',sortedPosts.length)
+    //console.log('length',sortedServices.length)
 
 
     // const intNum=[-1,2,-3,4,-5,6,-7,0,-8];
@@ -207,10 +225,17 @@ export const ServicesPage = () => {
           }
         );
         setCheckedState(updatedCheckedState);
-        console.log('checkedState',checkedState)
+        // console.log('checkedState',checkedState)
+        // console.log('updatedCheckedState',updatedCheckedState)
+        if(updatedCheckedState[position]){
+            setSortCategories(sortCategories => [...sortCategories, value]);
+            
+        } 
+        else {
+            var index = sortCategories.indexOf(value);
+            sortCategories.splice(index, 1);
 
-        if(checkedState[position]) setSortCategories(sortCategories => [...sortCategories, value]);
-        else console.log('delete')
+        }
         
         
         //setSortCategories([...value])
@@ -220,17 +245,42 @@ export const ServicesPage = () => {
         if(checkedStateAll){
             setCheckedStateAll(false)
             setCheckedState(new Array(categoriesList.length).fill(false))
+            sortCategories.length=0
         }
         else{
             setCheckedStateAll(true)
             setCheckedState(new Array(categoriesList.length).fill(true))
+            fetchSort()
         }
         
 
     }
 
+    const handleCategoriesSort = async () =>{
+        var str = sortCategories.join(' ')
+        setSearchParams({category: str})
+        //console.log('search',searchParams)
+        const data = await axios.get(`/posts/sorted/cat/${str}`);
+        console.log('data',data.data.sortedServicesCat)
+        setSortedServices(data.data.sortedServicesCat)
+    }
+
+    const cancelCategoriesSort = async () =>{
+
+        setSortedServices([])
+        setCheckedState(new Array(categoriesList.length).fill(false))
+        setCheckedStateAll(false)
+        sortCategories.length=0
+        
+    }
+
     
-    console.log(sortCategories);
+
+    
+
+    
+    console.log('sortCat',sortCategories);
+
     
     return (
         
@@ -285,12 +335,12 @@ export const ServicesPage = () => {
                 <div className='flex justify-center gap-4'>
 
                     <div className='flex flex-col gap-10 basis-4/5'>
-                        {sortedPosts.length === 0 ?
+                        {sortedServices.length === 0 ?
                             posts?.map((service, idx) => (
                                 <ServiceItem key={idx} service={service} user={users} />
                             )) :
 
-                            sortedPosts?.map((service, idx) => (
+                            sortedServices?.map((service, idx) => (
                                 <ServiceItem key={idx} service={service} user={users} />
                             ))}
                         {/* {posts?.map((post, idx) => (
@@ -298,7 +348,7 @@ export const ServicesPage = () => {
     ))} */}
                     </div>
                     <div className='basis-1/5'>
-                        <div className='text-xs text-center font-bold uppercase text-black'>
+                        <div className=' font-bold  text-black'>
                         <div className="toppings-list-item">
                                         <div className="left-section">
                                         <input
@@ -312,12 +362,11 @@ export const ServicesPage = () => {
                                         </div>
                                         
                         </div>
-                            
-                            Категории:
+
                         </div>
                         {/* {categoriesList.map((category,idx) => <CategoryItem key={idx} category={category.value}/>)} */}
                         {/* <Options options={categoriesList} /> */}
-                        <div className="flex justify-center font-bold">
+                        <div className="flex ml-4 justify-center font-bold">
       {/* <h3>Select Toppings</h3> */}
                             <ul className="toppings-list ">
                                 {categoriesList.map(({ value }, index) => {
@@ -342,8 +391,10 @@ export const ServicesPage = () => {
                                 })}
                                 
                             </ul>
+                            
                         </div>
-
+                        <button className='btn-color text-white font-bold rounded-lg text-sm px-2 py-2' onClick={handleCategoriesSort}>Применить</button>
+                        <button className='btn-color text-white font-bold rounded-lg text-sm px-3 py-2 ml-5' onClick={cancelCategoriesSort}>Х</button>
                         
                     </div>
                 </div>

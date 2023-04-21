@@ -86,7 +86,7 @@ export const ChatsPage = () => {
           <div className="Left-side-chat">
             
             <div className="Chat-container overflow-hidden">
-              <h2 className='text-2xl font-bold text-center'>Ваши чаты</h2>
+              <h2 className='text-2xl font-bold text-color text-center'>Ваши чаты</h2>
               <div className="Chat-list ">
               { !(chats.length==0) ? (
                 chats.map((chat, idx) => (

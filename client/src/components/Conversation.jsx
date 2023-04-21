@@ -53,7 +53,7 @@ export const Conversation = ({ chat, currentUser, chatUsers }) => {
             className="followerImage"
             style={{ width: "50px", height: "50px" }}
           /> */}
-          <div className="name text-center text-blue-500 text-xl'">
+          <div className="name text-center font-bold text-xl'">
             {secondUser?.firstname} {secondUser?.secondname}
             {/* <span style={{color: online?"#51e200":""}}>{online? "Online" : "Offline"}</span> */}
           </div>

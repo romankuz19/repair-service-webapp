@@ -20,7 +20,7 @@ export const RegisterPage = () => {
 
     useEffect(() => {
         if (status) {
-            toast(status)
+            toast.info(status)
         }
         if (isAuth) {navigate('/') 
         //window.location.reload(false);
@@ -29,8 +29,8 @@ export const RegisterPage = () => {
 
     const handleSubmit = () => {
         try {
-            if(username.length<3 )toast("Логин слишком короткий или пустой")
-            else if(password.length<8) toast("Пароль слишком короткий")
+            if(username.length<3 )toast.info("Логин слишком короткий или пустой")
+            else if(password.length<8) toast.info("Пароль слишком короткий")
             else{
             dispatch(registerUser({ username, password,firstname,secondname,city,phonenumber }))
             setPassword('')

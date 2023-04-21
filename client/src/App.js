@@ -26,6 +26,7 @@ function App() {
     useEffect(() => {
         dispatch(getMe())
     }, [dispatch])
+    
 
     return (
         <Layout>
@@ -46,7 +47,19 @@ function App() {
                 <Route path='chats' element={<ChatsPage />} />
             </Routes>
 
-            <ToastContainer position='bottom-right' />
+            <ToastContainer
+                position="bottom-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+                />
+                
         </Layout>
     )
 }
