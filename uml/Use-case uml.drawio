@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-04-25T12:58:44.378Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36" etag="WFfxpF9CBTkrsuW09j71" version="21.2.1" type="github">
+<mxfile host="app.diagrams.net" modified="2023-04-25T13:01:50.082Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36" etag="cXbNG4_DRYh2UIjzQexu" version="21.2.1" type="github">
   <diagram name="Страница 1" id="cCCIlAFTOr4Qi8Cy_CkC">
-    <mxGraphModel dx="1320" dy="716" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2336" pageHeight="1654" math="0" shadow="0">
+    <mxGraphModel dx="2252" dy="1221" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2336" pageHeight="1654" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -108,13 +108,12 @@
             <mxPoint x="1139.5" y="601" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="EgZyC1ixlsFqTv5ItHzm-30" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endSize=15;endArrow=block;endFill=0;" edge="1" parent="1">
+        <mxCell id="EgZyC1ixlsFqTv5ItHzm-30" value="" style="edgeStyle=elbowEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endSize=15;endArrow=block;endFill=0;elbow=vertical;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1378" y="1440" as="sourcePoint" />
+            <mxPoint x="1425" y="1443" as="sourcePoint" />
             <mxPoint x="798" y="997" as="targetPoint" />
             <Array as="points">
-              <mxPoint x="1378" y="1569" />
-              <mxPoint x="798" y="1569" />
+              <mxPoint x="1106" y="1565" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -173,6 +172,16 @@
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="1746" y="1389" as="sourcePoint" />
             <mxPoint x="1794" y="1273" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EgZyC1ixlsFqTv5ItHzm-48" value="" style="edgeStyle=elbowEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endSize=15;endArrow=none;endFill=0;elbow=vertical;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2230" y="971" as="sourcePoint" />
+            <mxPoint x="1425" y="1564" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1386" y="1565" />
+              <mxPoint x="1804" y="1564" />
+            </Array>
           </mxGeometry>
         </mxCell>
       </root>
