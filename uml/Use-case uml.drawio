@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-04-25T12:56:08.389Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36" etag="PUQbW_B3nUUmNfhb8hGe" version="21.2.1" type="github">
+<mxfile host="app.diagrams.net" modified="2023-04-25T12:58:44.378Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36" etag="WFfxpF9CBTkrsuW09j71" version="21.2.1" type="github">
   <diagram name="Страница 1" id="cCCIlAFTOr4Qi8Cy_CkC">
-    <mxGraphModel dx="1595" dy="865" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2336" pageHeight="1654" math="0" shadow="0">
+    <mxGraphModel dx="1320" dy="716" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2336" pageHeight="1654" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -76,10 +76,10 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="EgZyC1ixlsFqTv5ItHzm-22" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Взаимодействие между заказчиком и исполнителем&lt;/span&gt;" style="ellipse;whiteSpace=wrap;html=1;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;" vertex="1" parent="1">
-          <mxGeometry x="1294" y="884" width="200" height="135" as="geometry" />
+          <mxGeometry x="1302" y="906" width="200" height="135" as="geometry" />
         </mxCell>
         <mxCell id="EgZyC1ixlsFqTv5ItHzm-23" value="«extend»" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;shadow=0;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;" vertex="1" parent="1">
-          <mxGeometry x="1225" y="1015" width="40" height="20" as="geometry" />
+          <mxGeometry x="1302" y="1041" width="40" height="20" as="geometry" />
         </mxCell>
         <mxCell id="EgZyC1ixlsFqTv5ItHzm-24" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=none;endArrow=none;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;" edge="1" parent="1" target="EgZyC1ixlsFqTv5ItHzm-23">
           <mxGeometry relative="1" as="geometry">
@@ -96,7 +96,7 @@
         <mxCell id="EgZyC1ixlsFqTv5ItHzm-27" value="«extend»" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;shadow=0;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;" vertex="1" parent="1">
           <mxGeometry x="1150" y="371" width="40" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="EgZyC1ixlsFqTv5ItHzm-28" style="edgeStyle=none;rounded=0;jumpStyle=none;jumpSize=21;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;dashed=1;startSize=19;endSize=15;strokeWidth=2;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;endArrow=open;endFill=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="EgZyC1ixlsFqTv5ItHzm-22" target="EgZyC1ixlsFqTv5ItHzm-37">
+        <mxCell id="EgZyC1ixlsFqTv5ItHzm-28" style="edgeStyle=none;rounded=0;jumpStyle=none;jumpSize=21;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;dashed=1;startSize=19;endSize=15;strokeWidth=2;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;endArrow=open;endFill=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="EgZyC1ixlsFqTv5ItHzm-22" target="EgZyC1ixlsFqTv5ItHzm-37">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="1233" y="745" as="sourcePoint" />
             <mxPoint x="1133" y="745" as="targetPoint" />
@@ -122,7 +122,7 @@
           <mxGeometry x="766" y="794" width="60" height="140" as="geometry" />
         </mxCell>
         <mxCell id="EgZyC1ixlsFqTv5ItHzm-32" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Исполнитель&lt;br&gt;&lt;/span&gt;" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;" vertex="1" parent="1">
-          <mxGeometry x="1140" y="1325" width="60" height="140" as="geometry" />
+          <mxGeometry x="1138" y="1345" width="60" height="140" as="geometry" />
         </mxCell>
         <mxCell id="EgZyC1ixlsFqTv5ItHzm-35" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="EgZyC1ixlsFqTv5ItHzm-33" target="EgZyC1ixlsFqTv5ItHzm-34">
           <mxGeometry relative="1" as="geometry" />
@@ -137,19 +137,19 @@
           <mxGeometry x="1887" y="1098" width="200" height="135" as="geometry" />
         </mxCell>
         <mxCell id="EgZyC1ixlsFqTv5ItHzm-37" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Создание чата с заказчиком&lt;/span&gt;" style="ellipse;whiteSpace=wrap;html=1;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;" vertex="1" parent="1">
-          <mxGeometry x="1168" y="1098" width="200" height="135" as="geometry" />
+          <mxGeometry x="1184" y="1098" width="200" height="135" as="geometry" />
         </mxCell>
         <mxCell id="EgZyC1ixlsFqTv5ItHzm-38" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Создание чата с исполнителем&lt;/span&gt;" style="ellipse;whiteSpace=wrap;html=1;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;" vertex="1" parent="1">
           <mxGeometry x="1425.5" y="1098" width="200" height="135" as="geometry" />
         </mxCell>
-        <mxCell id="EgZyC1ixlsFqTv5ItHzm-39" style="edgeStyle=none;rounded=0;jumpStyle=none;jumpSize=21;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;dashed=1;startSize=19;endSize=15;strokeWidth=2;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;endArrow=open;endFill=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="EgZyC1ixlsFqTv5ItHzm-22" target="EgZyC1ixlsFqTv5ItHzm-38">
+        <mxCell id="EgZyC1ixlsFqTv5ItHzm-39" style="edgeStyle=none;rounded=0;jumpStyle=none;jumpSize=21;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;dashed=1;startSize=19;endSize=15;strokeWidth=2;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;endArrow=open;endFill=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="EgZyC1ixlsFqTv5ItHzm-22" target="EgZyC1ixlsFqTv5ItHzm-38">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="1312" y="967" as="sourcePoint" />
             <mxPoint x="1278" y="1108" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="EgZyC1ixlsFqTv5ItHzm-40" value="«extend»" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;shadow=0;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;" vertex="1" parent="1">
-          <mxGeometry x="1523" y="1015" width="40" height="20" as="geometry" />
+          <mxGeometry x="1462" y="1041" width="40" height="20" as="geometry" />
         </mxCell>
         <mxCell id="EgZyC1ixlsFqTv5ItHzm-41" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="EgZyC1ixlsFqTv5ItHzm-33" target="EgZyC1ixlsFqTv5ItHzm-38">
           <mxGeometry relative="1" as="geometry">
@@ -163,10 +163,16 @@
             <mxPoint x="1774" y="1253" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="EgZyC1ixlsFqTv5ItHzm-44" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=none;endFill=0;entryPerimeter=0;" edge="1" parent="1" source="EgZyC1ixlsFqTv5ItHzm-15" target="EgZyC1ixlsFqTv5ItHzm-32">
+        <mxCell id="EgZyC1ixlsFqTv5ItHzm-44" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;entryPerimeter=0;" edge="1" parent="1" source="EgZyC1ixlsFqTv5ItHzm-15" target="EgZyC1ixlsFqTv5ItHzm-32">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="1736" y="1379" as="sourcePoint" />
             <mxPoint x="1784" y="1263" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EgZyC1ixlsFqTv5ItHzm-45" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="EgZyC1ixlsFqTv5ItHzm-32" target="EgZyC1ixlsFqTv5ItHzm-37">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1746" y="1389" as="sourcePoint" />
+            <mxPoint x="1794" y="1273" as="targetPoint" />
           </mxGeometry>
         </mxCell>
       </root>
