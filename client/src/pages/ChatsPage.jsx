@@ -11,19 +11,29 @@ import "../Chat.css";
 import {io} from 'socket.io-client'
 import { getAllTasks } from '../redux/features/task/taskSlice'
 import axios from '../utils/axios'
+import {  useParams, useSearchParams } from 'react-router-dom'
 import { ChatBox } from '../components/ChatBox'
+import { async } from 'react-input-emoji'
 //import { Button } from 'react-bootstrap';
 
 export const ChatsPage = () => {
 
     const [chats, setChats] = useState([])
     const [chatUsers, setChatUsers] = useState([])
+    const params = useParams()
+    const [searchParams, setSearchParams] = useSearchParams();
     const isAuth = useSelector(checkIsAuth)
     const [onlineUsers, setOnlineUsers] = useState([]);
     const [currentChat, setCurrentChat] = useState(null);
     const { user } = useSelector((state) => state.auth)
     const [sendMessage, setSendMessage] = useState(null);
     const [receivedMessage, setReceivedMessage] = useState(null);
+    const [respondTaskMessage, setRespondTaskMessage] = useState("");
+    const [dataForRespond, setDataForRespond] = useState({});
+    const paramsId=searchParams.get("id")
+    const taskId=searchParams.get("task")
+
+
     const socket = useRef()
     // const dispatch = useDispatch()
 
@@ -38,17 +48,54 @@ export const ChatsPage = () => {
         try {
             const { data } = await axios.get('/chat/getchats')    
           
+        
+        
         setChats(data.filteredChats)
         setChatUsers(data.filteredUsers)
+
+        
      
             
         } catch (error) {
             console.log(error)
         }
     }
+   
+    const handleRespondTask = async() =>{
+      if(paramsId){
+        
+        var tmp;
+        chats.forEach(element => {
+          if((user?._id === element.firstUserId && paramsId ===element.secondUserId) || (user?._id === element.secondUserId && paramsId ===element.firstUserId)){
+            setCurrentChat(element)
+            tmp=element;
+          }
+        });
+        if(taskId){
+          const { data } = await axios.get(`/tasks/${taskId}`)
+          //console.log('data',data.task)
+  
+          chatUsers.forEach(element => {
+            if(element._id===paramsId)
+            {
+              setRespondTaskMessage(`Здравствуйте, ${element.firstname}! Хочу откликнуться на ваш заказ "${data.task.title}" за ${data.task.price}Р`)
+            }
+  
+          });
+        }
+        
+      }
+      
+    }
+    //console.log('dataForRespond',dataForRespond)
+
     useEffect(() => {
         getChats()
     }, [])
+    useEffect(() => {
+      handleRespondTask()
+  }, [chats])
+  
 
     // Connect to Socket.io
    useEffect(()=>{
@@ -78,7 +125,7 @@ export const ChatsPage = () => {
     
     //  console.log('receiveMessage',receivedMessage)
     //  console.log('sendMessage',sendMessage)
-    //  console.log('chats',chats)
+     console.log('chats',chats)
     //  console.log('chats.length',chats.length)
     return (
         <div className="Chat mx-auto py-10">
@@ -120,8 +167,12 @@ export const ChatsPage = () => {
               {/* <NavIcons /> */}
             </div>
             {user && currentChat && chatUsers && (
-                  <ChatBox chat={currentChat} currentUser={user} setSendMessage={setSendMessage}
-                  receivedMessage={receivedMessage} chatUsers={chatUsers} />
+                  <ChatBox respondTaskMessage={respondTaskMessage} 
+                  chat={currentChat} currentUser={user} setSendMessage={setSendMessage}
+                  receivedMessage={receivedMessage} chatUsers={chatUsers} 
+                  // dataForRespond={dataForRespond} 
+                  
+                  />
                )}
            
             {/* <ChatBox

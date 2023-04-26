@@ -6,6 +6,7 @@ import { MyServicesPage } from './pages/MyServicesPage'
 import { MyTasksPage } from './pages/MyTasksPage.jsx'
 import { ServicePage } from './pages/ServicePage'
 import { TaskPage } from './pages/TaskPage.jsx'
+
 import { AddServicePage } from './pages/AddServicePage'
 import { MyProfilePage } from './pages/MyProfilePage'
 import { RegisterPage } from './pages/RegisterPage'
@@ -45,6 +46,7 @@ function App() {
                 <Route path='login' element={<LoginPage />} />
                 <Route path='profile' element={<MyProfilePage />} />
                 <Route path='chats' element={<ChatsPage />} />
+                <Route path='chats/:id' element={<ChatsPage />} />
             </Routes>
 
             <ToastContainer

@@ -54,13 +54,19 @@ export const AddServicePage = () => {
         {
             id: 1,
             value: 'Бытовые услуги'
-        }, {
+        } , {
             id: 2,
-            value: 'Электроника'
+            value: 'Цифровая техника'
         }, {
             id: 3,
-            value: 'Машины'
-        }
+            value: 'Транспорт'
+        },
+        {
+            id: 4,
+            value: 'Ремонт и строительство'
+        },
+       
+        
         ];
         
         function Options({ options }) {

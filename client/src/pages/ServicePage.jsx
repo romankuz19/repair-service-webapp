@@ -112,14 +112,14 @@ export const ServicePage = () => {
     const handleCreateChat = async () => {
         try {
             setBtn(true)
-            console.log('user1',currentUser._id)
-            console.log('user2',ownerUser._id)
+            // console.log('user1',currentUser._id)
+            // console.log('user2',ownerUser._id)
             
             const { data } = await axios.post(`/chat/create`, {
                 firstUserId: currentUser._id,
                 secondUserId: ownerUser._id,
             })
-            navigate('/chats')
+            navigate(`/chats/?id=${ownerUser._id}`)
            
                 setChat(data)
                 
@@ -306,7 +306,7 @@ export const ServicePage = () => {
             <div className='flex  justify-center mx-auto  py-8'>
                 
                 <div className='py-5 sm:min-w-[550px] md:min-w-[550px] lg:min-w-[700px] mr-5 border-2 shadow-lg rounded-lg p-2 '>
-                    <div className='flex flex-col gap-2 items-center mb-5 '>
+                    <div className='flex flex-col gap-2 items-center mb-3 '>
                         <div
                             className='object-cover h-42 w-42 rounded-lg border-2 border-gray-600'>
                             {post?.imgUrl && (
@@ -325,9 +325,9 @@ export const ServicePage = () => {
 
                     </div>
                     <div className='flex justify-around items-center pb-3'>
-                <div className='text-small-color opacity-90 text-2xl   line-clamp-4'>{post.text}</div>
+                <div className='text-small-color font-bold opacity-90 text-2xl   line-clamp-4'>{post.text}</div>
                 
-                <div className='text-small-color  opacity-90 text-2xl  line-clamp-4'>{post.price} ₽</div>
+                <div className='text-small-color font-bold opacity-90 text-2xl  line-clamp-4'>{post.price} ₽</div>
                      
                 </div>
                 <div className='flex justify-around'>

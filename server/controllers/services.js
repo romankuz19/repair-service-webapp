@@ -123,9 +123,9 @@ export const sortedServicesCat = async (req, res) => {
         ];
 
         const arr = req.params.name.split(' ');
-        console.log('arr',arr)
+        //console.log('arr',arr)
         const newArr = Array();
-        const sortedServicesCat=[]
+        const sortedServicesCat = Array();
 
         categoriesList.forEach(element => {
             for (let i = 0; i < arr.length; i++) {
@@ -138,10 +138,16 @@ export const sortedServicesCat = async (req, res) => {
         });
 
         for (const item of newArr){
-            sortedServicesCat.push(await Post.findOne({category: item}))
+            var tmp = await Post.find({category: item})
+            if(tmp.length!==0)  sortedServicesCat.push(tmp)
+            
         }
-        console.log('newArr',newArr)
-        console.log(sortedServicesCat)
+        // console.log('newArr',newArr)
+        // console.log('sort',sortedServicesCat)
+        if(sortedServicesCat.length==0){
+            console.log('aaa')
+            return res.json({ message: 'Постов нет' })
+        }
 
         res.json({sortedServicesCat})
 

@@ -11,14 +11,27 @@ export const AddTaskPage = () => {
     const [price, setPrice] = useState('')
     const [address, setAddress] = useState('')
     const [cat, setCat] = useState('')
+    const [description, setDescription] = useState('')
 
-    const sortOptions = [
-        "Бытовые услуги",
-       "Электроника",
-        "Машины"
-        // { name: "Price: Low to High", href: "#", current: false },
-        // { name: "Price: High to Low", href: "#", current: false },
-      ];
+      const sortOptions = [
+       
+        {
+            id: 1,
+            value: 'Бытовые услуги'
+        } , {
+            id: 2,
+            value: 'Цифровая техника'
+        }, {
+            id: 3,
+            value: 'Транспорт'
+        },
+        {
+            id: 4,
+            value: 'Ремонт и строительство'
+        },
+       
+        
+        ];
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -26,6 +39,7 @@ export const AddTaskPage = () => {
         try {
             const data = new FormData()
             data.append('title', title)
+            data.append('description', description)
             data.append('date', date)
             data.append('address', address)
             data.append('category', cat)
@@ -39,6 +53,7 @@ export const AddTaskPage = () => {
     }
     const clearFormHandler = () => {
         setDate('')
+        setDescription('')
         setAddress('')
         setTitle('')
         setPrice('')
@@ -56,13 +71,19 @@ export const AddTaskPage = () => {
         {
             id: 1,
             value: 'Бытовые услуги'
-        }, {
+        } , {
             id: 2,
-            value: 'Электроника'
+            value: 'Цифровая техника'
         }, {
             id: 3,
-            value: 'Машины'
-        }
+            value: 'Транспорт'
+        },
+        {
+            id: 4,
+            value: 'Ремонт и строительство'
+        },
+       
+        
         ];
         
         function Options({ options }) {
@@ -85,15 +106,23 @@ export const AddTaskPage = () => {
             onSubmit={(e) => e.preventDefault()}
         >
                 
-               
-
                 <label className='text-xl text-black opacity-90'>
-                    Как назвать задание?
+                    Как назвать заказ?
                     <input
                         type='text'
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
-                        placeholder='Название задания'
+                        placeholder='Название заказа'
+                        className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-xl outline-none placeholder:text-gray-700' />
+                </label>
+
+                <label className='text-xl text-black opacity-90'>
+                    Опишите подробности заказа
+                    <input
+                        type='text'
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                        placeholder='Описание заказа'
                         className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-xl outline-none placeholder:text-gray-700' />
                 </label>
 

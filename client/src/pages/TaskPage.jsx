@@ -12,7 +12,7 @@ import {
 import {  HiPhone } from 'react-icons/hi'
 import { BsFillChatDotsFill} from 'react-icons/bs'
 import Moment from 'react-moment'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 import axios from '../utils/axios'
@@ -44,7 +44,7 @@ export const TaskPage = () => {
     const [chatUsers, setChatUsers] = useState([])
     // console.log('curUser',currentUser);
     // console.log('owmerUser',ownerTaskUser);
-   
+    const [searchParams, setSearchParams] = useSearchParams();
 
     
     const { messages } = useSelector((state) => state.chat)
@@ -52,6 +52,7 @@ export const TaskPage = () => {
     
     const navigate = useNavigate()
     const params = useParams()
+    
     //console.log('params',params)
     const dispatch = useDispatch()
     //var btn = false
@@ -192,45 +193,24 @@ export const TaskPage = () => {
 
 
 
-    
-    //console.log('messages',messages)
-   //console.log('a',chat)
-    const handleSendMessage  = async () => {
+      const handleRespondTask = async () =>{
         try {
-            //fetchMessages()
-            
-            //console.log(chatId)
-            const chatId=chat._id
-            const senderId = currentUser._id
-            const senderName = currentUser.firstname
-           // console.log(currentUser.firstname)
-                try {
-                    const { data } = await axios.post(`/messages/`, {
-                        chatId:chat._id,
-                        senderId:currentUser._id,
-                        senderName:currentUser.firstname,
-                        message
-                    })
-                   // console.log('message',message);
-                  // dispatch(createMessage({chatId, senderId, senderName, message}));
-                    setMessage('')
-                    //getMessages()
-                    
-                    return data
-                } catch (error) {
-                    console.log(error)
-                }
-            
+            var firstUserId = currentUser._id;
+            var secondUserId= ownerTaskUser._id;
+            const { data } = await axios.post(`/chat/create`, {
+                firstUserId,
+                secondUserId,
+            })
+        navigate(`/chats/?id=${ownerTaskUser._id}&task=${task._id}`)
             
         } catch (error) {
             console.log(error)
         }
     }
 
-    
 
     
-    //console.log('allmsg',allMessages)
+    
     if (!task) {
         return (
             <div className='text-xl text-center text-white py-10'>
@@ -256,32 +236,20 @@ export const TaskPage = () => {
             </button> */}
             <div className='mx-auto max-w-[900px] py-8'>
             <div className='flex justify-around min-h-[170px] gap-4 border-2 border-2 shadow-lg rounded-lg p-2'>
-                <div className='flex leftcard justify-center flex-col gap-2'>
-                    <div className='text-2xl text-color font-bold opacity-100'>Задача </div>
-                    <div className='text-m   opacity-100'>
-                       Адрес 
-                    </div>
-                   
-                    <div className='text-m font-bold'>
-                      Заказчик 
-                    </div>
-
-                    {/* <div className='text-m text-blue-600  opacity-100'>
-                    Категория 
-                    </div> */}
-            
-                </div>
+               
                 
-                <div className='midcard flex flex-col gap-2 justify-center'>
+                <div className='left-card flex flex-col gap-2 justify-center'>
 
                 <div className='text-2xl text-color font-bold opacity-100'>{task.title}</div>
                 <div className='text-m opacity-100'>{task.address}</div>
                 
                 <div className='text-m font-bold'>{ownerTaskUser.firstname} {ownerTaskUser.secondname}</div>
                 
+
+                <div className='text-m '>Описание: {task.description}</div>
                 </div>
 
-                <div className='rightcard flex flex-col gap-2 justify-center'>
+                <div className='right-card flex flex-col gap-2 justify-center'>
                 <div className='text-2xl text-color font-bold opacity-100'>Оплата: {task.price} ₽</div>
                 <div className='text-m  opacity-100'>до {task.date}</div>
                 <div className='flex gap-5 text-black text-m '>
@@ -291,7 +259,7 @@ export const TaskPage = () => {
                 {ownerTaskUser.phonenumber}
               </div>
               { 
-                isAuth && (currentUser._id !== ownerTaskUser._id) ? (<div className='flex text-m font-bold text-white rounded-lg btn-color p-1 cursor-pointer hover:bg-blue-800 '
+                isAuth && (currentUser?._id !== ownerTaskUser._id) ? (<div className='flex text-m font-bold text-white rounded-lg btn-color p-1 cursor-pointer hover:bg-blue-800 '
                 onClick={handleCreateChat}>
                 <BsFillChatDotsFill className='my-1 mr-1' />
                   Чат
@@ -301,7 +269,10 @@ export const TaskPage = () => {
                 <BsFillChatDotsFill className='my-1 mr-1' />
                   Чат
                 </div>)
-                : isAuth && (currentUser._id === ownerTaskUser._id) ? (<div></div>):(<div></div>)}
+                : isAuth && (currentUser?._id === ownerTaskUser._id) ? (<div></div>):(<div></div>)}
+
+
+                
               
               
                         
@@ -323,6 +294,25 @@ export const TaskPage = () => {
                  <a href='/login' className='bg-blue-400 text-xs text-white rounded-lg py-1 px-1 hover:text-black'>Напишите заказчику</a>
                )} */}
                </div>
+               
+
+               <div className='flex items-center'>
+               { 
+                isAuth && (currentUser._id !== ownerTaskUser._id) ? (<div className='flex text-m font-bold text-white rounded-lg btn-color-main p-1 cursor-pointer hover:bg-blue-800 '
+                onClick={handleRespondTask}>
+                  Откликнуться
+                </div>) 
+                : !isAuth ? (<div className='flex text-m font-bold rounded-lg btn-color-main p-1 text-white cursor-pointer hover:bg-blue-800 '
+                onClick={()=> {navigate('/login');toast.info('Сперва войдите в аккаунт')}}>
+                
+                Откликнуться
+                </div>)
+                : isAuth && (currentUser._id === ownerTaskUser._id) ? (<div></div>):(<div></div>)}
+               </div>
+
+              
+
+
                {((currentUser?._id === ownerTaskUser._id) || (currentUser?.admin===true)) ?  (
                     <div className='flex flex-row justify-between'>
                         <button className='flex items-center justify-center gap-2 text-xs text-black opacity-50'>
@@ -369,47 +359,6 @@ export const TaskPage = () => {
             </div>
 
             
-
-            <div className='flex justify-center py-5'>
-            {chat && (
-                            <div className='w-1/3 ml-5'>
-                            <div className='max-h-[400px] text-white overflow-auto p-2 bg-blue-700 flex flex-col gap-2 rounded-lg'>
-                                {allMessages.length!==0?
-                                allMessages?.map((msg) => (
-                             <MessageItem key={msg._id} msg={msg} />
-                        
-                        
-                    )):
-                    <div>История сообщений пуста</div>
-                    }
-                            </div>
-                            <form
-                                    className='flex gap-2 p-2'
-                                    onSubmit={(e) => e.preventDefault()}
-                                >
-                                    <input
-                                        type='text'
-                                        value={message}
-                                        onChange={(e) => setMessage(e.target.value)}
-                                        placeholder='Отправьте сообщение'
-                                        className='text-black w-full rounded-lg bg-blue-400 border p-2 text-xs outline-none placeholder:text-white'
-                                    />
-                                    <button
-                                        type='submit'
-                                        onClick={handleSendMessage}
-                                        className='flex justify-center items-center bg-blue-400 text-xs text-white rounded-lg py-2 px-4 hover:text-black'
-                                    >
-                                        Отправить
-                                    </button>
-                                </form>
-                            </div>
-                        )}
-
-
-
-                        {/* {chat && (<Chat chat={chat} curuser={currentUser} chatUsers={chatUsers} />)} */}
-                        
-            </div>
             
         </div>
         </div>

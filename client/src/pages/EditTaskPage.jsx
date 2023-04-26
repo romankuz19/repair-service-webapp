@@ -12,6 +12,7 @@ export const EditTaskPage = () => {
     const [price, setPrice] = useState('')
     const [address, setAddress] = useState('')
     const [cat, setCat] = useState('')
+    const [description, setDescription] = useState('')
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -19,8 +20,9 @@ export const EditTaskPage = () => {
 
     const fetchTask = useCallback(async () => {
         const { data } = await axios.get(`/tasks/${params.id}`)
-        console.log('data',data)
+        console.log('data',data.task)
         setTitle(data.task.title)
+        setDescription(data.task.description)
         setDate(data.task.date)
         setCat(data.task.category)
         setPrice(data.task.price)
@@ -32,12 +34,14 @@ export const EditTaskPage = () => {
         try {
             const updatedTask = new FormData()
             updatedTask.append('title', title)
+            updatedTask.append('description', description)
             updatedTask.append('category', cat)
             updatedTask.append('price', price)
             updatedTask.append('id', params.id)
             updatedTask.append('date', date)
             updatedTask.append('address', address)
-            console.log('upd',updatedTask)
+            // console.log('cat',cat)
+            // console.log('upd',updatedTask)
             dispatch(updateTask(updatedTask))
             navigate('/tasks')
             window.location.reload(false);
@@ -55,13 +59,19 @@ export const EditTaskPage = () => {
         {
             id: 1,
             value: 'Бытовые услуги'
-        }, {
+        } , {
             id: 2,
-            value: 'Электроника'
+            value: 'Цифровая техника'
         }, {
             id: 3,
-            value: 'Машины'
-        }
+            value: 'Транспорт'
+        },
+        {
+            id: 4,
+            value: 'Ремонт и строительство'
+        },
+       
+        
         ];
         
         function Options({ options }) {
@@ -83,12 +93,22 @@ export const EditTaskPage = () => {
           
             
           <label className='text-xl text-black opacity-90'>
-                    Как назвать задание?
+                    Как назвать заказ?
                     <input
                         type='text'
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
-                        placeholder='Название задания'
+                        placeholder='Название заказа'
+                        className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-xl outline-none placeholder:text-gray-700' />
+                </label>
+
+                <label className='text-xl text-black opacity-90'>
+                    Опишите подробности заказа
+                    <input
+                        type='text'
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                        placeholder='Описание заказа'
                         className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-xl outline-none placeholder:text-gray-700' />
                 </label>
 

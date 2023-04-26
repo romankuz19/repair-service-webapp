@@ -82,7 +82,7 @@ export const login = async (req, res) => {
         res.json({
             token,
             user,
-            message: 'Вы вошли в систему.',
+            //message: 'Вы вошли в систему.',
         })
     } catch (error) {
         res.json({ message: 'Ошибка при авторизации.' })

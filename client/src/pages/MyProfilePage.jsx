@@ -124,7 +124,7 @@ export const MyProfilePage = () => {
                             className='text-l font-bold  rounded-lg btn-color text-white hover:bg-blue-800 px-4 py-2'
                             style={({ isActive }) => isActive ? activeStyles : undefined}
                         >
-                             Мои задания
+                             Мои заказы
                         </NavLink>
                     </li>
                     <li>
@@ -144,7 +144,7 @@ export const MyProfilePage = () => {
                             className='text-l font-bold  rounded-lg btn-color text-white hover:bg-blue-800 px-4 py-2'
                             style={({ isActive }) => isActive ? activeStyles : undefined}
                         >
-                            Создать задание
+                            Создать заказ
                         </NavLink>
                     </li>
                     

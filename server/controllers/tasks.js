@@ -6,11 +6,12 @@ import User from '../models/User.js'
 // Create Post
 export const createTask = async (req, res) => {
     try {
-        const { title, date, address, category, price } = req.body
+        const { title, date, description, address, category, price } = req.body
         const user = await User.findById(req.userId)
 
         const newTask = new Task({
             title,
+            description,
             date,
             address,
             category,
@@ -101,11 +102,12 @@ export const removeTask = async (req, res) => {
 // Update post
 export const updateTask = async (req, res) => {
     try {
-        const { title, cat, price, id, date, address } = req.body
+        const { title, description, cat, price, id, date, address } = req.body
         //console.log(title,'title')
         const task = await Task.findById(id)
 
         task.title = title
+        task.description=description
         task.cat = cat
         task.date = date
         task.address = address
@@ -118,6 +120,31 @@ export const updateTask = async (req, res) => {
     }
 }
 
+
+export const sortedTasks = async (req, res) => {
+    try {
+        
+        console.log('req.params',req.params)
+       
+        const sort= req.params.name
+    
+        const s = sort;
+        const regex = new RegExp(s, 'i') // i for case insensitive
+        
+        const sortedTasks = await Task.find({title: {$regex: regex}})
+       
+        
+        if (!sort) {
+            return res.json({ message: 'Заданий нет' })
+        }
+      
+        res.json({sortedTasks})
+
+        
+    } catch (error) {
+        res.json({ message: 'Что-то пошло не так.' })
+    }
+}
 
 
 

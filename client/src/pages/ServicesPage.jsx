@@ -258,12 +258,29 @@ const categoriesList = [
 
     const handleCategoriesSort = async () =>{
         var str = sortCategories.join(' ')
-        setSearchParams({category: str})
+        //setSearchParams({category: str})
         //console.log('search',searchParams)
         const data = await axios.get(`/posts/sorted/cat/${str}`);
         console.log('data',data.data.sortedServicesCat)
-        setSortedServices(data.data.sortedServicesCat)
+        // console.log('Message',data.data.message)
+
+        if(data.data.message){
+            toast.info('Пока таких услуг нет')
+        }
+        else {
+            data.data.sortedServicesCat.forEach(element => {
+                element.forEach(item => {
+                    setSortedServices(sortedServices => [...sortedServices, item])
+                });
+                
+            });
+
+            
+        }
+        
     }
+
+    console.log('sortedServices',sortedServices)
 
     const cancelCategoriesSort = async () =>{
 

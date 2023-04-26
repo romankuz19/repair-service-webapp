@@ -134,8 +134,13 @@ export const TaskItem = ({ task, user }) => {
                 </div>
                
                
-                
+                <div className='flex justify-between items-center '>
                 <div className='text-cat-color text-m py-2'>{task.address}</div>
+                <div className='text-m font-bold rounded-lg btn-color-main py-1 px-2 text-white hover:bg-blue-800 shadow-lg shadow-blue-500/50'>
+          Откликнуться
+      </div>
+                </div>
+                
 
                 <div className='text-cat-color text-m '>{user.length>1?firstname:user.firstname} {user.length>1?secondname:user.secondname}</div>
                 

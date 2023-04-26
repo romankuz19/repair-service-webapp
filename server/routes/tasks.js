@@ -5,7 +5,8 @@ import {
     getById,
     getMyTasks,
     removeTask,
-    updateTask
+    updateTask,
+    sortedTasks
    
 } from '../controllers/tasks.js'
 import { checkAuth } from '../utils/checkAuth.js'
@@ -18,6 +19,10 @@ router.post('/', checkAuth, createTask)
 // Get All Tasks
 // http://localhost:3002/api/tasks
 router.get('/', getAll)
+
+// Get sorted Tasks
+// http://localhost:3002/api/tasks/sorted/:name
+router.get('/sorted/:name', sortedTasks)
 
 // Get My Tasks
 // http://localhost:3002/api/tasks/user/me

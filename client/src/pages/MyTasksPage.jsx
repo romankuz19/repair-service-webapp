@@ -40,14 +40,14 @@ export const MyTasksPage = () => {
     //console.log(user)
     return (
         <div className='w-1/2 mx-auto py-10 flex flex-col gap-10'>
-            <div className='text-xl text-center text-white'>
+            <div className='text-xl text-center text-black'>
            Мои заказы
         </div>
              {tasks?.length!==0? 
              tasks?.map((task, idx) => (
                 <TaskItem task={task} key={idx} user={user}/>
             ))
-            : <div className='text-xl text-center text-white py-10'>
+            : <div className='text-xl text-center text-black py-10'>
             У вас нет заказов
         </div>
             } 

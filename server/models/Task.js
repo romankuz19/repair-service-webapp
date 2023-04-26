@@ -4,6 +4,7 @@ const TaskSchema = new mongoose.Schema(
 {
 //username: { type: String, required: true },
 title: { type: String, required: true },
+description: { type: String, },
 date: {type: String, required: true },
 address: {type: String},
 category: { type: String, required: true },
