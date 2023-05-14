@@ -22,9 +22,14 @@ export const MyProfilePage = () => {
     const [chats, setChats] = useState([])
     const [chatUsers, setChatUsers] = useState([])
     const [allMessages, setAllMessages] = useState([{}])
-
-
     const { status } = useSelector((state) => state.auth)
+
+    const [showForm, setShowForm] = useState(false);
+
+    const handleShowForm = () => {
+
+    setShowForm(!showForm);
+  }
     
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -105,146 +110,104 @@ export const MyProfilePage = () => {
     return (
         <div className='w-1/2 mx-auto py-10 flex flex-col gap-10'>
             {isAuth && (
-                <><ul className='grid justify-items-center grid-cols-2 gap-8'>
-
-                    <li>
-                        <NavLink
-                            to={'/my-services'}
-                            href='/'
-                            className='text-l font-bold text-black-400  hover:text-white rounded-lg btn-color text-white hover:bg-blue-800  px-4 py-2'
-                            style={({ isActive }) => isActive ? activeStyles : undefined}
-                        >
-                            Мои услуги
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink
-                            to={'/my-tasks'}
-                            href='/'
-                            className='text-l font-bold  rounded-lg btn-color text-white hover:bg-blue-800 px-4 py-2'
-                            style={({ isActive }) => isActive ? activeStyles : undefined}
-                        >
-                             Мои заказы
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink
-                            to={'/create-service'}
-                            href='/'
-                            className='text-l font-bold  rounded-lg btn-color text-white hover:bg-blue-800 px-4 py-2'
-                            style={({ isActive }) => isActive ? activeStyles : undefined}
-                        >
-                            Добавить услугу
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink
-                            to={'/create-task'}
-                            href='/'
-                            className='text-l font-bold  rounded-lg btn-color text-white hover:bg-blue-800 px-4 py-2'
-                            style={({ isActive }) => isActive ? activeStyles : undefined}
-                        >
-                            Создать заказ
-                        </NavLink>
-                    </li>
+                <>
+                
+                <div className='w-1/2  mx-auto form-contanier flex items-center flex-col gap-5  '>
+                {/* <button className='max-w-[200px] items-center font-bold  rounded-lg btn-color text-white hover:bg-blue-800 px-4 py-2' onClick={handleShowForm}>
+                        Изменить данные
+                    </button> */}
                     
-                    {/* <li>
-                        <NavLink
-                            to={'#'}
-                            href='/'
-                            onClick={getChats}
-                            className='text-l font-bold  rounded-lg btn-color text-white hover:bg-blue-800 px-4 py-2 hover:text-black'
-                            
-                        >
-                            Мои чаты
-                        </NavLink>
-                    </li> */}
+                    {/* {showForm && ( */}
+        <form
+        onSubmit={(e) => e.preventDefault()}
+        className='border-2 shadow-lg rounded-lg p-2'
+    >
+        <h1 className='text-lg text-black text-center'>Мои данные</h1>
+
+
+        <label className='text-xs text-gray-600'>
+            Имя:
+            <input
+                type='text'
+                value={firstname}
+                onChange={(e) => setName(e.target.value)}
+                placeholder='Имя'
+                className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
+            />
+        </label>
+        <label className='text-xs text-gray-600'>
+            Фамилия:
+            <input
+                type='text'
+                value={secondname}
+                onChange={(e) => setSecondName(e.target.value)}
+                placeholder='Фамилия'
+                className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
+            />
+        </label>
+        <label className='text-xs text-gray-600'>
+            Город:
+            <input
+                type='text'
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+                placeholder='Город'
+                className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
+            />
+        </label>
+        <label className='text-xs text-gray-600'>
+            Номер телефона:
+            <input
+                type='number'
+                value={phonenumber}
+                onChange={(e) => setPhonenumber(e.target.value)}
+                placeholder='Номер телефона'
+                className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
+            />
+        </label>
+
+        <div className='flex gap-8 justify-center mt-4'>
+            <button
+                type='submit'
+                onClick={handleSubmit}
+                className='flex justify-center items-center btn-color text-l text-white rounded-lg py-2 px-4 hover:bg-blue-800 font-bold'
+            >
+                Изменить
+            </button>
+            <button
+                type='submit'
+                onClick={fetchUser}
+                className='flex justify-center items-center bg-red-500 text-l text-white rounded-lg py-2 px-4 hover:text-black font-bold'
+            >
+                Отменить
+            </button>
+        </div>
+    </form>
+                    {/* )} */}
+
+                    
+                
+
+                </div>
+                <ul className='flex justify-center gap-8     '>
+                    
+                    <button className='max-w-[200px] items-center   font-bold  rounded-lg btn-color text-white hover:bg-blue-800 px-4 py-2' onClick={()=>navigate('/my-services')}>
+                    Мои услуги
+                    </button>
+                    <button className='max-w-[200px]  items-center  font-bold  rounded-lg btn-color text-white hover:bg-blue-800 px-4 py-2' onClick={()=>navigate('/my-tasks')}>
+                    Мои заказы
+                    </button>
+                    <button className='max-w-[200px] items-center  font-bold  rounded-lg btn-color text-white hover:bg-blue-800 px-4 py-2' onClick={()=>navigate('/create-service')}>
+                    Добавить услугу
+                    </button>
+                    <button className='max-w-[200px]  items-center  font-bold  rounded-lg btn-color text-white hover:bg-blue-800 px-4 py-2' onClick={()=>navigate('/create-task')}>
+                    Создать заказ
+                    </button>
+
                 </ul>
-                <form
-            onSubmit={(e) => e.preventDefault()}
-            className='w-1/2  mx-auto '
-        >
-            <h1 className='text-lg text-black text-center'>Мои данные</h1>
+                
 
-            {/* <label className='text-xs text-gray-400'>
-                Логин:
-                <input
-                    type='text'
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    placeholder='Логин'
-                    className='read-only:bg-gray-100 mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
-                />
-            </label>
-
-            <label className='text-xs text-gray-400'>
-                Пароль:
-                <input
-                    type='password'
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder='Пароль'
-                    className='read-only:bg-gray-100 mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
-                />
-            </label> */}
-            <label className='text-xs text-gray-600'>
-                Имя:
-                <input
-                    type='text'
-                    value={firstname}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder='Имя'
-                    className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
-                />
-            </label>
-            <label className='text-xs text-gray-600'>
-                Фамилия:
-                <input
-                    type='text'
-                    value={secondname}
-                    onChange={(e) => setSecondName(e.target.value)}
-                    placeholder='Фамилия'
-                    className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
-                />
-            </label>
-            <label className='text-xs text-gray-600'>
-                Город:
-                <input
-                    type='text'
-                    value={city}
-                    onChange={(e) => setCity(e.target.value)}
-                    placeholder='Город'
-                    className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
-                />
-            </label>
-            <label className='text-xs text-gray-600'>
-                Номер телефона:
-                <input
-                    type='number'
-                    value={phonenumber}
-                    onChange={(e) => setPhonenumber(e.target.value)}
-                    placeholder='Номер телефона'
-                    className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
-                />
-            </label>
-
-            <div className='flex gap-8 justify-center mt-4'>
-                <button
-                    type='submit'
-                    onClick={handleSubmit}
-                    className='flex justify-center items-center btn-color text-l text-white rounded-lg py-2 px-4 hover:bg-blue-800 font-bold'
-                >
-                    Изменить
-                </button>
-                <button
-                    type='submit'
-                    onClick={fetchUser}
-                    className='flex justify-center items-center bg-red-500 text-l text-white rounded-lg py-2 px-4 hover:text-black font-bold'
-                >
-                    Отменить
-                </button>
-            </div>
-        </form>
+        
                 </>
                 
             )}

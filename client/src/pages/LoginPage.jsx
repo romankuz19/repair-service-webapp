@@ -79,20 +79,26 @@ export const LoginPage = () => {
                 />
             </label>
 
-            <div className='flex gap-8 justify-center mt-7'>
-                <button
+            <div className='grid gap-4 mt-7 justify-center lg:grid-cols-2 md:grid-cols-1'>
+                <div className='flex justify-center'>
+                    <button
                     type='submit'
                     onClick={handleSubmit}
-                    className='font-bold text-white rounded-lg px-4 py-2 text-xs  btn-color p-1 cursor-pointer hover:bg-blue-800'
+                    className='min-w-[100px]  text-center font-bold  text-white rounded-lg px-4 py-2 text-xs  btn-color p-1 cursor-pointer hover:bg-blue-800'
                 >
                     Вход
                 </button>
+                </div>
+                <div className='flex justify-center'>
                 <Link
                     to='/register'
-                    className='font-bold text-white rounded-lg px-4 py-2 text-xs btn-color p-1 cursor-pointer hover:bg-blue-800'
+                    className='min-w-[100px]  text-center font-bold  text-white rounded-lg px-4 py-2 text-xs btn-color p-1 cursor-pointer hover:bg-blue-800'
                 >
                     Регистрация
                 </Link>
+                </div>
+                
+                
             </div>
         </form>
     )

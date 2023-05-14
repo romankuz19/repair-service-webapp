@@ -229,6 +229,8 @@ const categoriesList = [
         // console.log('updatedCheckedState',updatedCheckedState)
         if(updatedCheckedState[position]){
             setSortCategories(sortCategories => [...sortCategories, value]);
+            // var str = sortCategories.join(' ')
+            // setSearchParams({category: str})
             
         } 
         else {
@@ -268,6 +270,7 @@ const categoriesList = [
             toast.info('Пока таких услуг нет')
         }
         else {
+            sortedServices.length=0
             data.data.sortedServicesCat.forEach(element => {
                 element.forEach(item => {
                     setSortedServices(sortedServices => [...sortedServices, item])

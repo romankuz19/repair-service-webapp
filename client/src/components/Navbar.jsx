@@ -19,7 +19,7 @@ export const Navbar = () => {
     }
 
     return (
-        <div className='flex pt-10 pl-20 pr-20 justify-between items-center'>
+        <div className='max-w-[1000px] flex pt-10 mx-auto justify-between items-center'>
             <div className='flex gap-8 '>
             <div className='flex justify-center items-center font-bold btn-color rounded-lg px-4 py-2 hover:bg-blue-800 shadow-lg shadow-blue-500/50'>
                 {

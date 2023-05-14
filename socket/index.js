@@ -10,7 +10,8 @@ const io = require("socket.io")(8800, {
     // add new User
     socket.on("new-user-add", (newUserId) => {
       // if user is not added previously
-      if (!activeUsers.some((user) => user.userId === newUserId)) {
+      //console.log(typeof(newUserId));
+      if (!activeUsers.some((user) => user.userId === newUserId) && newUserId !== null) {
         activeUsers.push({ userId: newUserId, socketId: socket.id });
         //activeUsers = activeUsers.filter((user) => user.userId !== null)
         console.log("New User Connected", activeUsers);
@@ -32,7 +33,8 @@ const io = require("socket.io")(8800, {
   
     // send message to a specific user
     socket.on("send-message", (data) => {
-      const { message, receiverId } = data;
+      const { receiverId } = data;
+      console.log("data1: ", data)
       const user = activeUsers.find((user) => user.userId === receiverId);
       //activeUsers = activeUsers.filter((user) => user.userId === null)
       //console.log("Active Users", activeUsers);
@@ -43,7 +45,8 @@ const io = require("socket.io")(8800, {
         io.to(user.socketId).emit("recieve-message", data);
       //   console.log("user.socketId", user.socketId)
       // console.log("Sending from socket to :", receiverId)
-      // console.log("data: ", data)
+      console.log("typeOf: ", typeof data)
+        console.log("data: ", data)
       }
     });
   });
