@@ -54,7 +54,7 @@ export const LoginPage = () => {
     return (
         <form
             onSubmit={(e) => e.preventDefault()}
-            className='w-1/4 h-60 mx-auto mt-40 border-2 shadow-lg rounded-lg p-2'
+            className='w-1/4 h-70 mx-auto mt-40 border-2 shadow-lg rounded-lg p-2'
         >
             <h1 className='text-lg text-black text-center'>Авторизация</h1>
             <label className='text-xs text-gray-400'>
