@@ -50,7 +50,10 @@ const categoriesList = [
     //console.log(users)
 
     useEffect(() => {
+        
         dispatch(getAllPosts())
+       
+        
     }, [dispatch])
 
 
@@ -171,13 +174,7 @@ const categoriesList = [
         fetchSort()
     }, [])
 
-    if (!posts.length) {
-        return (
-            <div className='text-xl text-center text-white py-10'>
-                Пока что нет услуг.
-            </div>
-        )
-    }
+    
     
         
         function Options({ options }) {
@@ -301,6 +298,17 @@ const categoriesList = [
     
     console.log('sortCat',sortCategories);
 
+    console.log('posts.length',posts.length);
+
+    
+    if (!posts.length) {
+        return (
+            <div className='text-xl text-center text py-10'>
+                Уже чиним. Пожалуйста, подождите
+            </div>
+        )
+    }
+
     
     return (
         
@@ -356,6 +364,8 @@ const categoriesList = [
 
                     <div className='flex flex-col gap-10 basis-4/5'>
                         {sortedServices.length === 0 ?
+
+                            
                             posts?.map((service, idx) => (
                                 <ServiceItem key={idx} service={service} user={users} />
                             )) :

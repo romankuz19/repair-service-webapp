@@ -1,8 +1,10 @@
 import React from 'react'
 import { useEffect, useRef } from 'react'
+import Select from 'react-select'
 import { useState } from 'react'
 import { useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { FcRating } from "react-icons/fc";
 import {
     AiFillEye,
     AiOutlineMessage,
@@ -39,6 +41,8 @@ export const ServicePage = () => {
     const [cmtUser, setCmtuser] = useState([])
     const [btn, setBtn] = useState(false)
     const [isLoaded, setIsloaded] = useState(false)
+    const [value, setValue] = useState('1');
+    const [avgServiceRating, setServiceAvgRating] = useState(null)
     const words = [ 'сука' , 'сучка' , 'шлюха' ]
     
     const mat = /(?<=^|[^а-я])(([уyu]|[нзnz3][аa]|(хитро|не)?[вvwb][зz3]?[ыьъi]|[сsc][ьъ']|(и|[рpr][аa4])[зсzs]ъ?|([оo0][тбtb6]|[пp][оo0][дd9])[ьъ']?|(.\B)+?[оаеиeo])?-?([еёe][бb6](?!о[рй])|и[пб][ае][тц]).*?|([нn][иеаaie]|([дпdp]|[вv][еe3][рpr][тt])[оo0]|[рpr][аa][зсzc3]|[з3z]?[аa]|с(ме)?|[оo0]([тt]|дно)?|апч)?-?[хxh][уuy]([яйиеёюuie]|ли(?!ган)).*?|([вvw][зы3z]|(три|два|четыре)жды|(н|[сc][уuy][кk])[аa])?-?[бb6][лl]([яy](?!(х|ш[кн]|мб)[ауеыио]).*?|[еэe][дтdt][ь']?)|([рp][аa][сзc3z]|[знzn][аa]|[соsc]|[вv][ыi]?|[пp]([еe][рpr][еe]|[рrp][оиioеe]|[оo0][дd])|и[зс]ъ?|[аоao][тt])?[пpn][иеёieu][зz3][дd9].*?|([зz3][аa])?[пp][иеieu][дd][аоеaoe]?[рrp](ну.*?|[оаoa][мm]|([аa][сcs])?([иiu]([лl][иiu])?[нщктлtlsn]ь?)?|([оo](ч[еиei])?|[аa][сcs])?[кk]([оo]й)?|[юu][гg])[ауеыauyei]?|[мm][аa][нnh][дd]([ауеыayueiи]([лl]([иi][сзc3щ])?[ауеыauyei])?|[оo][йi]|[аоao][вvwb][оo](ш|sh)[ь']?([e]?[кk][ауеayue])?|юк(ов|[ауи])?)|[мm][уuy][дd6]([яyаиоaiuo0].*?|[еe]?[нhn]([ьюия'uiya]|ей))|мля([тд]ь)?|лять|([нз]а|по)х|м[ао]л[ао]фь([яию]|[её]й))(?=($|[^а-я]))/
@@ -83,6 +87,7 @@ export const ServicePage = () => {
         const { data } = await axios.get(`/posts/${params.id}`)
         setPost(data.post)
         setOwnerUser(data.user)
+        setServiceAvgRating(data.rating)
         console.log(data)
     }, [params.id])
 
@@ -227,7 +232,7 @@ export const ServicePage = () => {
         }
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         try {
             const postId = params.id
             
@@ -257,7 +262,25 @@ export const ServicePage = () => {
             if(firstCheck && secondCheck && adcheck){
                 console.log('cmt',comment)
                 setComment('')
-                dispatch(createComment({ postId, comment, author }))
+
+
+                var text = comment;
+                var rating = value;
+                var reviewId = postId;
+                try {
+                    const { data } = await axios.post(`/reviews/${postId}`, {
+                        reviewId,
+                        text,
+                        rating,
+                        author
+                    })
+                    console.log("data",data)
+                    return data
+                } catch (error) {
+                    console.log(error)
+                }
+
+                //dispatch(createComment({ postId, comment, author }))
             }
             else if(!firstCheck || !secondCheck){
                 //alert("Данный контент нельзя вставить!")
@@ -295,6 +318,13 @@ export const ServicePage = () => {
     //console.log('post author',post.author)
     console.log('allmsg',allMessages)
 
+    const handleChange = (e) => {
+
+        setValue(e.target.value);
+     
+      };
+
+      console.log("value",value)
     return (
         <div className='max-w-[1200px] mx-auto py-10'>
             {/* <button className='btn-color hover:bg-blue-800 text-xs font-bold text-white rounded-lg py-2 px-4 shadow-lg shadow-blue-500/50'>
@@ -465,7 +495,7 @@ export const ServicePage = () => {
              <div className='w-1/3 mx-auto max-h-[400px] overflow-auto p-8  flex flex-col gap-2 border-2 shadow-2xl rounded-lg p-2 '>
                 {isAuth && !(currentUser?._id === post.author) && ( 
                 <form
-                        className='flex gap-2'
+                        className=''
                         onSubmit={(e) => e.preventDefault()}
                     >
                         <input
@@ -475,13 +505,31 @@ export const ServicePage = () => {
                             placeholder='Оставьте отзыв'
                             className='text-white w-full rounded-lg bg-blue-400 border p-2 text-xs outline-none placeholder:text-white'
                         />
-                        <button
+                        <div className='flex justify-between mt-5'>
+                            <div>
+                            <label for="rating">Оцените исполнителя:</label>
+                                <select id="rating" name="rating" value={value} onChange={handleChange}>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                                
+                            </div>
+                        
+                                <div>
+                                <button
                             type='submit'
                             onClick={handleSubmit}
                             className='flex justify-center items-center bg-blue-400 text-xs text-white rounded-lg py-2 px-4 hover:text-black'
                         >
                             Отправить
                         </button>
+                                </div>
+                        
+                        </div>
+                        
                     </form>)}
                     {isAuth &&  (currentUser?._id === post.author) 
                     }
@@ -495,7 +543,7 @@ export const ServicePage = () => {
                         readOnly
                         value={comment}
                         onChange={(e) => setComment(e.target.value)}
-                        placeholder='Авторизируйтесь, чтобы оставить отзыв'
+                        placeholder='Авторизуйтесь, чтобы оставить отзыв'
                         className='text-black w-full rounded-lg bg-blue-400 border p-2 text-xs outline-none placeholder:text-white'
                     />
                     
@@ -503,7 +551,10 @@ export const ServicePage = () => {
                     
                     
                     
-                    
+                    <div className='flex items-center gap-2'>
+                        
+                    Средняя оценка исполнителя {avgServiceRating} <FcRating/>
+                    </div>
                     
                     {comments.length!==0 && isAuth && (
                     comments?.map((cmt, idx) => (

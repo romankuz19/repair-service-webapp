@@ -11,6 +11,7 @@ price: { type: Number, default: 0 },
 views: { type: Number, default: 0 },
 author: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
 comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }],
+reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Review' }],
 },
     { timestamps: true },
 )

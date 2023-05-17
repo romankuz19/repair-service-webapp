@@ -1,6 +1,7 @@
 import Post from '../models/Service.js'
 import User from '../models/User.js'
 import Comment from '../models/Comment.js'
+import Review from '../models/Review.js'
 import path, { dirname } from 'path'
 import { fileURLToPath } from 'url'
 
@@ -185,9 +186,29 @@ export const getById = async (req, res) => {
         const post = await Post.findByIdAndUpdate(req.params.id, {
             $inc: { views: 1 },
         })
+        var allReviews = Array();
+        
+        for (const item of post.reviews) {
+            var contents = await Review.findById(item.valueOf());
+            allReviews.push(contents.rating);
+            //console.log("item",item.valueOf())
+        }
+        
+        let totalRating = 0;
+
+        allReviews.forEach(element => {
+            totalRating+=element;
+        });
+
+       
+        var avgRating = totalRating/allReviews.length;
+          
+        console.log("avgRating",avgRating)
+
         const user = await User.findOne().where('username').equals(post.username)
         //console.log(user)
-        res.json({post, user})
+        let rating = avgRating.toFixed(2);
+        res.json({post, user, rating})
     } catch (error) {
         res.json({ message: 'Что-то пошло не так.' })
     }

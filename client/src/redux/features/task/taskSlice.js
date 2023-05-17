@@ -74,9 +74,13 @@ export const taskSlice = createSlice({
             state.loading = true
         },
         [getAllTasks.fulfilled]: (state, action) => {
-            state.loading = false
-            state.tasks = action.payload.tasks
-            state.users = action.payload.users
+            console.log('state',state)
+            if(state){
+                state.loading = false
+                state.tasks = action.payload.tasks
+                state.users = action.payload.users
+            }
+           
         },
         [getAllTasks.rejected]: (state) => {
             state.loading = false

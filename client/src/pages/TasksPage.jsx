@@ -23,7 +23,18 @@ export const TasksPage = () => {
     //console.log(users)
 
     useEffect(() => {
-        dispatch(getAllTasks())
+        
+            dispatch(getAllTasks()).
+            unwrap()
+            .then((originalPromiseResult) => {
+              // handle result here
+              console.log('bbbb')
+            })
+            .catch((rejectedValueOrSerializedError) => {
+                console.log('aaa')
+              // handle error here
+            })
+        
     }, [dispatch])
 
     // console.log('tasks', tasks)
@@ -80,8 +91,8 @@ export const TasksPage = () => {
     if (tasks) {
         if(!tasks.length)
         return (
-            <div className='text-xl text-center text-white py-10'>
-                Пока что нет заданий.
+            <div className='text-xl text-center text py-10'>
+                Уже чиним. Пожалуйста, подождите
             </div>
         )
     }

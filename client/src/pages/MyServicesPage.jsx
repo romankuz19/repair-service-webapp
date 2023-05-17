@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import { ServiceItem } from '../components/ServiceItem'
 import axios from '../utils/axios'
+import { toast } from 'react-toastify'
 
 export const MyServicesPage = () => {
     const [posts, setPosts] = useState([])
@@ -20,6 +21,7 @@ export const MyServicesPage = () => {
             //console.log(data.list)
             //console.log(data.user)
         } catch (error) {
+            toast.info("Проблемы с соединением :(")
             console.log(error)
         }
     }

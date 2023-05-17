@@ -189,7 +189,7 @@ export const MyProfilePage = () => {
                 
 
                 </div>
-                <ul className='flex justify-center gap-8     '>
+                <ul className='grid grid-cols-2 gap-4  justify-items-center 2xl:flex justify-center gap-8   '>
                     
                     <button className='max-w-[200px] items-center   font-bold  rounded-lg btn-color text-white hover:bg-blue-800 px-4 py-2' onClick={()=>navigate('/my-services')}>
                     Мои услуги

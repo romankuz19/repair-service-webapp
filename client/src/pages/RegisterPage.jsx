@@ -29,7 +29,7 @@ export const RegisterPage = () => {
 
     const handleSubmit = () => {
         try {
-            if(username.length<3 )toast.info("Логин слишком короткий или пустой")
+            if(username.length<3 )toast.info("Логин слишком короткий")
             else if(password.length<8) toast.info("Пароль слишком короткий")
             else{
             dispatch(registerUser({ username, password,firstname,secondname,city,phonenumber }))
