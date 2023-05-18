@@ -102,7 +102,7 @@ export const AddTaskPage = () => {
         
 
         <form
-            className='w-1/3 mx-auto py-10'
+            className='mx-auto my-10 border-2 shadow-lg rounded-lg p-2 2xl:w-1/3 md:w-2/3'
             onSubmit={(e) => e.preventDefault()}
         >
                 

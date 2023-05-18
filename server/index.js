@@ -10,6 +10,7 @@ import taskRoute from './routes/tasks.js'
 import commentRoute from './routes/comments.js'
 import chatRoute from './routes/chat.js'
 import messagesRoute from './routes/messages.js'
+import reviewsRoutes from './routes/reviews.js'
 
 const app = express()
 dotenv.config()
@@ -34,6 +35,7 @@ app.use('/api/tasks', taskRoute)
 app.use('/api/comments', commentRoute)
 app.use('/api/chat', chatRoute)
 app.use('/api/messages', messagesRoute)
+app.use('/api/reviews', reviewsRoutes)
 // app.get('/',(req,res)=>{
 //     return res.json({message:'All is fine'})
 // })

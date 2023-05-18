@@ -4,7 +4,8 @@ import Service from '../models/Service.js'
 export const createComment = async (req, res) => {
     try {
         const { postId, comment, author } = req.body
-        //console.log(req.body)
+
+        console.log("req.body",req.body)
 
         if (!comment)
             return res.json({ message: 'Комментарий не может быть пустым' })
@@ -15,7 +16,7 @@ export const createComment = async (req, res) => {
         //console.log('author',authorName)
         const newComment = new Comment({ comment, authorName, author })
         await newComment.save()
-        console.log(newComment)
+        //console.log(newComment)
         //const find = await Comment.find().populate('author')
        // console.log('find.author.firstname',find.author.firstname)
         //const some = Comment.find().populate({ author: author });

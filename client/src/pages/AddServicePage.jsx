@@ -85,11 +85,11 @@ export const AddServicePage = () => {
         
 
         <form
-            className='w-1/3 mx-auto py-10'
+            className=' mx-auto my-10 border-2 shadow-lg rounded-lg p-2 2xl:w-1/3 md:w-2/3'
             onSubmit={(e) => e.preventDefault()}
         >
                 <label className='hover:bg-blue-800 font-bold text-white py-2 btn-color rounded-lg text-m mt-2 flex items-center justify-center border-2 cursor-pointer'>
-                    Прикрепите вашу фотографию:
+                    Прикрепите вашу фотографию
                     <input
                         type='file'
                         className='hidden'
