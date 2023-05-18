@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import { checkAuth } from '../utils/checkAuth.js'
 import { createReview, 
-    // removeReview
+    removeReview
  } from '../controllers/reviews.js'
 
 const router = new Router()
@@ -11,9 +11,9 @@ router.post('/:id',
 // checkAuth, 
 createReview)
 
-// http://localhost:3002/api/comments/:id
-// router.delete('/',
-//  //checkAuth, 
-//  removeReview)
+// http://localhost:3002/api/reviews/:id
+    router.delete('/',
+ //checkAuth, 
+ removeReview)
 
 export default router

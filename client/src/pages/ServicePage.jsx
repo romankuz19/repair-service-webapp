@@ -1,9 +1,12 @@
 import React from 'react'
 import { useEffect, useRef } from 'react'
-import Select from 'react-select'
 import { useState } from 'react'
 import { useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import Box from '@mui/material/Box';
+import Rating from '@mui/material/Rating';
+import Typography from '@mui/material/Typography';
+import ratingIcon from '../images/rating-star.jpg';
 import { FcRating } from "react-icons/fc";
 import {
     AiFillEye,
@@ -12,7 +15,7 @@ import {
     AiFillDelete,
 } from 'react-icons/ai'
 import "../styles.css";
-import {  HiPhone } from 'react-icons/hi'
+import { HiPhone } from 'react-icons/hi'
 import { BsFillChatDotsFill} from 'react-icons/bs'
 import Moment from 'react-moment'
 import { Link, useNavigate, useParams } from 'react-router-dom'
@@ -39,10 +42,13 @@ export const ServicePage = () => {
     const [allMessages, setAllMessages] = useState([])
     const [currentUser, setCurrentOwner] = useState(null)
     const [cmtUser, setCmtuser] = useState([])
+    const [reviews, setReview] = useState([])
+    const [reviewAuthors, setReviewAuthors] = useState([])
     const [btn, setBtn] = useState(false)
     const [isLoaded, setIsloaded] = useState(false)
     const [value, setValue] = useState('1');
-    const [avgServiceRating, setServiceAvgRating] = useState(null)
+    const [valueRating, setValueRating] = useState(Number | null);
+    const [avgServiceRating, setServiceAvgRating] = useState(0)
     const words = [ 'сука' , 'сучка' , 'шлюха' ]
     
     const mat = /(?<=^|[^а-я])(([уyu]|[нзnz3][аa]|(хитро|не)?[вvwb][зz3]?[ыьъi]|[сsc][ьъ']|(и|[рpr][аa4])[зсzs]ъ?|([оo0][тбtb6]|[пp][оo0][дd9])[ьъ']?|(.\B)+?[оаеиeo])?-?([еёe][бb6](?!о[рй])|и[пб][ае][тц]).*?|([нn][иеаaie]|([дпdp]|[вv][еe3][рpr][тt])[оo0]|[рpr][аa][зсzc3]|[з3z]?[аa]|с(ме)?|[оo0]([тt]|дно)?|апч)?-?[хxh][уuy]([яйиеёюuie]|ли(?!ган)).*?|([вvw][зы3z]|(три|два|четыре)жды|(н|[сc][уuy][кk])[аa])?-?[бb6][лl]([яy](?!(х|ш[кн]|мб)[ауеыио]).*?|[еэe][дтdt][ь']?)|([рp][аa][сзc3z]|[знzn][аa]|[соsc]|[вv][ыi]?|[пp]([еe][рpr][еe]|[рrp][оиioеe]|[оo0][дd])|и[зс]ъ?|[аоao][тt])?[пpn][иеёieu][зz3][дd9].*?|([зz3][аa])?[пp][иеieu][дd][аоеaoe]?[рrp](ну.*?|[оаoa][мm]|([аa][сcs])?([иiu]([лl][иiu])?[нщктлtlsn]ь?)?|([оo](ч[еиei])?|[аa][сcs])?[кk]([оo]й)?|[юu][гg])[ауеыauyei]?|[мm][аa][нnh][дd]([ауеыayueiи]([лl]([иi][сзc3щ])?[ауеыauyei])?|[оo][йi]|[аоao][вvwb][оo](ш|sh)[ь']?([e]?[кk][ауеayue])?|юк(ов|[ауи])?)|[мm][уuy][дd6]([яyаиоaiuo0].*?|[еe]?[нhn]([ьюия'uiya]|ей))|мля([тд]ь)?|лять|([нз]а|по)х|м[ао]л[ао]фь([яию]|[её]й))(?=($|[^а-я]))/
@@ -75,8 +81,18 @@ export const ServicePage = () => {
     }
 
     const fetchComments = useCallback(async () => {
-        console.log('fetchingComments')
+        //console.log('fetchingComments')
         try {
+            const { data } = await axios.get(`/posts/reviews/${params.id}`)
+            for (let index = 0; index < data.list.length; index++) {
+                var found = data.authors.find(element => element._id === data.list[index].author);
+                data.list[index].authorName = found.firstname
+                //console.log("found",found)
+            }
+            setReview(data.list)
+            //setReviewAuthors(data.authors)
+            
+            //console.log("list",data)
             dispatch(getPostComments(params.id))
         } catch (error) {
             console.log(error)
@@ -87,7 +103,13 @@ export const ServicePage = () => {
         const { data } = await axios.get(`/posts/${params.id}`)
         setPost(data.post)
         setOwnerUser(data.user)
-        setServiceAvgRating(data.rating)
+        if(data.rating === 'NaN'){
+            //console.log(data.rating)
+            setServiceAvgRating(0)
+        }
+        else{
+            setServiceAvgRating(data.rating)
+        }
         console.log(data)
     }, [params.id])
 
@@ -234,64 +256,73 @@ export const ServicePage = () => {
 
     const handleSubmit = async () => {
         try {
-            const postId = params.id
+            if(!valueRating){
+                toast.info("Поставьте оценку")
+            }
+            else{
+                const postId = params.id
             
-            const author = currentUser
-            console.log('comment', comment.toLowerCase())
-            const result = comment.toLowerCase().match(mat)
-            const result1 = comment.toLowerCase().match(blockurl2)
-            //console.log('mat', result)
-            console.log('blockurl', result1)
-            var firstCheck = true, secondCheck = true
-            var adcheck = true
-            //if(blockurl)
-
-
-
-
-            if(result!==null) firstCheck=false
-            if(result1!==null) adcheck=false
-            for(var i = 0;i<words.length;i++){
-                if(comment.toLowerCase()===words[i]){
-
-                    secondCheck=false
-
+                const author = currentUser
+                console.log('comment', comment.toLowerCase())
+                const result = comment.toLowerCase().match(mat)
+                const result1 = comment.toLowerCase().match(blockurl2)
+                //console.log('mat', result)
+                console.log('blockurl', result1)
+                var firstCheck = true, secondCheck = true
+                var adcheck = true
+                //if(blockurl)
+    
+    
+    
+    
+                if(result!==null) firstCheck=false
+                if(result1!==null) adcheck=false
+                for(var i = 0;i<words.length;i++){
+                    if(comment.toLowerCase()===words[i]){
+    
+                        secondCheck=false
+    
+                    }
+                
                 }
+                if(firstCheck && secondCheck && adcheck){
+                    console.log('cmt',comment)
+                    setComment('')
+    
+    
+                    var text = comment;
+                    var rating = valueRating;
+                    var reviewId = postId;
+                    try {
+                        const { data } = await axios.post(`/reviews/${postId}`, {
+                            reviewId,
+                            text,
+                            rating,
+                            author
+                        })
+                        //console.log("data",data)
+                        fetchComments();
+                        return data
+                    } catch (error) {
+                        console.log(error)
+                    }
+    
+                    //dispatch(createComment({ postId, comment, author }))
+                }
+                else if(!firstCheck || !secondCheck){
+                    //alert("Данный контент нельзя вставить!")
+                    toast.info("Данный контент нельзя вставить!")
+                        setComment('')
+                }
+                else if(!adcheck){
+                    //alert("Данный контент нельзя вставить!")
+                    toast.info("Данный контент нельзя вставить!")
+                        setComment('')
+                }
+            }
             
-            }
-            if(firstCheck && secondCheck && adcheck){
-                console.log('cmt',comment)
-                setComment('')
 
-
-                var text = comment;
-                var rating = value;
-                var reviewId = postId;
-                try {
-                    const { data } = await axios.post(`/reviews/${postId}`, {
-                        reviewId,
-                        text,
-                        rating,
-                        author
-                    })
-                    console.log("data",data)
-                    return data
-                } catch (error) {
-                    console.log(error)
-                }
-
-                //dispatch(createComment({ postId, comment, author }))
-            }
-            else if(!firstCheck || !secondCheck){
-                //alert("Данный контент нельзя вставить!")
-                toast.info("Данный контент нельзя вставить!")
-                    setComment('')
-            }
-            else if(!adcheck){
-                //alert("Данный контент нельзя вставить!")
-                toast.info("Данный контент нельзя вставить!")
-                    setComment('')
-            }
+        
             
             
         } catch (error) {
@@ -316,15 +347,16 @@ export const ServicePage = () => {
     //console.log('chat',chat[0]._id)
     //console.log(currentUser._id)
     //console.log('post author',post.author)
-    console.log('allmsg',allMessages)
-
+    //console.log('allmsg',allMessages)
+    // console.log("reviews",reviews)
+    // console.log("authors",reviewAuthors)
     const handleChange = (e) => {
 
         setValue(e.target.value);
      
       };
 
-      console.log("value",value)
+      console.log("valueRating",valueRating)
     return (
         <div className='max-w-[1200px] mx-auto py-10'>
             {/* <button className='btn-color hover:bg-blue-800 text-xs font-bold text-white rounded-lg py-2 px-4 shadow-lg shadow-blue-500/50'>
@@ -348,9 +380,19 @@ export const ServicePage = () => {
                             )}
                             
                         </div>
-                        <div className='text-m font-bold opacity-100'>
-                            {ownerUser.firstname} {ownerUser.secondname}
-                                </div>
+                        <div className='flex flex-col items-center'>
+
+                            <div className='text-m font-bold opacity-100'>
+                                {ownerUser.firstname} {ownerUser.secondname}
+                            </div>
+                            <div className='flex flex-col justify-center items-center'>
+                                <Typography component="legend">Средняя оценка {avgServiceRating}</Typography>
+                                <Rating name="half-rating-read" value={avgServiceRating} precision={0.1} readOnly />
+                            </div>
+                                
+
+                        </div>
+                        
                                 <div className='text-s'>Обо мне: {post.title}</div>
 
                     </div>
@@ -360,6 +402,7 @@ export const ServicePage = () => {
                 <div className='text-small-color font-bold opacity-90 text-2xl  line-clamp-4'>{post.price} ₽</div>
                      
                 </div>
+                
                 <div className='flex justify-around'>
                 <div className='flex gap-5 text-black text-m pb-2 pt-3 '>
                         <div className=' flex flex-wrap justify-center content-center text-m text-white font-bold min-w-[150px] rounded-lg btn-color hover:bg-blue-800 p-1 cursor-pointer'
@@ -392,7 +435,7 @@ export const ServicePage = () => {
              </div>
              <div className='flex items-center justify-center gap-1 text-xs text-black opacity-80'>
                  <AiOutlineMessage />{' '}
-                 <span>{post.comments?.length || 0} </span>
+                 <span>{post.reviews?.length || 0} </span>
              </div>
          </div>
 
@@ -422,7 +465,7 @@ export const ServicePage = () => {
              </div>
              <div className='flex items-center justify-center gap-1 text-xs text-black opacity-80'>
                  <AiOutlineMessage />{' '}
-                 <span>{post.comments?.length || 0} </span>
+                 <span>{post.reviews?.length || 0} </span>
              </div>
          </div>
      }
@@ -492,7 +535,7 @@ export const ServicePage = () => {
                
             </div>
             <div className='text-center font-bold'>Отзывы</div>
-             <div className='w-1/3 mx-auto max-h-[400px] overflow-auto p-8  flex flex-col gap-2 border-2 shadow-2xl rounded-lg p-2 '>
+             <div className='w-1/3 mx-auto max-h-[400px] overflow-auto p-8  flex flex-col gap-2 border-2 shadow-2xl rounded-lg '>
                 {isAuth && !(currentUser?._id === post.author) && ( 
                 <form
                         className=''
@@ -505,18 +548,30 @@ export const ServicePage = () => {
                             placeholder='Оставьте отзыв'
                             className='text-white w-full rounded-lg bg-blue-400 border p-2 text-xs outline-none placeholder:text-white'
                         />
-                        <div className='flex justify-between mt-5'>
+                        <div className='flex justify-between items-center mt-5'>
                             <div>
-                            <label for="rating">Оцените исполнителя:</label>
+                            {/* <label htmlFor="rating">Оцените исполнителя:</label>
                                 <select id="rating" name="rating" value={value} onChange={handleChange}>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                     <option value="4">4</option>
                                     <option value="5">5</option>
-                                </select>
+                                </select> */}
+                                <div className='flex flex-col items-center'>
+                                <Typography component="legend">Оцените исполнителя</Typography>
+                                    <Rating
+                                        name="simple-controlled"
+                                        value={valueRating}
+                                        onChange={(event, newValue) => {
+                                        setValueRating(newValue);
+                                        }}
+                                    />
+                                </div>
+                               
                                 
                             </div>
+
                         
                                 <div>
                                 <button
@@ -551,20 +606,22 @@ export const ServicePage = () => {
                     
                     
                     
-                    <div className='flex items-center gap-2'>
+                    {/* <div className='flex items-center gap-2'>
                         
-                    Средняя оценка исполнителя {avgServiceRating} <FcRating/>
-                    </div>
+
+                    <Typography component="legend">Средняя оценка</Typography>
+                <Rating name="read-only" value={avgServiceRating} readOnly />
+                    </div> */}
                     
-                    {comments.length!==0 && isAuth && (
-                    comments?.map((cmt, idx) => (
-                        <CommentItem key={idx} cmt={cmt} currentUser={currentUser} />
+                    {reviews.length!==0 && isAuth && (
+                    reviews?.map((review, idx) => (
+                        <CommentItem key={idx} review={review} currentUser={currentUser} />
                     )))}
-                    {comments.length!==0 && !isAuth && (
-                    comments?.map((cmt, idx) => (
-                        <CommentItem key={idx} cmt={cmt} currentUser={null} />
+                    {reviews.length!==0 && !isAuth && (
+                    reviews?.map((review, idx) => (
+                        <CommentItem key={idx} review={review} currentUser={null} />
                     )))}
-                    {comments.length===0 && (
+                    {reviews.length===0 && (
                     <div>Отзывов нет</div>
                     )}
                 </div> 

@@ -8,7 +8,8 @@ import {
     updatePost,
     getPostComments,
     sortedServices,
-    sortedServicesCat
+    sortedServicesCat,
+    getServiceReview
     
 } from '../controllers/services.js'
 import { checkAuth } from '../utils/checkAuth.js'
@@ -50,5 +51,9 @@ router.delete('/:id', checkAuth, removePost)
 // Get Post Comments
 // http://localhost:3002/api/posts/comments/:id
 router.get('/comments/:id', getPostComments)
+
+// Get Post Reviews
+// http://localhost:3002/api/posts/reviews/:id
+router.get('/reviews/:id', getServiceReview)
 
 export default router

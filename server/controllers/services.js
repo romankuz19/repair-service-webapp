@@ -60,38 +60,33 @@ export const getAll = async (req, res) => {
         const popularPosts = await Post.find().limit(5).sort('-views')
         const users = await User.find()
 
-        //console.log(users)
-
-
-        // const userid = await Post.find({}).select('author -_id')
-
-        // console.log(userid)
-        // var arrObj = userid;
-        // var arrstring = JSON.stringify(arrObj)
-        // const myArr = JSON.parse(arrstring);
-
-        // var usersid=[]
-
-        // for (var i = 0; i < myArr.length; i++) {
-        //     var object = myArr[i];
+        for (let index = 0; index < posts.length; index++) {
+           
+            var allReviews = Array();
+            for (const item of posts[index].reviews) {
+                var contents = await Review.findById(item.valueOf());
+                allReviews.push(contents.rating);
+                //console.log("item",item.valueOf())
+            }
             
-        //     usersid[i]=object.author
-        // }
-        // console.log(usersid)
-        // var users=[]
-        // for (var i = 0; i < usersid.length; i++) {
-        //     users[i]=await User.find({}).where('_id').equals(usersid[i])
-        // }
+            let totalRating = 0;
+    
+            allReviews.forEach(element => {
+                totalRating+=element;
+            });
+    
+           
+            var avgRating = totalRating/allReviews.length;
+            
+            
 
-        // var json1 = Object.assign({}, users);
-       
-        // console.log(json1)
+            posts[index].rating = avgRating
+            //console.log("post",posts[index])
+        };
+        // console.log("posts",posts)
 
-        // var use =''
-        // for (var i = 0; i < usersid.length; i++) {
-        //     use.push(users[i])
-        // }
-        // console.log(use)
+        
+
         
         if (!posts) {
             return res.json({ message: 'Постов нет' })
@@ -166,6 +161,30 @@ export const sortedServices = async (req, res) => {
         const regex = new RegExp(s, 'i') // i for case insensitive
         
         const sortedServices = await Post.find({text: {$regex: regex}})
+
+        for (let index = 0; index < sortedServices.length; index++) {
+           
+            var allReviews = Array();
+            for (const item of sortedServices[index].reviews) {
+                var contents = await Review.findById(item.valueOf());
+                allReviews.push(contents.rating);
+                //console.log("item",item.valueOf())
+            }
+            
+            let totalRating = 0;
+    
+            allReviews.forEach(element => {
+                totalRating+=element;
+            });
+    
+           
+            var avgRating = totalRating/allReviews.length;
+            
+            
+
+            sortedServices[index].rating = avgRating
+            //console.log("post",posts[index])
+        };
        
         
         if (!sort) {
@@ -203,11 +222,13 @@ export const getById = async (req, res) => {
        
         var avgRating = totalRating/allReviews.length;
           
-        console.log("avgRating",avgRating)
+        //console.log("avgRating",avgRating)
 
         const user = await User.findOne().where('username').equals(post.username)
         //console.log(user)
+        
         let rating = avgRating.toFixed(2);
+        
         res.json({post, user, rating})
     } catch (error) {
         res.json({ message: 'Что-то пошло не так.' })
@@ -223,6 +244,29 @@ export const getMyPosts = async (req, res) => {
                 return Post.findById(post._id)
             }),
         )
+        for (let index = 0; index < list.length; index++) {
+           
+            var allReviews = Array();
+            for (const item of list[index].reviews) {
+                var contents = await Review.findById(item.valueOf());
+                allReviews.push(contents.rating);
+                //console.log("item",item.valueOf())
+            }
+            
+            let totalRating = 0;
+    
+            allReviews.forEach(element => {
+                totalRating+=element;
+            });
+    
+           
+            var avgRating = totalRating/allReviews.length;
+            
+            
+
+            list[index].rating = avgRating
+            //console.log("post",posts[index])
+        };
 
 
         //console.log(list,user)
@@ -287,3 +331,26 @@ export const getPostComments = async (req, res) => {
         res.json({ message: 'Что-то пошло не так.' })
     }
 }
+
+// Get Post Reviews
+export const getServiceReview = async (req, res) => {
+    try {
+        const service = await Post.findById(req.params.id)
+        const list = await Promise.all(
+            service.reviews.map((review) => {
+                return Review.findById(review)
+            }),
+        )
+        const authors = await Promise.all(
+            list.map((review) =>{
+                return User.findById(review.author.valueOf())
+            }),
+        )
+        //console.log("authors",authors)
+
+        res.json({list, authors})
+    } catch (error) {
+        res.json({ message: 'Что-то пошло не так.' })
+    }
+}
+

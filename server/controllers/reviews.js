@@ -14,7 +14,7 @@ export const createReview = async (req, res) => {
 
         const newReview = new Review({ text, rating, author })
         await newReview.save()
-        console.log(newReview)
+        //console.log(newReview)
         //const find = await Comment.find().populate('author')
 
         //console.log('find.author.firstname',find.author.firstname)
@@ -43,28 +43,29 @@ export const createReview = async (req, res) => {
 }
 
 
-// Remove service
-// export const removeComment = async (req, res) => {
-//     try {
-//         const {commentId, postId} = req.body
-//         //const commentId = req.body.commentId
-//         //const  serviceId = req.body.serviceId
-//         //const com = req.params.id
+// Remove review
+export const removeReview = async (req, res) => {
+    try {
+        console.log(req.body)
+        const {reviewId, serviceId} = req.body
+        //const commentId = req.body.commentId
+        //const  serviceId = req.body.serviceId
+        //const com = req.params.id
       
-//         console.log("commentId",commentId)
+        // console.log("commentId",commentId)
 
-//         console.log("postId",postId)
-//         const comment = await Comment.findByIdAndDelete(commentId)
-//         if (!comment) return res.json({ message: 'Такого комментария не существует' })
+        // console.log("postId",postId)
+        const review = await Review.findByIdAndDelete(reviewId)
+        if (!review) return res.json({ message: 'Такого отзыва не существует' })
 
-//         await Service.findByIdAndUpdate(postId, {
-//             $pull: { comments: commentId },
-//         })
+        await Service.findByIdAndUpdate(serviceId, {
+            $pull: { reviews: reviewId },
+        })
         
 
-//         //console.log("com",com)
-//         res.json({ message: 'Комментарий был удален.' })
-//     } catch (error) {
-//         res.json({ message: 'Что-то пошло не так.' })
-//     }
-// }
+        // //console.log("com",com)
+        res.json({ message: 'Комментарий был удален.' })
+    } catch (error) {
+        res.json({ message: 'Что-то пошло не так.' })
+    }
+}

@@ -43,6 +43,7 @@ const categoriesList = [
         new Array(categoriesList.length).fill(true)
     );
     const [checkedStateAll, setCheckedStateAll] = useState(true);
+    const [checkedRatingSort, setCheckedRatingSort] = useState(false);
     const [sortCategories, setSortCategories]= useState([])
     
 
@@ -122,19 +123,40 @@ const categoriesList = [
             }
             else
             {
-                console.log('cat',cat)
-            const data = await axios.get(`/posts/sorted/${search}`);
-            console.log('data',data)
-            if(data.data.sortedServices.length==0){
-                toast.info('По такому запросу ничего не нашлось :( \n Попробуйте снова')
-                setSearch('')
+                var sortedServices = Array();
+                sortCategories.forEach(element => {
+                    
+                    var filter = posts.filter(e => e.category == element);
+                    filter.forEach(element => {
+                        sortedServices.push(element);
+                    });
+                    
 
-            }
-            else{
-                setSortedServices(data.data.sortedServices)
-            }
-           
-            console.log('sortedServices',data.data.sortedServices)
+                });
+
+                if(!sortedServices.length){
+                    toast.info('Пока таких услуг нет')
+                }
+                else{
+                    checkedRatingSort
+                    ?
+                    setSortedServices(sortedServices.sort((a, b) => parseFloat(b.rating) - parseFloat(a.rating)))
+                    :
+                    setSortedServices(sortedServices)
+                }
+                // console.log('cat',cat)
+                // const data = await axios.get(`/posts/sorted/${search}`);
+                // console.log('data',data)
+                // if(data.data.sortedServices.length==0){
+                //     toast.info('По такому запросу ничего не нашлось :( \n Попробуйте снова')
+                //     setSearch('')
+
+                // }
+                // else{
+                //     setSortedServices(data.data.sortedServices)
+                // }
+            
+                // console.log('sortedServices',data.data.sortedServices)
             
             }
             
@@ -257,30 +279,58 @@ const categoriesList = [
 
     const handleCategoriesSort = async () =>{
         var str = sortCategories.join(' ')
-        //setSearchParams({category: str})
-        //console.log('search',searchParams)
-        const data = await axios.get(`/posts/sorted/cat/${str}`);
-        console.log('data',data.data.sortedServicesCat)
-        // console.log('Message',data.data.message)
+       
+        var sortedServices = Array();
+        sortCategories.forEach(element => {
+            
+            var filter = posts.filter(e => e.category == element);
+            filter.forEach(element => {
+                sortedServices.push(element);
+            });
+            
 
-        if(data.data.message){
+        });
+
+        if(!sortedServices.length){
             toast.info('Пока таких услуг нет')
         }
-        else {
-            sortedServices.length=0
-            data.data.sortedServicesCat.forEach(element => {
-                element.forEach(item => {
-                    setSortedServices(sortedServices => [...sortedServices, item])
-                });
+        else{
+            checkedRatingSort
+            ?
+            setSortedServices(sortedServices.sort((a, b) => parseFloat(b.rating) - parseFloat(a.rating)))
+            :
+            setSortedServices(sortedServices)
+        }
+
+        
+        // var sortedValues = sortedServices.sort((a, b) => parseFloat(b.rating) - parseFloat(a.rating));
+
+        // console.log("sortedValues",sortedValues)
+
+        // setSortedServices(sortedValues);
+
+        // const data = await axios.get(`/posts/sorted/cat/${str}`);
+        // console.log('data',data.data.sortedServicesCat)
+        
+
+        // if(data.data.message){
+        //     toast.info('Пока таких услуг нет')
+        // }
+        // else {
+        //     sortedServices.length=0
+        //     data.data.sortedServicesCat.forEach(element => {
+        //         element.forEach(item => {
+        //             setSortedServices(sortedServices => [...sortedServices, item])
+        //         });
                 
-            });
+        //     });
 
             
-        }
+        // }
         
     }
 
-    console.log('sortedServices',sortedServices)
+    // console.log('sortedServices',sortedServices)
 
     const cancelCategoriesSort = async () =>{
 
@@ -291,6 +341,12 @@ const categoriesList = [
         
     }
 
+    const handleRatingSort = async () =>{
+
+        checkedRatingSort?setCheckedRatingSort(false):setCheckedRatingSort(true);
+        
+    }
+
     
 
     
@@ -298,13 +354,14 @@ const categoriesList = [
     
     console.log('sortCat',sortCategories);
 
-    console.log('posts.length',posts.length);
-
+    // console.log('posts.length',posts.length);
+    // console.log("posts",posts)
+    //console.log("checkedRatingSort",checkedRatingSort)
     
     if (!posts.length) {
         return (
             <div className='text-xl text-center text py-10'>
-                Уже чиним. Пожалуйста, подождите
+                Загрузка...
             </div>
         )
     }
@@ -379,8 +436,19 @@ const categoriesList = [
                     </div>
                     <div className='basis-1/5'>
                         <div className=' font-bold  text-black'>
+                            
                         <div className="toppings-list-item">
-                                        <div className="left-section">
+                                        <div className="all-categories">
+                                        <input
+                                            type="checkbox"
+                                            
+                                            value="Все категории"
+                                            checked={checkedRatingSort}
+                                            onChange={() => handleRatingSort()}
+                                        />
+                                        <label> По рейтингу</label>
+                                        </div>
+                                        <div className="all-categories">
                                         <input
                                             type="checkbox"
                                             

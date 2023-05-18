@@ -10,6 +10,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import { useState,useCallback } from 'react'
 import axios from '../utils/axios'
+import ratingIcon from '../images/rating-star.jpg';
 
 export const ServiceItem = ({ service, user }) => {
 
@@ -20,6 +21,7 @@ export const ServiceItem = ({ service, user }) => {
     //console.log('user length',user.username)
     const [isShown, setIsShown] = useState(false);
     const [phone, setPhone] = useState('Телефон')
+    
     const navigate = useNavigate()
     if(user.length>1){
         var arrObj = user;
@@ -50,7 +52,9 @@ export const ServiceItem = ({ service, user }) => {
               
            }
     }
+
     
+    let rating = service.rating.toFixed(2);
     
         
         
@@ -80,14 +84,22 @@ export const ServiceItem = ({ service, user }) => {
                         />
                     )}
                 </div>
-                <div className='flex justify-around py-1 items-center '>
-                    <button className='flex items-center justify-center gap-2 text-xs text-black opacity-50'>
+                <div className='flex justify-between py-1 items-center '>
+                    <div className='flex items-center'>
+                        <img className='w-6 h-5' src={ratingIcon} alt="" />
+                        {rating}
+                    </div>
+                    <div className='flex gap-2'>
+                    <button className='flex items-center justify-center gap-1 text-xs text-black opacity-50'>
                         <AiFillEye /> <span>{service.views}</span>
                     </button>
-                    <button className='flex items-center justify-center gap-2 text-xs text-black opacity-50'>
+                    <button className='flex items-center justify-center gap-1 text-xs text-black opacity-50'>
                         <AiOutlineMessage />{' '}
-                        <span>{service.comments?.length || 0} </span>
+                        <span>{service.reviews?.length || 0} </span>
                     </button>
+                    </div>
+                   
+                    
                 </div>
                 </div>
                 
