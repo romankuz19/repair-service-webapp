@@ -39,6 +39,7 @@ const categoriesList = [
     const [cat, setCat] = useState('')
     const [search, setSearch] = useState('')
     const [sortedServices, setSortedServices]= useState([])
+    const [searchServices, setSearchServices]= useState([])
     const [checkedState, setCheckedState] = useState(
         new Array(categoriesList.length).fill(true)
     );
@@ -49,6 +50,8 @@ const categoriesList = [
 
     //console.log(popularPosts)
     //console.log(users)
+    console.log("checkedState",checkedState)
+    console.log('sortCategories',sortCategories)
 
     useEffect(() => {
         
@@ -123,26 +126,42 @@ const categoriesList = [
             }
             else
             {
-                var sortedServices = Array();
-                sortCategories.forEach(element => {
+               // console.log("posts",posts)
+                var searchServices = Array();
+                const regex = new RegExp(search, 'i')
+                posts.forEach(element => {
+                    if(element.text.match(regex))
+                    {
+                        //console.log("element.text.match(regex)",element.text.match(regex).length)
+                        searchServices.push(element)
+                        //setSortedServices(sortedServices => [...sortedServices, element]);
+                    }
                     
-                    var filter = posts.filter(e => e.category == element);
-                    filter.forEach(element => {
-                        sortedServices.push(element);
-                    });
-                    
-
                 });
+                //console.log("sortedServices",sortedServices)
+                
+               
+                
+                // sortCategories.forEach(element => {
+                    
+                //     var filter = posts.filter(e => e.category == element);
+                //     filter.forEach(element => {
+                //         sortedServices.push(element);
+                //     });
+                    
 
-                if(!sortedServices.length){
+                // });
+                //console.log("sortedServices.length",sortedServices)
+
+                if(searchServices.length == 0){
                     toast.info('Пока таких услуг нет')
                 }
                 else{
                     checkedRatingSort
                     ?
-                    setSortedServices(sortedServices.sort((a, b) => parseFloat(b.rating) - parseFloat(a.rating)))
+                    setSortedServices(searchServices.sort((a, b) => parseFloat(b.rating) - parseFloat(a.rating)))
                     :
-                    setSortedServices(sortedServices)
+                    setSortedServices(searchServices)
                 }
                 // console.log('cat',cat)
                 // const data = await axios.get(`/posts/sorted/${search}`);
@@ -166,9 +185,13 @@ const categoriesList = [
     }
 
     const fetchSort = () =>{
-        categoriesList.forEach(element => {
-            setSortCategories(sortCategories => [...sortCategories, element.value]);
-        });
+        console.log('sortCategories.length',sortCategories.length)
+        if(sortCategories.length == 0){
+            categoriesList.forEach(element => {
+                setSortCategories(sortCategories => [...sortCategories, element.value]);
+            });
+        }
+        
     }
 
     const cancelSearch = async (e) => {
@@ -177,7 +200,7 @@ const categoriesList = [
             setSortedServices([])
             setSearch('')
             
-            console.log('sort',sortedServices)
+            //console.log('sort',sortedServices)
 
             // var select = document.getElementById('catlist1');
             // var value = select.options[select.selectedIndex].value;
@@ -261,6 +284,7 @@ const categoriesList = [
         
         //setSortCategories([...value])
     }
+
     const handleOnChangeAllSort = () => {
         
         if(checkedStateAll){
@@ -279,28 +303,39 @@ const categoriesList = [
 
     const handleCategoriesSort = async () =>{
         var str = sortCategories.join(' ')
-       
-        var sortedServices = Array();
-        sortCategories.forEach(element => {
+        //console.log("arr",arr)
+
+        if(sortCategories.length == 0){
+            toast.info('Не выбрана ни одна категория')
+        }
+        else{
+        
+            var sortedServicesLocal = Array();
+            sortCategories.forEach(element => {
             
             var filter = posts.filter(e => e.category == element);
             filter.forEach(element => {
-                sortedServices.push(element);
+                sortedServicesLocal.push(element);
             });
             
 
         });
+        //console.log('aaa',sortedServicesLocal.length)
 
-        if(!sortedServices.length){
+        if(sortedServicesLocal.length == 0){
+            console.log('dasdsa')
             toast.info('Пока таких услуг нет')
         }
         else{
             checkedRatingSort
             ?
-            setSortedServices(sortedServices.sort((a, b) => parseFloat(b.rating) - parseFloat(a.rating)))
+            setSortedServices(sortedServicesLocal.sort((a, b) => parseFloat(b.rating) - parseFloat(a.rating)))
             :
-            setSortedServices(sortedServices)
+            setSortedServices(sortedServicesLocal)
         }
+        }
+       
+        
 
         
         // var sortedValues = sortedServices.sort((a, b) => parseFloat(b.rating) - parseFloat(a.rating));
@@ -352,7 +387,7 @@ const categoriesList = [
     
 
     
-    console.log('sortCat',sortCategories);
+    //console.log('sortCat',sortCategories);
 
     // console.log('posts.length',posts.length);
     // console.log("posts",posts)
@@ -449,14 +484,14 @@ const categoriesList = [
                                         <label> По рейтингу</label>
                                         </div>
                                         <div className="all-categories">
-                                        <input
+                                        {/* <input
                                             type="checkbox"
                                             
                                             value="Все категории"
                                             checked={checkedStateAll}
                                             onChange={() => handleOnChangeAllSort()}
-                                        />
-                                        <label> Все категории</label>
+                                        /> */}
+                                        <label> Категории</label>
                                         </div>
                                         
                         </div>
