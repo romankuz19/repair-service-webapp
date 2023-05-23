@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-05-23T11:28:01.885Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36" etag="8X_nQEhP3_6suXZ-1eMX" version="21.3.2" type="github">
+<mxfile host="app.diagrams.net" modified="2023-05-23T11:30:00.120Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36" etag="zli_QNaPkN0WkDqMyzQW" version="21.3.2" type="github">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
-    <mxGraphModel dx="1595" dy="806" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+    <mxGraphModel dx="1320" dy="716" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
@@ -116,8 +116,8 @@
         <mxCell id="jdmytNQlxL5rp2lW7gn1-7" value="&lt;font&gt;&lt;span style=&quot;font-size: 18px;&quot;&gt;&lt;b&gt;Framework &lt;/b&gt;Mongoose.js&lt;br&gt;&lt;/span&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;fontStyle=2" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="520.45" y="581" width="120" height="92" as="geometry" />
         </mxCell>
-        <mxCell id="jdmytNQlxL5rp2lW7gn1-8" value="Object-Relational&lt;br&gt;&amp;nbsp;Mapping" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;fontStyle=2" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
-          <mxGeometry x="627.6800000000001" y="547" width="161" height="60" as="geometry" />
+        <mxCell id="jdmytNQlxL5rp2lW7gn1-8" value="Object-Document&lt;br&gt;&amp;nbsp;Mapping" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;fontStyle=2" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="628.6800000000001" y="547" width="160" height="60" as="geometry" />
         </mxCell>
         <mxCell id="jdmytNQlxL5rp2lW7gn1-9" value="&lt;font style=&quot;font-size: 25px;&quot;&gt;&amp;nbsp;SQL query&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=25;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;fontStyle=2" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="382.23" y="556" width="131" height="42" as="geometry" />
