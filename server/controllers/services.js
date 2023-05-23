@@ -56,8 +56,31 @@ export const createPost = async (req, res) => {
 // Get All Posts
 export const getAll = async (req, res) => {
     try {
-        const posts = await Post.find().sort('-createdAt')
+        var skipValue = 5;
+        var limitValue = 5;
+        const page = req.params.page
+        console.log('page',page)
+        var count;
+        count = Post.countDocuments(function(err, c) {
+            console.log(c);
+            count = c;
+        });
+        console.log('count',count)
+        var services;
+        if(page == 1){
+             services = await Post.find().limit(limitValue).sort('-createdAt');
+        }
+        else if (page > 1){
+             services = await Post.find().skip(skipValue*(page-1)).limit(limitValue).sort('-createdAt');
+        }
+        //const posts = await Post.find().sort('-createdAt')
         const popularPosts = await Post.find().limit(5).sort('-views')
+
+        
+        
+        //console.log('services', services)
+        //console.log('services2', services2)
+        const posts = services;
         const users = await User.find()
 
         for (let index = 0; index < posts.length; index++) {
@@ -202,6 +225,7 @@ export const sortedServices = async (req, res) => {
 // Get Post By Id
 export const getById = async (req, res) => {
     try {
+        console.log("req.params",req.params)
         const post = await Post.findByIdAndUpdate(req.params.id, {
             $inc: { views: 1 },
         })

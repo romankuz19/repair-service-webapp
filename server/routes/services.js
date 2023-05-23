@@ -19,6 +19,10 @@ const router = new Router()
 // http://localhost:3002/api/posts
 router.post('/', checkAuth, createPost)
 
+// Create Post
+// http://localhost:3002/api/posts
+router.get('/:page', getAll)
+
 // Get All Posts
 // http://localhost:3002/api/posts
 router.get('/', getAll)

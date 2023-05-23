@@ -441,7 +441,7 @@ export const ServicePage = () => {
 
          <div className='flex gap-3'>
                  <button className='flex items-center justify-center gap-2 text-black opacity-80'>
-                     <Link to={`/service/${params.id}/edit`}>
+                     <Link to={`/services/${params.id}/edit`}>
                          <AiTwotoneEdit />
                      </Link>
                  </button>

@@ -11,6 +11,8 @@ import { ServiceItem } from '../components/ServiceItem'
 import { Toast } from 'bootstrap'
 import { toast } from 'react-toastify'
 import { async } from 'react-input-emoji'
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 //import { Button } from 'react-bootstrap';
 
 export const ServicesPage = () => {
@@ -35,8 +37,9 @@ const categoriesList = [
         ];
     const dispatch = useDispatch()
     const [searchParams, setSearchParams] = useSearchParams();
-    const { posts, popularPosts, users } = useSelector((state) => state.post)
+    const { posts, popularPosts, users, pageQty } = useSelector((state) => state.post)
     const [cat, setCat] = useState('')
+    
     const [search, setSearch] = useState('')
     const [sortedServices, setSortedServices]= useState([])
     const [searchServices, setSearchServices]= useState([])
@@ -46,20 +49,26 @@ const categoriesList = [
     const [checkedStateAll, setCheckedStateAll] = useState(true);
     const [checkedRatingSort, setCheckedRatingSort] = useState(false);
     const [sortCategories, setSortCategories]= useState([])
+
+    
+    const [currentPage, setCurrentpage] = useState(1);
     
 
     //console.log(popularPosts)
     //console.log(users)
-    console.log("checkedState",checkedState)
-    console.log('sortCategories',sortCategories)
+    // console.log("checkedState",checkedState)
+    // console.log('sortCategories',sortCategories)
 
     useEffect(() => {
         
-        dispatch(getAllPosts())
+        dispatch(getAllPosts(currentPage))
        
         
-    }, [dispatch])
+    }, [dispatch, currentPage])
 
+
+
+    console.log('pageQty',pageQty)
 
 
 
@@ -126,6 +135,7 @@ const categoriesList = [
             }
             else
             {
+                const data = await axios.get(`/posts/sorted/${search}`);
                // console.log("posts",posts)
                 var searchServices = Array();
                 const regex = new RegExp(search, 'i')
@@ -164,7 +174,7 @@ const categoriesList = [
                     setSortedServices(searchServices)
                 }
                 // console.log('cat',cat)
-                // const data = await axios.get(`/posts/sorted/${search}`);
+                 
                 // console.log('data',data)
                 // if(data.data.sortedServices.length==0){
                 //     toast.info('По такому запросу ничего не нашлось :( \n Попробуйте снова')
@@ -400,6 +410,7 @@ const categoriesList = [
             </div>
         )
     }
+    console.log('curpage',currentPage)
 
     
     return (
@@ -530,7 +541,17 @@ const categoriesList = [
                         <button className='btn-color text-white font-bold rounded-lg text-sm px-3 py-2 ml-5' onClick={cancelCategoriesSort}>Х</button>
                         
                     </div>
+                    
                 </div>
+                <div>
+
+                </div>
+                <Stack spacing={2}>
+                        
+                        <Pagination count={pageQty} color="primary" onClick={(e) => setCurrentpage(e.target.innerText) }  />
+                       
+                        
+                </Stack>
             </div></>
     )
 }

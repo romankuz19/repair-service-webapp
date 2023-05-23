@@ -64,7 +64,7 @@ export const TaskItem = ({ task, user }) => {
         )
     }
     return (
-        <Link to={`/task/${task._id}`}>
+        <Link to={`/tasks/${task._id}`}>
             {/* <div className='flex justify-around border-2 shadow-lg rounded-lg p-2'>
                 <div className='flex min-w-[250px] leftcard flex-col gap-2'>
                     <div className='text-2xl text-blue-600 font-bold opacity-100'>{task.title}</div>

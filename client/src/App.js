@@ -34,14 +34,14 @@ function App() {
             <Routes>
                 <Route path='/' element={<ServicesPage />} />
                 <Route path='tasks' element={<TasksPage />} />
-                <Route path='my-services' element={<MyServicesPage />} />
-                <Route path='my-tasks' element={<MyTasksPage />} />
-                <Route path='service/:id' element={<ServicePage />} />
-                <Route path='service/:id/edit' element={<EditServicePage />} />
-                <Route path='task/:id' element={<TaskPage />} />
-                <Route path='task/:id/edit' element={<EditTaskPage />} />
-                <Route path='create-service' element={<AddServicePage />} />
-                <Route path='create-task' element={<AddTaskPage />} />
+                <Route path='services/my-services' element={<MyServicesPage />} />
+                <Route path='tasks/my-tasks' element={<MyTasksPage />} />
+                <Route path='services/:id' element={<ServicePage />} />
+                <Route path='services/:id/edit' element={<EditServicePage />} />
+                <Route path='tasks/:id' element={<TaskPage />} />
+                <Route path='tasks/:id/edit' element={<EditTaskPage />} />
+                <Route path='services/create-service' element={<AddServicePage />} />
+                <Route path='tasks/create-task' element={<AddTaskPage />} />
                 <Route path='register' element={<RegisterPage />} />
                 <Route path='login' element={<LoginPage />} />
                 <Route path='profile' element={<MyProfilePage />} />

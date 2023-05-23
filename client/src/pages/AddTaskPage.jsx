@@ -12,6 +12,7 @@ export const AddTaskPage = () => {
     const [address, setAddress] = useState('')
     const [cat, setCat] = useState('')
     const [description, setDescription] = useState('')
+    
 
       const sortOptions = [
        
@@ -45,7 +46,7 @@ export const AddTaskPage = () => {
             data.append('category', cat)
             data.append('price', price)
             dispatch(createTask(data))
-            navigate('/my-tasks')
+            navigate('/tasks/my-tasks')
             window.location.reload(false);
         } catch (error) {
             console.log(error)

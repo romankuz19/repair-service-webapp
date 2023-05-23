@@ -322,7 +322,7 @@ export const TaskPage = () => {
                             <div className='flex flex-row gap-3 justify-end'>
                                 <div className='flex'>
                                 <button className='flex items-center justify-center gap-2 text-black opacity-80'>
-                                    <Link to={`/task/${params.id}/edit`}>
+                                    <Link to={`/tasks/${params.id}/edit`}>
                                         <AiTwotoneEdit />
                                     </Link>
                                 </button>

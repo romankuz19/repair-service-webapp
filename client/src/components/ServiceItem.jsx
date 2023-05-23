@@ -68,7 +68,7 @@ export const ServiceItem = ({ service, user }) => {
         )
     }
     return (
-        <Link to={`/service/${service._id}`}>
+        <Link to={`/services/${service._id}`}>
             <div className='flex flex-grow border-2 shadow-lg rounded-lg p-2'>
                 <div className='leftcard flex-none'>
                 <div

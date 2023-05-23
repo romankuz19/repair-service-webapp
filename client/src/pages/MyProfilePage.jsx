@@ -191,16 +191,16 @@ export const MyProfilePage = () => {
                 </div>
                 <ul className='grid grid-cols-2 gap-4  justify-items-center 2xl:flex justify-center gap-8   '>
                     
-                    <button className='max-w-[200px] items-center   font-bold  rounded-lg btn-color text-white hover:bg-blue-800 px-4 py-2' onClick={()=>navigate('/my-services')}>
+                    <button className='max-w-[200px] items-center   font-bold  rounded-lg btn-color text-white hover:bg-blue-800 px-4 py-2' onClick={()=>navigate('/services/my-services')}>
                     Мои услуги
                     </button>
-                    <button className='max-w-[200px]  items-center  font-bold  rounded-lg btn-color text-white hover:bg-blue-800 px-4 py-2' onClick={()=>navigate('/my-tasks')}>
+                    <button className='max-w-[200px]  items-center  font-bold  rounded-lg btn-color text-white hover:bg-blue-800 px-4 py-2' onClick={()=>navigate('/tasks/my-tasks')}>
                     Мои заказы
                     </button>
-                    <button className='max-w-[200px] items-center  font-bold  rounded-lg btn-color text-white hover:bg-blue-800 px-4 py-2' onClick={()=>navigate('/create-service')}>
+                    <button className='max-w-[200px] items-center  font-bold  rounded-lg btn-color text-white hover:bg-blue-800 px-4 py-2' onClick={()=>navigate('/services/create-service')}>
                     Добавить услугу
                     </button>
-                    <button className='max-w-[200px]  items-center  font-bold  rounded-lg btn-color text-white hover:bg-blue-800 px-4 py-2' onClick={()=>navigate('/create-task')}>
+                    <button className='max-w-[200px]  items-center  font-bold  rounded-lg btn-color text-white hover:bg-blue-800 px-4 py-2' onClick={()=>navigate('/tasks/create-task')}>
                     Создать заказ
                     </button>
 

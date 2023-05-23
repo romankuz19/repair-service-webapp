@@ -30,7 +30,7 @@ export const AddServicePage = () => {
             data.append('price', price)
             data.append('image', image)
             dispatch(createPost(data))
-            navigate('/my-services')
+            navigate('/services/my-services')
             window.location.reload(false);
         } catch (error) {
             console.log(error)
