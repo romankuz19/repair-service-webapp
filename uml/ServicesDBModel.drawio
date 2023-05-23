@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-05-23T10:08:11.075Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36" etag="jFBMLMul8cZHBRqdxabu" version="21.3.2" type="github">
+<mxfile host="app.diagrams.net" modified="2023-05-23T10:10:03.079Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36" etag="33DOGwM6qUivlci--5Xk" version="21.3.2" type="github">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
     <mxGraphModel dx="1094" dy="553" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
@@ -48,7 +48,7 @@
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="236" y="155" />
-              <mxPoint x="236" y="367" />
+              <mxPoint x="236" y="343" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -56,7 +56,7 @@
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="699" y="205" />
-              <mxPoint x="699" y="429" />
+              <mxPoint x="699" y="360" />
             </Array>
             <mxPoint x="672.95" y="202" as="sourcePoint" />
           </mxGeometry>
@@ -83,7 +83,7 @@
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="480" y="221" />
-              <mxPoint x="480" y="464" />
+              <mxPoint x="480" y="393" />
             </Array>
             <mxPoint x="661.95" y="215" as="sourcePoint" />
             <mxPoint x="792.95" y="355" as="targetPoint" />
@@ -125,7 +125,7 @@
         <mxCell id="jdmytNQlxL5rp2lW7gn1-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontColor=default;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;fontSize=14;startArrow=ERzeroToMany;startFill=0;endArrow=ERmandOne;endFill=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="zkfFHV4jXpPFQw0GAbJ--14" target="zkfFHV4jXpPFQw0GAbJ--1" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="702" y="161" />
+              <mxPoint x="702" y="159" />
               <mxPoint x="702" y="65" />
             </Array>
             <mxPoint x="669" y="215" as="sourcePoint" />
