@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-05-23T10:06:24.623Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36" etag="t9uEDzNH89D0KP71tBVh" version="21.3.2" type="github">
+<mxfile host="app.diagrams.net" modified="2023-05-23T10:08:11.075Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36" etag="jFBMLMul8cZHBRqdxabu" version="21.3.2" type="github">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
-    <mxGraphModel dx="1320" dy="667" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+    <mxGraphModel dx="1094" dy="553" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
@@ -47,16 +47,16 @@
         <mxCell id="ptHrVthuVrJp5P6MsZrQ-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontColor=default;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;startArrow=ERmandOne;startFill=0;endArrow=ERzeroToMany;endFill=0;fontSize=14;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="ptHrVthuVrJp5P6MsZrQ-9" target="zkfFHV4jXpPFQw0GAbJ--7" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="235.95" y="155" />
-              <mxPoint x="235.95" y="343" />
+              <mxPoint x="236" y="155" />
+              <mxPoint x="236" y="367" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="ptHrVthuVrJp5P6MsZrQ-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontColor=default;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;fontSize=14;startArrow=ERmandOne;startFill=0;endArrow=ERzeroToMany;endFill=0;exitX=1.008;exitY=0.886;exitDx=0;exitDy=0;exitPerimeter=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="zkfFHV4jXpPFQw0GAbJ--1" target="zkfFHV4jXpPFQw0GAbJ--25" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="698.95" y="205" />
-              <mxPoint x="698.95" y="357" />
+              <mxPoint x="699" y="205" />
+              <mxPoint x="699" y="429" />
             </Array>
             <mxPoint x="672.95" y="202" as="sourcePoint" />
           </mxGeometry>
@@ -83,7 +83,7 @@
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="480" y="221" />
-              <mxPoint x="480" y="386" />
+              <mxPoint x="480" y="464" />
             </Array>
             <mxPoint x="661.95" y="215" as="sourcePoint" />
             <mxPoint x="792.95" y="355" as="targetPoint" />
@@ -125,17 +125,17 @@
         <mxCell id="jdmytNQlxL5rp2lW7gn1-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontColor=default;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;fontSize=14;startArrow=ERzeroToMany;startFill=0;endArrow=ERmandOne;endFill=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="zkfFHV4jXpPFQw0GAbJ--14" target="zkfFHV4jXpPFQw0GAbJ--1" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="702" y="143" />
+              <mxPoint x="702" y="161" />
               <mxPoint x="702" y="65" />
             </Array>
             <mxPoint x="669" y="215" as="sourcePoint" />
             <mxPoint x="753" y="367" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="agAgCuhw3A-59575QKTY-0" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontColor=default;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;startArrow=ERzeroToMany;startFill=0;endArrow=ERmandOne;endFill=0;fontSize=14;exitX=0.996;exitY=0.371;exitDx=0;exitDy=0;exitPerimeter=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="zkfFHV4jXpPFQw0GAbJ--7" target="zkfFHV4jXpPFQw0GAbJ--1" edge="1">
+        <mxCell id="agAgCuhw3A-59575QKTY-0" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontColor=default;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;startArrow=ERzeroToMany;startFill=0;endArrow=ERmandOne;endFill=0;fontSize=14;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="zkfFHV4jXpPFQw0GAbJ--7" target="zkfFHV4jXpPFQw0GAbJ--1" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="464" y="330" />
+              <mxPoint x="464" y="350" />
               <mxPoint x="464" y="75" />
             </Array>
             <mxPoint x="267" y="165" as="sourcePoint" />
