@@ -126,8 +126,15 @@ export const TaskItem = ({ task, user }) => {
                     </div>
                     <div className='text-small-color opacity-90 text-2xl  line-clamp-4'>{task.price} ₽</div>
                 </div>
-                <div className='flex justify-between items-center '>
-                <div className='text-small-color opacity-90 text-2xl  line-clamp-4 pt-1'>до {task.date}</div>
+                <div className='flex justify-between items-center my-1'>
+                    
+                    <div className='text-small-color opacity-90 text-2xl  line-clamp-4 pt-1'>до {task.date}
+                     </div>
+                    {/* <div className='text-cat-color text-m pb-1 my-1'>Статус: {task.status == 'opened'?'Открыт':''}</div> */}
+
+                    
+
+                
                 {/* <hr style={{ width: "20%", border: "0.1px solid #ececec" }} /> */}
                 
                      
@@ -142,7 +149,11 @@ export const TaskItem = ({ task, user }) => {
                 </div>
                 
 
+                <div className='flex justify-between items-center '>
                 <div className='text-cat-color text-m '>{user.length>1?firstname:user.firstname} {user.length>1?secondname:user.secondname}</div>
+                
+                </div>
+                
                 
                 <div className='flex justify-between'>
 

@@ -61,14 +61,38 @@ const categoriesList = [
 
     useEffect(() => {
         
-        dispatch(getAllPosts(currentPage))
+        dispatch(getAllPosts())
+
        
         
-    }, [dispatch, currentPage])
+    }, [dispatch])
 
 
 
-    console.log('pageQty',pageQty)
+    const handleChangePage = (e) =>{
+        console.log("e",e)
+        if(e.target.innerText)
+        {
+        setCurrentpage(e.target.innerText)
+        console.log(e.target.innerText)
+        }
+        else if(e.target.dataset.testid){
+            let result = e.target.dataset.testid.indexOf('Before');
+            if(result == -1) 
+            { 
+                if(currentPage<pageQty)setCurrentpage(currentPage+1)
+            }
+            else {
+                if(currentPage>1)setCurrentpage(currentPage-1)
+            }
+            
+        }
+        
+        
+
+
+    }
+    //console.log('currentPage',currentPage)
 
 
 
@@ -164,7 +188,8 @@ const categoriesList = [
                 //console.log("sortedServices.length",sortedServices)
 
                 if(searchServices.length == 0){
-                    toast.info('Пока таких услуг нет')
+                    // toast.info('Пока таких услуг нет')
+                    toast.info(`По запросу "${search}" ничего не нашлось`)
                 }
                 else{
                     checkedRatingSort
@@ -195,7 +220,7 @@ const categoriesList = [
     }
 
     const fetchSort = () =>{
-        console.log('sortCategories.length',sortCategories.length)
+        //console.log('sortCategories.length',sortCategories.length)
         if(sortCategories.length == 0){
             categoriesList.forEach(element => {
                 setSortCategories(sortCategories => [...sortCategories, element.value]);
@@ -410,7 +435,7 @@ const categoriesList = [
             </div>
         )
     }
-    console.log('curpage',currentPage)
+    //console.log('curpage',currentPage)
 
     
     return (
@@ -543,15 +568,19 @@ const categoriesList = [
                     </div>
                     
                 </div>
-                <div>
-
-                </div>
-                <Stack spacing={2}>
+                <div className=' flex items-center justify-center mt-5'>
+                {/* <Stack spacing={2}>
                         
-                        <Pagination count={pageQty} color="primary" onClick={(e) => setCurrentpage(e.target.innerText) }  />
+                        <Pagination count={pageQty} color="primary" onClick={ 
+                        handleChangePage
+                            // setCurrentpage(e.target.innerText)
+                            //console.log(e.target.dataset.testid)
+                             }  />
                        
                         
-                </Stack>
+                </Stack> */}
+                </div>
+               
             </div></>
     )
 }

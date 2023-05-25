@@ -21,11 +21,8 @@ router.post('/', checkAuth, createPost)
 
 // Create Post
 // http://localhost:3002/api/posts
-router.get('/:page', getAll)
-
-// Get All Posts
-// http://localhost:3002/api/posts
 router.get('/', getAll)
+
 
 // Get sorted Posts
 // http://localhost:3002/api/posts/sorted/cat/:name

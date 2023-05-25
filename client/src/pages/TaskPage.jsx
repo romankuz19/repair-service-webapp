@@ -23,6 +23,8 @@ import { MessageItem } from '../components/MessageItem.jsx'
 import { checkIsAuth, logout } from '../redux/features/auth/authSlice'
 import { createChat, getChatMessages, createMessage } from '../redux/features/chat/chatSlice'
 import { Chat } from '../components/Chat.jsx'
+import swal from 'sweetalert';
+
 
 
 export const TaskPage = () => {
@@ -130,13 +132,92 @@ export const TaskPage = () => {
     }, [getMessages])
 
 
+    const cancelTaskHandler = async () =>{
+        try {
+            console.log('params',params)
+            // dispatch(removeTask(params.id))
+            try {
+                
+                    const { data } = await axios.patch(`/tasks/${params.id}/status_cancel`)
+                    //console.log(data)
+                    console.log(data)
+                
+                // dispatch(getChatMessages(chat._id))
+                
+            } catch (error) {
+                console.log(error)
+            }
+
+            toast.info('Задание было отменено')
+            //navigate('/tasks')
+            window.location.reload(false);
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     const removeTaskHandler = async () =>{
         try {
             console.log('params',params)
-            dispatch(removeTask(params.id))
-            toast.info('Задание было удалено')
-            navigate('/tasks')
-            //window.location.reload(false);
+            swal({
+                title: "Вы точно хотите удалить заказ?",
+                text: "Эту операцию нельзя отменить",
+                icon: "warning",
+                buttons: ["Отмена", "Удалить"],
+                dangerMode: true,
+              })
+              .then((willDelete) => {
+                if (willDelete) {
+                    dispatch(removeTask(params.id))
+                  swal("Задание было удалено", {
+                    icon: "success",
+                    button: "Закрыть"
+                  });
+                  navigate('/tasks/my-tasks')
+                  //window.location.reload(false);
+                } else {
+                  toast.info("Задание не было удалено");
+                }
+              });
+            
+            // if(window.confirm("Вы точно хотите удалить заказ? Эту операцию нельзя отменить")){
+            //     dispatch(removeTask(params.id))
+            //     toast.info('Задание было удалено')
+            //     navigate('/tasks/my-tasks')
+            //     window.location.reload(false);
+            // }
+            // else{
+            //     toast.info('Задание не было удалено')
+            // }
+
+            
+            
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+
+
+    const completeTaskHandler = async () =>{
+        try {
+            console.log('params',params)
+            // dispatch(removeTask(params.id))
+            try {
+                
+                    const { data } = await axios.patch(`/tasks/${params.id}/status_complete`)
+                    //console.log(data)
+                    console.log(data)
+                
+                // dispatch(getChatMessages(chat._id))
+                
+            } catch (error) {
+                console.log(error)
+            }
+
+            toast.info('Задание было выполнено и завершено')
+            navigate(`/tasks/${params.id}`)
+            window.location.reload(false);
         } catch (error) {
             console.log(error)
         }
@@ -298,62 +379,113 @@ export const TaskPage = () => {
 
                <div className='flex items-center'>
                { 
-                isAuth && (currentUser._id !== ownerTaskUser._id) ? (<div className='flex text-m font-bold text-white rounded-lg btn-color-main p-1 cursor-pointer hover:bg-blue-800 '
-                onClick={handleRespondTask}>
-                  Откликнуться
-                </div>) 
-                : !isAuth ? (<div className='flex text-m font-bold rounded-lg btn-color-main p-1 text-white cursor-pointer hover:bg-blue-800 '
-                onClick={()=> {navigate('/login');toast.info('Сперва войдите в аккаунт')}}>
+                isAuth && (currentUser?._id !== ownerTaskUser?._id) ? (<><div className='flex text-m font-bold text-white rounded-lg btn-color-main p-1 cursor-pointer hover:bg-blue-800 '
+                                    onClick={handleRespondTask}>
+                                    Откликнуться
+                                </div>
+                                <div className='text-cat-color text-m pb-1 my-1 ml-3'>Статус: {task.status == 'opened'?'Открыт':task.status == 'completed'?'Завершен':task.status == 'canceled'?'Отменен':''}</div></>
+                ) 
+                : !isAuth ? (<>
+                <   div className='flex flex-row gap-3'>
+
                 
-                Откликнуться
-                </div>)
-                : isAuth && (currentUser._id === ownerTaskUser._id) ? (<div></div>):(<div></div>)}
+                <div className='flex text-m font-bold rounded-lg btn-color-main p-1 text-white cursor-pointer hover:bg-blue-800 '
+                                        onClick={() => { navigate('/login'); toast.info('Сперва войдите в аккаунт') } }>
+
+                                        Откликнуться
+                                    </div>
+                                    <div className='text-cat-color text-m pb-1 my-1'>Статус: {task.status == 'opened'?'Открыт':task.status == 'completed'?'Завершен':task.status == 'canceled'?'Отменен':''}</div>
+                                    </div>
+                                    </>)
+                
+                : isAuth && (currentUser._id === ownerTaskUser._id) ? (
+                <><div className='flex flex-row gap-3 items-center'>
+                    <button className='flex items-center justify-center gap-2 text-xs text-black opacity-50'>
+                                                        <AiFillEye /> <span>{task.views}</span>
+                                                    </button>
+
+                    <div className='text-cat-color font-bold text-m pb-1 my-1'>Статус: {task.status == 'opened' ? 'Открыт' : task.status == 'completed' ? 'Завершен' : task.status == 'canceled' ? 'Отменен' : ''}
+                                                    
+                                                </div>
+                                                
+
+                                            </div>
+                                            </>):(<div></div>)}
                </div>
 
-              
-
-
-               {((currentUser?._id === ownerTaskUser._id) || (currentUser?.admin===true)) ?  (
-                    <div className='flex flex-row justify-between'>
-                        <button className='flex items-center justify-center gap-2 text-xs text-black opacity-50'>
-                            <AiFillEye /> <span>{task.views}</span>
-                        </button>
                         
-                            <div className='flex flex-row gap-3 justify-end'>
-                                <div className='flex'>
-                                <button className='flex items-center justify-center gap-2 text-black opacity-80'>
-                                    <Link to={`/tasks/${params.id}/edit`}>
-                                        <AiTwotoneEdit />
-                                    </Link>
-                                </button>
-                                </div>
-                                <div className='flex'>
+
+                </div>
+
+
+                {((currentUser?._id === ownerTaskUser._id) || (currentUser?.admin===true)) &&  (
+                    <div className='flex flex-col justify-center gap-3'>
+                        
+                                     {task.status == 'opened'? (<><div className='flex gap-2 items-center justify-center'>
+
+
                                 <button
-                                    onClick={removeTaskHandler}
-                                    className='flex items-center justify-center gap-2  text-black opacity-80'
-                                >
-                                    <AiFillDelete />
+                                    onClick={completeTaskHandler}
+                                    className='flex items-center justify-center gap-2 text-green-700 font-bold opacity-80'>
+
+                                    Завершить
+
                                 </button>
-                                </div>
-                                
                             </div>
+                            <div className='flex gap-2 items-center justify-center'>
+                                    
+                                    <button className='flex items-center justify-center gap-2 text-blue-700 font-bold opacity-80'>
+                                        <Link to={`/tasks/${params.id}/edit`}>
+                                        Изменить
+                                        </Link>
+                                    </button>
+                                    </div><div className='flex gap-2 items-center justify-center'>
+
+                                    <button
+                                        onClick={cancelTaskHandler}
+                                        className='flex items-center justify-center gap-2 font-bold text-red-800 opacity-80'
+                                    >
+                                        Отменить
+                                    </button>
+                                </div>
+                                <div className='flex gap-2 items-center justify-center'>
+
+                                    <button
+                                        onClick={removeTaskHandler}
+                                        className='flex items-center justify-center gap-2 font-bold text-red-400 opacity-100'
+                                    >
+                                        Удалить
+                                    </button>
+                                </div></>): task.status == 'canceled'?(<div className='flex gap-2 items-center justify-center'>
+                                    
+                                    <button className='flex items-center justify-center gap-2 text-green-700 font-bold opacity-80'>
+                                        <Link to={`/tasks/${params.id}/edit`}>
+                                        Переоткрыть
+                                        </Link>
+                                    </button>
+                                    </div>):task.status == 'completed'?(<div className='flex gap-2 items-center justify-center'>
+                                    
+                                    <button className='flex items-center justify-center gap-2 text-green-700 font-bold opacity-80'>
+                                        <Link to={`/tasks/${params.id}/edit`}>
+                                        Переоткрыть
+                                        </Link>
+                                    </button>
+                                    </div>):(<div></div>)
+
+                                     }
+                                    
+                            
+                                
+                                
+                                
+                            
+
+                            
                        
                         
                     </div>
-                     ):
-                     (<div className='flex justify-center'>
-                     {/* <button className='flex items-center justify-center gap-2 text-xs text-black opacity-50'>
-                         <AiFillEye /> <span>{task.views}</span>
-                     </button> */}
-                     
-                     
-                     </div>)
-                     }
+                     )}
 
-                    
-        
-
-                </div>
                  
                 
             </div>

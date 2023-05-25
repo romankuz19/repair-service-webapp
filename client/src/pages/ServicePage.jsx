@@ -30,6 +30,7 @@ import {
 import { CommentItem } from '../components/CommentItem'
 import { MessageItem } from '../components/MessageItem.jsx'
 import { checkIsAuth, logout } from '../redux/features/auth/authSlice'
+import swal from 'sweetalert';
 
 
 export const ServicePage = () => {
@@ -70,11 +71,31 @@ export const ServicePage = () => {
 
     const removePostHandler = () => {
         try {
-            console.log('params',params)
-            dispatch(removePost(params.id))
-            toast.info('Услуга была удалена')
-            navigate('/')
-            window.location.reload(false);
+            swal({
+                title: "Вы точно хотите удалить услугу?",
+                text: "Эту операцию нельзя отменить",
+                icon: "warning",
+                buttons: ["Отмена", "Удалить"],
+                dangerMode: true,
+              })
+              .then((willDelete) => {
+                if (willDelete) {
+                    dispatch(removePost(params.id))
+                  swal("Услуга была удалена", {
+                    icon: "success",
+                    button: "Закрыть"
+                  });
+                  navigate('/services/my-services')
+                  window.location.reload(false);
+                } else {
+                  toast.info("Услуга не была удалена");
+                }
+              });
+            // console.log('params',params)
+            
+            // toast.info('Услуга была удалена')
+            // navigate('/')
+            // window.location.reload(false);
         } catch (error) {
             console.log(error)
         }

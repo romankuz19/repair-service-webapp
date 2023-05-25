@@ -56,31 +56,31 @@ export const createPost = async (req, res) => {
 // Get All Posts
 export const getAll = async (req, res) => {
     try {
-        var skipValue = 5;
-        var limitValue = 5;
-        const page = req.params.page
-        console.log('page',page)
-        var count;
-        count = Post.countDocuments(function(err, c) {
-            console.log(c);
-            count = c;
-        });
-        console.log('count',count)
-        var services;
-        if(page == 1){
-             services = await Post.find().limit(limitValue).sort('-createdAt');
-        }
-        else if (page > 1){
-             services = await Post.find().skip(skipValue*(page-1)).limit(limitValue).sort('-createdAt');
-        }
-        //const posts = await Post.find().sort('-createdAt')
+       
+        // var limitValue = 3;
+        // const page = req.params.page
+        // const id = req.params.id
+        // console.log('page',page)
+        // console.log('id',id)
+        
+        
+        // var services;
+        // if(page == 1){
+        //      services = await Post.find().limit(limitValue).sort('-createdAt');
+        // }
+        // else if (page > 1){
+        //      services = await Post.find().skip(limitValue*(page-1)).limit(limitValue).sort('-createdAt');
+        // }
+        // const count = (await Post.find().sort('-createdAt')).length
         const popularPosts = await Post.find().limit(5).sort('-views')
 
-        
+        // console.log('count',pageQty)
+
+        // const pageQty = Math.ceil(count/limitValue);
         
         //console.log('services', services)
         //console.log('services2', services2)
-        const posts = services;
+        const posts = await Post.find().sort('-createdAt');
         const users = await User.find()
 
         for (let index = 0; index < posts.length; index++) {

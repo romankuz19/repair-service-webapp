@@ -6,7 +6,9 @@ import {
     getMyTasks,
     removeTask,
     updateTask,
-    sortedTasks
+    sortedTasks,
+    cancelTask,
+    completeTask
    
 } from '../controllers/tasks.js'
 import { checkAuth } from '../utils/checkAuth.js'
@@ -39,6 +41,13 @@ router.put('/:id', checkAuth, updateTask)
 // Remove Task
 // http://localhost:3002/api/tasks/:id
 router.delete('/:id', checkAuth, removeTask)
+
+// Cancel Task
+// http://localhost:3002/api/tasks/:id
+router.patch('/:id/status_cancel', checkAuth, cancelTask)
+// Complete Task
+// http://localhost:3002/api/tasks/:id
+router.patch('/:id/status_complete', checkAuth, completeTask)
 
 
 export default router

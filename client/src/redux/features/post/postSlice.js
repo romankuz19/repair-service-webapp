@@ -5,7 +5,7 @@ const initialState = {
     posts: [],
     popularPosts: [],
     users: null,
-    pageQty: 1,
+    //pageQty: 1,
     loading: false,
 }
 
@@ -21,9 +21,11 @@ export const createPost = createAsyncThunk(
     },
 )
 
-export const getAllPosts = createAsyncThunk('post/getAllPosts', async (currentPage) => {
+export const getAllPosts = createAsyncThunk('post/getAllPosts', async () => {
     try {
-        const { data } = await axios.get(`/posts/${currentPage}`)
+        const { data } = await axios.get(`/posts/
+        
+        `)
         console.log("data",data)
         return data
     } catch (error) {
@@ -82,7 +84,7 @@ export const postSlice = createSlice({
                 state.posts = action.payload.posts
                 state.popularPosts = action.payload.popularPosts
                 state.users = action.payload.users
-                state.pageQty = action.payload.pageQty
+                // state.pageQty = action.payload.pageQty
                 
             } catch (error) {
                 console.log('state',state)

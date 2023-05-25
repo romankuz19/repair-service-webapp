@@ -35,13 +35,16 @@ export const createTask = async (req, res) => {
 // Get All Tasks
 export const getAll = async (req, res) => {
     try {
-        const tasks = await Task.find().sort('-createdAt')
+        // const tasks = await Task.find().where('status').equals('opened').sort('-createdAt')
+        const tasks = await Task.find({status: 'opened'}).sort('-createdAt')
         const users = await User.find()
-        
+        const some = await Task.find().sort('-createdAt')
         if (!tasks) {
             return res.json({ message: 'Заданий нет' })
         }
 
+       
+        console.log("some",some)
         res.json({ tasks, users})
     } catch (error) {
         res.json({ message: 'Что-то пошло не так.' })
@@ -55,7 +58,8 @@ export const getById = async (req, res) => {
             $inc: { views: 1 },
         })
         //console.log('taskAuthor',task.author);
-        const user = await User.findOne().where('_id').equals(task.author)
+        // const user = await User.findOne().where('_id').equals(task.author)
+        const user = await User.findOne({_id:task.author})
         //console.log('user',user)
         res.json({task, user})
     } catch (error) {
@@ -99,6 +103,41 @@ export const removeTask = async (req, res) => {
     }
 }
 
+// Remove post
+export const cancelTask = async (req, res) => {
+    try {
+        const task = await Task.findByIdAndUpdate(req.params.id, {status: 'canceled'}, {
+            new: true
+          })
+        if (!task) return res.json({ message: 'Такого задания не существует' })
+        console.log('task',task)
+
+        
+
+        res.json({ message: 'Задание было отменено.' })
+    } catch (error) {
+        res.json({ message: 'Что-то пошло не так.' })
+    }
+}
+
+// Remove post
+export const completeTask = async (req, res) => {
+    try {
+        const task = await Task.findByIdAndUpdate(req.params.id, {status: 'completed'}, {
+            new: true
+          })
+        if (!task) return res.json({ message: 'Такого задания не существует' })
+        console.log('task',task)
+
+        
+
+        res.json({ message: 'Задание было отменено.' })
+    } catch (error) {
+        res.json({ message: 'Что-то пошло не так.' })
+    }
+}
+
+
 // Update post
 export const updateTask = async (req, res) => {
     try {
@@ -112,6 +151,7 @@ export const updateTask = async (req, res) => {
         task.date = date
         task.address = address
         task.price = price
+        task.status = 'opened'
         await task.save()
 
         res.json(task)

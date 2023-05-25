@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { updateTask } from '../redux/features/task/taskSlice'
 
 import axios from '../utils/axios'
+import { toast } from 'react-toastify'
 
 export const EditTaskPage = () => {
     const [title, setTitle] = useState('')
@@ -43,7 +44,8 @@ export const EditTaskPage = () => {
             // console.log('cat',cat)
             // console.log('upd',updatedTask)
             dispatch(updateTask(updatedTask))
-            navigate('/tasks')
+            navigate(`/tasks/${params.id}`)
+            toast.info("Заказ был обновлен")
             window.location.reload(false);
         } catch (error) {
             console.log(error)

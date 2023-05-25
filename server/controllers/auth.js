@@ -62,6 +62,8 @@ export const login = async (req, res) => {
                 message: 'Такого юзера не существует.',
             })
         }
+        // user.online = true;
+        // user.save();
 
         const isPasswordCorrect = await bcrypt.compare(password, user.password)
 
@@ -78,6 +80,7 @@ export const login = async (req, res) => {
             process.env.JWT_SECRET,
             { expiresIn: '1d' },
         )
+        
 
         res.json({
             token,
