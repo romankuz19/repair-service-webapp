@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-05-25T14:56:20.837Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36" etag="j1KrDSBcik74FtmkUiBL" version="21.3.3" type="github">
+<mxfile host="app.diagrams.net" modified="2023-05-25T15:01:02.759Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36" etag="dNJWZGq7dsVXiVVotI1L" version="21.3.3" type="github">
   <diagram name="Page-1" id="E9xdRc76zqNghz4BqSpp">
-    <mxGraphModel dx="2393" dy="1298" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
+    <mxGraphModel dx="1664" dy="903" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -131,13 +131,31 @@
           <mxGeometry x="327" y="1262" width="33" height="26" as="geometry" />
         </mxCell>
         <mxCell id="c1Twwy1D4Yc-hKS2rIEJ-30" value="Клиент" style="swimlane;horizontal=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="103" y="1640" width="682" height="474.5" as="geometry" />
+          <mxGeometry x="103" y="1640" width="682" height="707" as="geometry" />
         </mxCell>
         <mxCell id="c1Twwy1D4Yc-hKS2rIEJ-18" value="2" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="c1Twwy1D4Yc-hKS2rIEJ-30">
-          <mxGeometry x="301.5" y="54" width="80" height="80" as="geometry" />
+          <mxGeometry x="204.93" y="27" width="80" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="c1Twwy1D4Yc-hKS2rIEJ-33" value="data." style="strokeWidth=1;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;spacing=1;fontSize=16;" vertex="1" parent="c1Twwy1D4Yc-hKS2rIEJ-30">
-          <mxGeometry x="224.88" y="180" width="232.25" height="100" as="geometry" />
+        <mxCell id="c1Twwy1D4Yc-hKS2rIEJ-40" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="c1Twwy1D4Yc-hKS2rIEJ-30" source="c1Twwy1D4Yc-hKS2rIEJ-37" target="c1Twwy1D4Yc-hKS2rIEJ-38">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c1Twwy1D4Yc-hKS2rIEJ-41" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="c1Twwy1D4Yc-hKS2rIEJ-30" source="c1Twwy1D4Yc-hKS2rIEJ-37" target="c1Twwy1D4Yc-hKS2rIEJ-39">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c1Twwy1D4Yc-hKS2rIEJ-37" value="data" style="strokeWidth=1;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;spacing=1;fontSize=16;" vertex="1" parent="c1Twwy1D4Yc-hKS2rIEJ-30">
+          <mxGeometry x="128.8" y="149" width="232.25" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="c1Twwy1D4Yc-hKS2rIEJ-38" value="&lt;div style=&quot;font-family: Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px; line-height: 19px;&quot;&gt;&lt;div style=&quot;color: rgb(204, 204, 204); background-color: rgb(31, 31, 31); line-height: 19px;&quot;&gt;toast.&lt;span style=&quot;color: #dcdcaa;&quot;&gt;info&lt;/span&gt;(&lt;span style=&quot;color: #ce9178;&quot;&gt;`По запросу &quot;&lt;/span&gt;&lt;span style=&quot;color: #569cd6;&quot;&gt;${&lt;/span&gt;&lt;span style=&quot;color: #4fc1ff;&quot;&gt;search&lt;/span&gt;&lt;span style=&quot;color: #569cd6;&quot;&gt;}&lt;/span&gt;&lt;span style=&quot;color: #ce9178;&quot;&gt;&quot; ничего не нашлось`&lt;/span&gt;)&lt;/div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;fontColor=#000000;labelBackgroundColor=default;" vertex="1" parent="c1Twwy1D4Yc-hKS2rIEJ-30">
+          <mxGeometry x="385" y="277" width="232.38" height="102" as="geometry" />
+        </mxCell>
+        <mxCell id="c1Twwy1D4Yc-hKS2rIEJ-39" value="&lt;div style=&quot;font-family: Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px; line-height: 19px;&quot;&gt;res.&lt;span style=&quot;&quot;&gt;json&lt;/span&gt;({&lt;span style=&quot;&quot;&gt;sortedServices&lt;/span&gt;})&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;fontColor=#000000;labelBackgroundColor=default;" vertex="1" parent="c1Twwy1D4Yc-hKS2rIEJ-30">
+          <mxGeometry x="385" y="476" width="232.38" height="102" as="geometry" />
+        </mxCell>
+        <mxCell id="c1Twwy1D4Yc-hKS2rIEJ-42" value="message" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="c1Twwy1D4Yc-hKS2rIEJ-30">
+          <mxGeometry x="289" y="296" width="67" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="c1Twwy1D4Yc-hKS2rIEJ-43" value="sortedServices" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="c1Twwy1D4Yc-hKS2rIEJ-30">
+          <mxGeometry x="274" y="492" width="97" height="26" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
