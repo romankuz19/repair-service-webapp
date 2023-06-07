@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-06-07T14:41:13.166Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36" etag="jwDy0IDiDe2xHaMurVL_" version="21.3.7" type="github">
+<mxfile host="app.diagrams.net" modified="2023-06-07T14:44:10.782Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36" etag="y5IP7JewKYX3Bh2j3fLf" version="21.3.7" type="github">
   <diagram name="Страница 1" id="xJsyMVKvMXLTNkcWZKba">
     <mxGraphModel dx="1595" dy="865" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2336" pageHeight="1654" math="0" shadow="0">
       <root>
@@ -155,11 +155,22 @@
         <mxCell id="HMCEYHRRzIQeLrXfvPrk-37" value="3" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="1281" y="1013" width="14" height="11" as="geometry" />
         </mxCell>
-        <mxCell id="HMCEYHRRzIQeLrXfvPrk-38" value="Обсуждение условий выполнения услуги" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;fontStyle=2;strokeColor=#ff6666;fontSize=16;" vertex="1" parent="1">
+        <mxCell id="HMCEYHRRzIQeLrXfvPrk-46" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="HMCEYHRRzIQeLrXfvPrk-38" target="HMCEYHRRzIQeLrXfvPrk-41">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HMCEYHRRzIQeLrXfvPrk-38" value="Обсуждение условий исполнения услуги" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;fontStyle=2;strokeColor=#ff6666;fontSize=16;" vertex="1" parent="1">
           <mxGeometry x="1428" y="623" width="120" height="94" as="geometry" />
+        </mxCell>
+        <mxCell id="HMCEYHRRzIQeLrXfvPrk-44" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="HMCEYHRRzIQeLrXfvPrk-41">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1841.881510416667" y="776.6666666666667" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="HMCEYHRRzIQeLrXfvPrk-41" value="Ожидание исполнения услуги" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;fontStyle=2;strokeColor=#ff6666;fontSize=16;" vertex="1" parent="1">
           <mxGeometry x="1595" y="730" width="120" height="94" as="geometry" />
+        </mxCell>
+        <mxCell id="HMCEYHRRzIQeLrXfvPrk-45" value="Услуга получена" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1743" y="738" width="60" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
