@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-06-07T14:35:44.227Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36" etag="2gQXaW8TpOf-pIj_Wh_m" version="21.3.7" type="github">
+<mxfile host="app.diagrams.net" modified="2023-06-07T14:41:13.166Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36" etag="jwDy0IDiDe2xHaMurVL_" version="21.3.7" type="github">
   <diagram name="Страница 1" id="xJsyMVKvMXLTNkcWZKba">
-    <mxGraphModel dx="1094" dy="593" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2336" pageHeight="1654" math="0" shadow="0">
+    <mxGraphModel dx="1595" dy="865" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2336" pageHeight="1654" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -53,10 +53,21 @@
         <mxCell id="HMCEYHRRzIQeLrXfvPrk-8" value="Создание заказа на ремонт" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;fontStyle=2;strokeColor=#ff6666;fontSize=16;" vertex="1" parent="1">
           <mxGeometry x="961" y="439" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="HMCEYHRRzIQeLrXfvPrk-9" value="Ожидание отклика от специалистов" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;fontStyle=2;strokeColor=#ff6666;fontSize=16;" vertex="1" parent="1">
-          <mxGeometry x="1162" y="513" width="120" height="94" as="geometry" />
+        <mxCell id="HMCEYHRRzIQeLrXfvPrk-40" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;" edge="1" parent="1" source="HMCEYHRRzIQeLrXfvPrk-9" target="HMCEYHRRzIQeLrXfvPrk-38">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="HMCEYHRRzIQeLrXfvPrk-10" value="Связаться со специалистом через чат или телефон" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;fontStyle=2;strokeColor=#ff6666;fontSize=16;" vertex="1" parent="1">
+        <mxCell id="HMCEYHRRzIQeLrXfvPrk-9" value="Ожидание отклика от специалистов" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;fontStyle=2;strokeColor=#ff6666;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="1168" y="514" width="120" height="94" as="geometry" />
+        </mxCell>
+        <mxCell id="HMCEYHRRzIQeLrXfvPrk-42" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="1" source="HMCEYHRRzIQeLrXfvPrk-10" target="HMCEYHRRzIQeLrXfvPrk-38">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1391" y="426" />
+              <mxPoint x="1391" y="646" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HMCEYHRRzIQeLrXfvPrk-10" value="Связь со специалистом через чат или телефон" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;fontStyle=2;strokeColor=#ff6666;fontSize=16;" vertex="1" parent="1">
           <mxGeometry x="1166" y="383" width="120" height="87" as="geometry" />
         </mxCell>
         <mxCell id="HMCEYHRRzIQeLrXfvPrk-15" value="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
@@ -73,6 +84,82 @@
         </mxCell>
         <mxCell id="HMCEYHRRzIQeLrXfvPrk-19" value="3" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="1265" y="592" width="14" height="11" as="geometry" />
+        </mxCell>
+        <mxCell id="HMCEYHRRzIQeLrXfvPrk-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;endArrow=none;endFill=0;startArrow=classic;startFill=1;" edge="1" parent="1" source="HMCEYHRRzIQeLrXfvPrk-24">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="649" y="695" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HMCEYHRRzIQeLrXfvPrk-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;startArrow=classic;startFill=1;endArrow=none;endFill=0;" edge="1" parent="1" source="HMCEYHRRzIQeLrXfvPrk-24">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="824.8571428571429" y="927.0066964285713" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HMCEYHRRzIQeLrXfvPrk-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="HMCEYHRRzIQeLrXfvPrk-24" target="HMCEYHRRzIQeLrXfvPrk-28">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="885" y="683" />
+              <mxPoint x="931" y="683" />
+              <mxPoint x="931" y="772" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HMCEYHRRzIQeLrXfvPrk-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="HMCEYHRRzIQeLrXfvPrk-24" target="HMCEYHRRzIQeLrXfvPrk-30">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="885" y="706" />
+              <mxPoint x="902" y="706" />
+              <mxPoint x="902" y="890" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HMCEYHRRzIQeLrXfvPrk-24" value="Регистрация аккаунта" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;fontStyle=2;strokeColor=#ff6666;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="765" y="665" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="HMCEYHRRzIQeLrXfvPrk-25" value="Пользовательские данные" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="675" y="659" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="HMCEYHRRzIQeLrXfvPrk-26" value="Специалист" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="756" y="897" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="HMCEYHRRzIQeLrXfvPrk-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="HMCEYHRRzIQeLrXfvPrk-28" target="HMCEYHRRzIQeLrXfvPrk-32">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HMCEYHRRzIQeLrXfvPrk-28" value="Поиск среди заказов, размещенных заказчиками" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;fontStyle=2;strokeColor=#ff6666;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="977" y="717" width="120" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="HMCEYHRRzIQeLrXfvPrk-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="HMCEYHRRzIQeLrXfvPrk-30" target="HMCEYHRRzIQeLrXfvPrk-31">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HMCEYHRRzIQeLrXfvPrk-30" value="Создание услуги по ремонту" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;fontStyle=2;strokeColor=#ff6666;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="977" y="860" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="HMCEYHRRzIQeLrXfvPrk-31" value="Ожидание отклика от специалистов" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;fontStyle=2;strokeColor=#ff6666;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="1178" y="934" width="120" height="94" as="geometry" />
+        </mxCell>
+        <mxCell id="HMCEYHRRzIQeLrXfvPrk-32" value="Откликнуться на заказ" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;fontStyle=2;strokeColor=#ff6666;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="1182" y="804" width="120" height="87" as="geometry" />
+        </mxCell>
+        <mxCell id="HMCEYHRRzIQeLrXfvPrk-33" value="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="867" y="709" width="14" height="11" as="geometry" />
+        </mxCell>
+        <mxCell id="HMCEYHRRzIQeLrXfvPrk-34" value="2" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="813" width="14" height="11" as="geometry" />
+        </mxCell>
+        <mxCell id="HMCEYHRRzIQeLrXfvPrk-35" value="2" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="904" width="14" height="11" as="geometry" />
+        </mxCell>
+        <mxCell id="HMCEYHRRzIQeLrXfvPrk-36" value="3" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1284" y="874" width="14" height="11" as="geometry" />
+        </mxCell>
+        <mxCell id="HMCEYHRRzIQeLrXfvPrk-37" value="3" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1281" y="1013" width="14" height="11" as="geometry" />
+        </mxCell>
+        <mxCell id="HMCEYHRRzIQeLrXfvPrk-38" value="Обсуждение условий выполнения услуги" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;fontStyle=2;strokeColor=#ff6666;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="1428" y="623" width="120" height="94" as="geometry" />
+        </mxCell>
+        <mxCell id="HMCEYHRRzIQeLrXfvPrk-41" value="Ожидание исполнения услуги" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;fontStyle=2;strokeColor=#ff6666;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="1595" y="730" width="120" height="94" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
