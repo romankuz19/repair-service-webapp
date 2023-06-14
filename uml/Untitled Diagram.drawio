@@ -1,11 +1,11 @@
-<mxfile host="app.diagrams.net" modified="2023-06-14T10:41:37.615Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36" etag="VDSBed-Ea5tnmR6iXaZi" version="21.3.8" type="github">
+<mxfile host="app.diagrams.net" modified="2023-06-14T10:43:10.294Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36" etag="YJJBy_Mr7xTl9Dh1Vz0Q" version="21.3.8" type="github">
   <diagram name="Page-1" id="E9xdRc76zqNghz4BqSpp">
-    <mxGraphModel dx="1914" dy="1038" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
+    <mxGraphModel dx="3190" dy="1612" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="c1Twwy1D4Yc-hKS2rIEJ-10" value="&lt;font style=&quot;font-size: 27px;&quot;&gt;Сервер&lt;/font&gt;" style="swimlane;horizontal=0;whiteSpace=wrap;html=1;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;fontStyle=2;fontSize=22;" parent="1" vertex="1">
-          <mxGeometry x="932" y="103" width="702" height="894" as="geometry" />
+          <mxGeometry x="924" y="106" width="702" height="894" as="geometry" />
         </mxCell>
         <mxCell id="c1Twwy1D4Yc-hKS2rIEJ-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;fontStyle=2;fontSize=22;" parent="c1Twwy1D4Yc-hKS2rIEJ-10" source="c1Twwy1D4Yc-hKS2rIEJ-44" target="c1Twwy1D4Yc-hKS2rIEJ-2" edge="1">
           <mxGeometry relative="1" as="geometry">
@@ -78,7 +78,7 @@
           <mxGeometry x="479.5" y="288" width="192" height="91" as="geometry" />
         </mxCell>
         <mxCell id="c1Twwy1D4Yc-hKS2rIEJ-30" value="&lt;font style=&quot;font-size: 27px;&quot;&gt;Клиент&lt;/font&gt;" style="swimlane;horizontal=0;whiteSpace=wrap;html=1;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;fontStyle=2;startSize=23;" parent="1" vertex="1">
-          <mxGeometry x="1784" y="158" width="682" height="785" as="geometry" />
+          <mxGeometry x="1724" y="160.5" width="682" height="785" as="geometry" />
         </mxCell>
         <mxCell id="Ow6XknWNqM_qqXeR-Ho2-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;endArrow=none;endFill=0;fontSize=23;" parent="c1Twwy1D4Yc-hKS2rIEJ-30" source="c1Twwy1D4Yc-hKS2rIEJ-18" target="c1Twwy1D4Yc-hKS2rIEJ-37" edge="1">
           <mxGeometry relative="1" as="geometry" />
@@ -145,7 +145,7 @@
           <mxGeometry x="41" y="558.5" width="199" height="150" as="geometry" />
         </mxCell>
         <mxCell id="_n9XEE2Yohis8LKuG4g0-8" value="" style="group;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;fontSize=27;" parent="1" vertex="1" connectable="0">
-          <mxGeometry x="31" y="188" width="807" height="663.5" as="geometry" />
+          <mxGeometry x="22" y="218.75" width="807" height="663.5" as="geometry" />
         </mxCell>
         <mxCell id="cyzbxc-1JioGg2fqTE1t-4" value="" style="strokeWidth=1;html=1;shape=mxgraph.flowchart.annotation_2;align=left;labelPosition=right;pointerEvents=1;spacing=1;fontSize=27;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;fontStyle=2;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" parent="_n9XEE2Yohis8LKuG4g0-8" vertex="1">
           <mxGeometry x="439" y="91.5" width="50" height="100" as="geometry" />
