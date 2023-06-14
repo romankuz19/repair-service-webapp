@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-06-14T10:50:26.582Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36" etag="up_Y1e27_W5IS63g7CSl" version="21.3.8" type="github">
+<mxfile host="app.diagrams.net" modified="2023-06-14T10:54:33.629Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36" etag="x_gZjRvZH9AQOjXo5-PE" version="21.3.8" type="github">
   <diagram name="Page-1" id="E9xdRc76zqNghz4BqSpp">
-    <mxGraphModel dx="1320" dy="716" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
+    <mxGraphModel dx="2252" dy="1221" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -205,7 +205,7 @@
         <mxCell id="cyzbxc-1JioGg2fqTE1t-10" value="&lt;span style=&quot;font-size: 27px;&quot;&gt;Уведомление&lt;br style=&quot;font-size: 27px;&quot;&gt;&quot;Заполните &lt;br style=&quot;font-size: 27px;&quot;&gt;поиск&quot;&lt;br style=&quot;font-size: 27px;&quot;&gt;&lt;/span&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;align=center;fontSize=27;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;fontStyle=2;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" parent="c1Twwy1D4Yc-hKS2rIEJ-4" vertex="1">
           <mxGeometry x="162" y="361" width="200" height="102" as="geometry" />
         </mxCell>
-        <mxCell id="cyzbxc-1JioGg2fqTE1t-8" value="search!=&lt;br&gt;NULL" style="strokeWidth=1;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;spacing=1;fontSize=27;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;fontStyle=2;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" parent="c1Twwy1D4Yc-hKS2rIEJ-4" vertex="1">
+        <mxCell id="cyzbxc-1JioGg2fqTE1t-8" value="search ==&lt;br&gt;NULL" style="strokeWidth=1;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;spacing=1;fontSize=27;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;fontStyle=2;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" parent="c1Twwy1D4Yc-hKS2rIEJ-4" vertex="1">
           <mxGeometry x="162" y="219" width="201" height="100" as="geometry" />
         </mxCell>
         <mxCell id="cyzbxc-1JioGg2fqTE1t-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=none;endFill=0;fontSize=27;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;fontStyle=2;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" parent="c1Twwy1D4Yc-hKS2rIEJ-4" source="cyzbxc-1JioGg2fqTE1t-8" target="cyzbxc-1JioGg2fqTE1t-10" edge="1">
