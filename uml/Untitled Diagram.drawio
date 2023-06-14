@@ -1,11 +1,11 @@
-<mxfile host="app.diagrams.net" modified="2023-06-14T10:43:10.294Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36" etag="YJJBy_Mr7xTl9Dh1Vz0Q" version="21.3.8" type="github">
+<mxfile host="app.diagrams.net" modified="2023-06-14T10:50:26.582Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36" etag="up_Y1e27_W5IS63g7CSl" version="21.3.8" type="github">
   <diagram name="Page-1" id="E9xdRc76zqNghz4BqSpp">
-    <mxGraphModel dx="3190" dy="1612" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
+    <mxGraphModel dx="1320" dy="716" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="c1Twwy1D4Yc-hKS2rIEJ-10" value="&lt;font style=&quot;font-size: 27px;&quot;&gt;Сервер&lt;/font&gt;" style="swimlane;horizontal=0;whiteSpace=wrap;html=1;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;fontStyle=2;fontSize=22;" parent="1" vertex="1">
-          <mxGeometry x="924" y="106" width="702" height="894" as="geometry" />
+          <mxGeometry x="886" y="110" width="778" height="894" as="geometry" />
         </mxCell>
         <mxCell id="c1Twwy1D4Yc-hKS2rIEJ-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;fontStyle=2;fontSize=22;" parent="c1Twwy1D4Yc-hKS2rIEJ-10" source="c1Twwy1D4Yc-hKS2rIEJ-44" target="c1Twwy1D4Yc-hKS2rIEJ-2" edge="1">
           <mxGeometry relative="1" as="geometry">
@@ -44,14 +44,23 @@
         <mxCell id="c1Twwy1D4Yc-hKS2rIEJ-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;endArrow=none;endFill=0;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;fontStyle=2;fontSize=22;" parent="c1Twwy1D4Yc-hKS2rIEJ-10" source="c1Twwy1D4Yc-hKS2rIEJ-15" target="c1Twwy1D4Yc-hKS2rIEJ-17" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+        <mxCell id="CcYOlZ6ozjlIIUi-cHXJ-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=none;endFill=0;" edge="1" parent="c1Twwy1D4Yc-hKS2rIEJ-10" source="c1Twwy1D4Yc-hKS2rIEJ-15">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="366" y="538" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="405" y="540" />
+              <mxPoint x="366" y="540" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
         <mxCell id="c1Twwy1D4Yc-hKS2rIEJ-15" value="&lt;div style=&quot;font-size: 22px; line-height: 19px;&quot;&gt;res.&lt;span style=&quot;font-size: 22px;&quot;&gt;json&lt;/span&gt;({&lt;/div&gt;&lt;div style=&quot;font-size: 22px; line-height: 19px;&quot;&gt;&lt;span style=&quot;font-size: 22px;&quot;&gt;sortedServices&lt;/span&gt;})&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;fontColor=#000000;labelBackgroundColor=default;fontSize=22;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;fontStyle=2" parent="c1Twwy1D4Yc-hKS2rIEJ-10" vertex="1">
-          <mxGeometry x="437" y="586" width="197" height="102" as="geometry" />
+          <mxGeometry x="375" y="586" width="197" height="102" as="geometry" />
         </mxCell>
         <mxCell id="c1Twwy1D4Yc-hKS2rIEJ-17" value="2" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fontSize=22;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;fontStyle=2" parent="c1Twwy1D4Yc-hKS2rIEJ-10" vertex="1">
-          <mxGeometry x="354.01" y="787" width="80" height="80" as="geometry" />
+          <mxGeometry x="322" y="790" width="80" height="80" as="geometry" />
         </mxCell>
         <mxCell id="c1Twwy1D4Yc-hKS2rIEJ-27" value="Нет" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;fontStyle=2;fontSize=22;" parent="c1Twwy1D4Yc-hKS2rIEJ-10" vertex="1">
-          <mxGeometry x="424" y="444" width="59" height="38" as="geometry" />
+          <mxGeometry x="380" y="444" width="59" height="38" as="geometry" />
         </mxCell>
         <mxCell id="c1Twwy1D4Yc-hKS2rIEJ-44" value="regex = new RegExp(search, &#39;i&#39;)" style="rounded=0;whiteSpace=wrap;html=1;fontSize=22;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;fontStyle=2" parent="c1Twwy1D4Yc-hKS2rIEJ-10" vertex="1">
           <mxGeometry x="155.02" y="134" width="198.98" height="107" as="geometry" />
@@ -76,6 +85,23 @@
         </mxCell>
         <mxCell id="xt_nbkyU9sqBT00G_e-1-12" value="Получение &lt;br style=&quot;font-size: 22px;&quot;&gt;отсортированных&lt;br style=&quot;font-size: 22px;&quot;&gt;&amp;nbsp;услуг из БД" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;fontStyle=2;fontSize=22;" parent="c1Twwy1D4Yc-hKS2rIEJ-10" vertex="1">
           <mxGeometry x="479.5" y="288" width="192" height="91" as="geometry" />
+        </mxCell>
+        <mxCell id="CcYOlZ6ozjlIIUi-cHXJ-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;dashed=1;" edge="1" parent="c1Twwy1D4Yc-hKS2rIEJ-10" source="CcYOlZ6ozjlIIUi-cHXJ-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="324" y="586" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="366" y="496" />
+              <mxPoint x="366" y="540" />
+              <mxPoint x="324" y="540" />
+              <mxPoint x="324" y="586" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CcYOlZ6ozjlIIUi-cHXJ-1" value="" style="strokeWidth=1;html=1;shape=mxgraph.flowchart.annotation_2;align=left;labelPosition=right;pointerEvents=1;spacing=1;fontSize=22;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;fontStyle=2" vertex="1" parent="c1Twwy1D4Yc-hKS2rIEJ-10">
+          <mxGeometry x="560" y="446" width="50" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="CcYOlZ6ozjlIIUi-cHXJ-6" value="Отправка ответа &lt;br&gt;на клиент" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;fontStyle=2;fontSize=22;" vertex="1" parent="c1Twwy1D4Yc-hKS2rIEJ-10">
+          <mxGeometry x="584" y="463.5" width="192" height="65" as="geometry" />
         </mxCell>
         <mxCell id="c1Twwy1D4Yc-hKS2rIEJ-30" value="&lt;font style=&quot;font-size: 27px;&quot;&gt;Клиент&lt;/font&gt;" style="swimlane;horizontal=0;whiteSpace=wrap;html=1;fontFamily=GOST type A Regular;fontSource=https%3A%2F%2Fwebfonts.pro%2Flight-fonts%2F123-gost_type_a.html;fontStyle=2;startSize=23;" parent="1" vertex="1">
           <mxGeometry x="1724" y="160.5" width="682" height="785" as="geometry" />
