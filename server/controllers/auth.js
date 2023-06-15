@@ -17,7 +17,8 @@ export const register = async (req, res) => {
             })
         }
 
-        var phonenumber = phoneNumber.slice(1);
+        // var phonenumber = phoneNumber.slice(1);
+        var phonenumber = phoneNumber;
 
         console.log(phonenumber)
 
@@ -109,6 +110,8 @@ export const updateUser = async (req, res) => {
         
         const { firstname, secondname, city, phonenumber } = req.body
 
+        
+
         //console.log('user',user)
         user.firstname = firstname
         user.secondname = secondname
@@ -180,17 +183,8 @@ export const recoveryCheckUserExist = async (req, res) => {
         }
         //console.log(req.body);
 
-        
-
-        
-
         console.log('user',user)
-        // user.firstname = firstname
-        // user.secondname = secondname
-        // user.city = city
-        // user.phonenumber = phonenumber
-
-        // await user.save()
+       
         
         
        
@@ -202,3 +196,52 @@ export const recoveryCheckUserExist = async (req, res) => {
     }
 }
 
+
+//update user
+export const secretQuestionValidation = async (req, res) => {
+    try {
+
+        const { userId, secretQuestionAnswer } = req.body
+
+        console.log(req.body);
+        const user = await User.findById(userId)
+        
+
+        if (!user)
+        {
+            res.json({ message: 'Ошибка'})
+        }
+        if(user.secretQuestionAnswer.toLowerCase() === secretQuestionAnswer.toLowerCase()){
+            console.log('Все правильно')
+            res.json(true)
+
+        }
+        else res.json(false)
+
+
+    } catch (error) {
+        res.json({ message: 'Ошибка' })
+    }
+}
+
+
+export const changePassword = async (req, res) => {
+    try {
+        const { userId, password } = req.body
+
+        
+        const salt = bcrypt.genSaltSync(10)
+        const hash = bcrypt.hashSync(password, salt)
+
+        const user = await User.findById(userId)
+        
+        user.password = hash
+        
+        await user.save()
+
+        res.json({message: 'Пароль успешно изменен.'})
+
+    } catch (error) {
+        res.json({ message: 'Ошибка при создании пользователя.' })
+    }
+}

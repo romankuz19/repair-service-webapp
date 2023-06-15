@@ -10,11 +10,16 @@ export const RecoveryPage = () => {
     // const [firstname, setfirstname] = useState('')
     // const [secondname, setsecondname] = useState('')
     // const [phonenumber, setphonenumber] = useState('')
+    const [secretQuestion, setSecretQuestion] = useState('')
+    const [secretQuestionAnswer, setSecretQuestionAnswer] = useState('')
 
     const [password, setPassword] = useState('')
-    const [btn, setBtn] = useState(false);
-    const [btnValue, setBtnValue] = useState('Восстановить');
-
+    const [password2, setPassword2] = useState('')
+    const [next, setNext] = useState(false);
+    const [changePas, setChangePas] = useState(false);
+    const [btnValue, setBtnValue] = useState('Продолжить');
+    const [userId, setUserId] = useState('')
+    const regexp = /(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{8,}/
     const {  status } = useSelector((state) => state.auth)
     console.log('status',status)
     const isAuth = useSelector(checkIsAuth)
@@ -25,25 +30,8 @@ export const RecoveryPage = () => {
     //var btn = false;
 
 
-    useEffect(() => {
-        //if (status) toast(status)
-        if (isAuth) {
-        navigate('/') 
-        goodAuth="Успешный вход"
-        toast.info(goodAuth)
+    
 
-        //window.location.reload(false);
-    }
-    else{
-        if(btn){
-            badAuth="Неверный логин или пароль"
-            toast.info(badAuth)
-            //console.log('qqqqq')
-        }
-    }
-    
-    
-    }, [status, isAuth, navigate])
 
 
     const handleSubmit = async () => {
@@ -51,14 +39,70 @@ export const RecoveryPage = () => {
             // dispatch(loginUser({ username, password }))
             // setBtn('true');
             
-            
-            const { data } = await axios.post('/auth/recovery', {
+            if(next == false){
+                const { data } = await axios.post('/auth/recovery', {
               
-                usernameOrNumber,
-                
-            })
+                    usernameOrNumber,
+                    
+                })
+    
+                console.log(data);
+                if(data.user != null){
+                    setBtnValue('Восстановить')
+                    setNext(true)
+                    setSecretQuestion(data.user.secretQuestion)
+                    setUserId(data.user._id)
+                }
+            }
+            if(next == true){
 
-            console.log(data);
+                if(changePas == false){
+                    const { data } = await axios.post('/auth/validate-secret', {
+              
+                        userId,
+                        secretQuestionAnswer
+                        
+                    })
+    
+                    console.log(data)
+    
+                    if(data){
+                        setBtnValue('Изменить пароль')
+                        setChangePas(true)
+    
+                    }
+                    else(toast.info('Неверный ответ на секретный вопрос'))
+                }
+                
+                else{
+
+                    if(password !== password2) toast.info('Пароли не совпадают!')
+                    else{
+
+                        if(password.length<8) toast.info("Пароль слишком короткий")
+                        else if(password.match(regexp) === null) toast.info("Некорректный пароль")
+                        else{
+                            const { data } = await axios.post('/auth/change-password', {
+
+                                userId,
+                                password
+                                
+                            })
+                            console.log(data)
+                            
+                            navigate("/login")
+                            toast.info(data.message)
+
+                        }
+                    }
+                    
+
+                }
+                
+
+            }
+            
+            
             
         } catch (error) {
             console.log(error)
@@ -82,6 +126,51 @@ export const RecoveryPage = () => {
                     className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
                 />
             </label>
+
+            {next && (
+                <><div className='text-xs opacity-80 mt-3 font-bold'>
+                    Секретный вопрос:
+                    <span className='font-normal'>  {secretQuestion}</span>
+                </div>
+
+                <div className='text-xs mt-3'>
+                    Введите ответ на секретный вопрос
+                        <input
+                            type='text'
+                            value={secretQuestionAnswer}
+                            onChange={(e) => setSecretQuestionAnswer(e.target.value)}
+                            placeholder='Ответ на вопрос'
+                            className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700' />
+                    </div></>
+
+                    
+            
+            
+            )}
+
+            {changePas && (
+                <>
+            <div className='text-xs mt-3'>
+                Введите новый пароль
+                    <input
+                        type='password'
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder='Пароль'
+                        className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700' />
+                </div>
+                <div className='text-xs mt-3'>
+                Повторно введите пароль
+                    <input
+                        type='password'
+                        value={password2}
+                        onChange={(e) => setPassword2(e.target.value)}
+                        placeholder='Пароль'
+                        className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700' />
+                </div></>
+            )}
+
+
             
            
 
