@@ -3,9 +3,13 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { checkIsAuth, loginUser } from '../redux/features/auth/authSlice'
 import { toast } from 'react-toastify'
+import axios from '../utils/axios'
 
-export const LoginPage = () => {
+export const RecoveryPage = () => {
     const [username, setUsername] = useState('')
+    const [firstname, setfirstname] = useState('')
+    const [secondname, setsecondname] = useState('')
+    const [phonenumber, setphonenumber] = useState('+7')
     const [password, setPassword] = useState('')
     const [btn, setBtn] = useState(false);
     
@@ -41,10 +45,21 @@ export const LoginPage = () => {
     }, [status, isAuth, navigate])
 
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         try {
-            dispatch(loginUser({ username, password }))
-            setBtn('true');
+            // dispatch(loginUser({ username, password }))
+            // setBtn('true');
+            
+            
+            const { data } = await axios.post('/auth/recovery', {
+              
+                username,
+                firstname,
+                secondname,
+                phonenumber
+            })
+
+            console.log(data);
             
         } catch (error) {
             console.log(error)
@@ -56,7 +71,9 @@ export const LoginPage = () => {
             onSubmit={(e) => e.preventDefault()}
             className='w-1/4 h-70 mx-auto mt-40 border-2 shadow-lg rounded-lg p-2'
         >
-            <h1 className='text-lg text-black text-center'>Авторизация</h1>
+            <h1 className='text-lg text-black text-center'>Восстановление пароля</h1>
+
+            <h3 className='mt-2 text-xs opacity-80 '>Для подтверждения личности введите логин, имя, фамилию и номер телефона, указанные при регистрации</h3>
             <label className='text-xs text-gray-400'>
                 Логин:
                 <input
@@ -69,39 +86,49 @@ export const LoginPage = () => {
             </label>
             
             <label className='text-xs text-gray-400'>
-                Пароль:
+                Имя:
                 <input
-                    type='password'
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    type='text'
+                    value={firstname}
+                    onChange={(e) => setfirstname(e.target.value)}
                     placeholder='Пароль'
                     className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
                 />
             </label>
 
-            <div className='mt-3 text-xs font-bold cursor-pointer hover:underline'
-            onClick={() => navigate('/recovery')}>
-                Забыли пароль?
-            </div>
+            <label className='text-xs text-gray-400'>
+                Фамилия:
+                <input
+                    type='text'
+                    value={secondname}
+                    onChange={(e) => setsecondname(e.target.value)}
+                    placeholder='Пароль'
+                    className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
+                />
+            </label>
 
-            <div className='grid gap-4 mt-7 justify-center lg:grid-cols-2 md:grid-cols-1'>
+            <label className='text-xs text-gray-400'>
+                Номер телефона:
+                <input
+                    type='text'
+                    value={phonenumber}
+                    onChange={(e) => setphonenumber(e.target.value)}
+                    placeholder='Пароль'
+                    className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
+                />
+            </label>
+
+            <div className='grid gap-4 mt-7 justify-center '>
                 <div className='flex justify-center'>
                     <button
                     type='submit'
                     onClick={handleSubmit}
                     className='min-w-[100px]  text-center font-bold  text-white rounded-lg px-4 py-2 text-xs  btn-color p-1 cursor-pointer hover:bg-blue-800'
                 >
-                    Вход
+                    Восстановить
                 </button>
                 </div>
-                <div className='flex justify-center'>
-                <Link
-                    to='/register'
-                    className='min-w-[100px]  text-center font-bold  text-white rounded-lg px-4 py-2 text-xs btn-color p-1 cursor-pointer hover:bg-blue-800'
-                >
-                    Регистрация
-                </Link>
-                </div>
+                
                 
                 
             </div>

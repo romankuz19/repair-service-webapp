@@ -156,3 +156,36 @@ export const getMe = async (req, res) => {
     }
 }
 
+
+//update user
+export const recoveryCheckUserExist = async (req, res) => {
+    try {
+
+        const { username, firstname, secondname, phonenumber } = req.body
+
+        const user = await User.findOne({ username, firstname, secondname, phonenumber 
+        })
+        //console.log(req.body);
+
+        
+
+        
+
+        console.log('user',user)
+        // user.firstname = firstname
+        // user.secondname = secondname
+        // user.city = city
+        // user.phonenumber = phonenumber
+
+        // await user.save()
+        
+        
+       
+        res.json({user, message: 'Данные успешно изменены.',})
+
+
+    } catch (error) {
+        res.json({ message: 'Ошибка при создании пользователя.' })
+    }
+}
+

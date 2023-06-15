@@ -20,6 +20,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { getMe } from './redux/features/auth/authSlice.js'
+import { RecoveryPage } from './pages/RecoveryPage.jsx'
 
 function App() {
     const dispatch = useDispatch()
@@ -44,6 +45,7 @@ function App() {
                 <Route path='tasks/create-task' element={<AddTaskPage />} />
                 <Route path='register' element={<RegisterPage />} />
                 <Route path='login' element={<LoginPage />} />
+                <Route path='recovery' element={<RecoveryPage />} />
                 <Route path='profile' element={<MyProfilePage />} />
                 <Route path='chats' element={<ChatsPage />} />
                 <Route path='chats/:id' element={<ChatsPage />} />

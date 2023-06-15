@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { register, login, updateUser, getMe } from '../controllers/auth.js'
+import { register, login, updateUser, getMe, recoveryCheckUserExist } from '../controllers/auth.js'
 import { checkAuth } from '../utils/checkAuth.js'
 const router = new Router()
 
@@ -18,6 +18,10 @@ router.put('/updateuser',checkAuth, updateUser)
 // Get Me
 // http://localhost:3002/api/auth/me
 router.get('/me', checkAuth, getMe)
+
+// Get Me
+// http://localhost:3002/api/auth/recovery
+router.post('/recovery', recoveryCheckUserExist)
 
 
 export default router
