@@ -10,7 +10,7 @@ const initialState = {
 
 export const registerUser = createAsyncThunk(
     'auth/registerUser',
-    async ({ username, password,firstname,secondname,city,phonenumber }) => {
+    async ({ username, password,firstname,secondname,city,phoneNumber, secretQuestion, secretQuestionAnswer }) => {
         try {
             const { data } = await axios.post('/auth/register', {
                 username,
@@ -18,7 +18,9 @@ export const registerUser = createAsyncThunk(
                 firstname,
                 secondname,
                 city,
-                phonenumber
+                phoneNumber,
+                secretQuestion,
+                secretQuestionAnswer
             })
             if (data.token) {
                 window.localStorage.setItem('token', data.token)

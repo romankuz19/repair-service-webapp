@@ -10,8 +10,13 @@ export const RegisterPage = () => {
     const [firstname, setName] = useState('')
     const [secondname, setSecondName] = useState('')
     const [city, setCity] = useState('')
-    const [phonenumber, setPhonenumber] = useState('')
+    const [phoneNumber, setPhonenumber] = useState('')
+    const [secretQuestion, setSecretQuestion] = useState('')
+    const [secretQuestionAnswer, setSecretQuestionAnswer] = useState('')
     const { status } = useSelector((state) => state.auth)
+    const regexp = /(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{8,}/
+    const usernameRegex = /^[a-zA-Z0-9]+$/;
+
     console.log('status',status)
     const isAuth = useSelector(checkIsAuth)
 
@@ -29,16 +34,24 @@ export const RegisterPage = () => {
 
     const handleSubmit = () => {
         try {
+            console.log(phoneNumber.length)
             if(username.length<3 )toast.info("Логин слишком короткий")
             else if(password.length<8) toast.info("Пароль слишком короткий")
+            else if(password.match(regexp) === null) toast.info("Некорректный пароль")
+            else if(username.match(usernameRegex) === null) toast.info("Некорректный логин")
+            else if(phoneNumber.length != 11) toast.info("Некорректный номер телефона")
+            else if (firstname.length < 3) toast.info("Некорректное имя")
+            else if (secondname.length < 3) toast.info("Некорректная фамилия")
             else{
-            dispatch(registerUser({ username, password,firstname,secondname,city,phonenumber }))
+            dispatch(registerUser({ username, password,firstname,secondname,city,phoneNumber,secretQuestion, secretQuestionAnswer }))
             setPassword('')
             setUsername('')
             setName('')
             setSecondName('')
             setCity('')
             setPhonenumber('')
+            setSecretQuestion('')
+            setSecretQuestionAnswer('')
             }
         } catch (error) {
             console.log(error)
@@ -107,9 +120,31 @@ export const RegisterPage = () => {
                 Номер телефона:
                 <input
                     type='number'
-                    value={phonenumber}
+                    value={phoneNumber}
                     onChange={(e) => setPhonenumber(e.target.value)}
                     placeholder='Номер телефона'
+                    className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
+                />
+            </label>
+
+            <label className='text-xs text-gray-400'>
+                Введите секретный вопрос:
+                <input
+                    type='text'
+                    value={secretQuestion}
+                    onChange={(e) => setSecretQuestion(e.target.value)}
+                    placeholder='Например: "Кличка собаки"'
+                    className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
+                />
+            </label>
+
+            <label className='text-xs text-gray-400'>
+                Введите ответ на секретный вопрос:
+                <input
+                    type='text'
+                    value={secretQuestionAnswer}
+                    onChange={(e) => setSecretQuestionAnswer(e.target.value)}
+                    placeholder=''
                     className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
                 />
             </label>

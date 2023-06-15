@@ -7,7 +7,7 @@ import jwt from 'jsonwebtoken'
 // Register user
 export const register = async (req, res) => {
     try {
-        const { username, password, firstname, secondname, city, phonenumber } = req.body
+        const { username, password, firstname, secondname, city, phoneNumber, secretQuestion, secretQuestionAnswer } = req.body
 
         const isUsed = await User.findOne({ username })
 
@@ -16,6 +16,10 @@ export const register = async (req, res) => {
                 message: 'Данный username уже занят.',
             })
         }
+
+        var phonenumber = phoneNumber.slice(1);
+
+        console.log(phonenumber)
 
         const salt = bcrypt.genSaltSync(10)
         const hash = bcrypt.hashSync(password, salt)
@@ -27,7 +31,11 @@ export const register = async (req, res) => {
             secondname,
             city,
             phonenumber,
+            secretQuestion,
+            secretQuestionAnswer,
         })
+
+
 
         const token = jwt.sign(
             {
@@ -161,10 +169,15 @@ export const getMe = async (req, res) => {
 export const recoveryCheckUserExist = async (req, res) => {
     try {
 
-        const { username, firstname, secondname, phonenumber } = req.body
+        const { usernameOrNumber } = req.body
 
-        const user = await User.findOne({ username, firstname, secondname, phonenumber 
-        })
+        console.log(req.body);
+        var user = await User.findOne({ username: usernameOrNumber })
+
+        if (!user)
+        {
+            user = await User.findOne({ phonenumber: usernameOrNumber })
+        }
         //console.log(req.body);
 
         

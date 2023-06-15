@@ -6,13 +6,14 @@ import { toast } from 'react-toastify'
 import axios from '../utils/axios'
 
 export const RecoveryPage = () => {
-    const [username, setUsername] = useState('')
-    const [firstname, setfirstname] = useState('')
-    const [secondname, setsecondname] = useState('')
-    const [phonenumber, setphonenumber] = useState('+7')
+    const [usernameOrNumber, setUsername] = useState('')
+    // const [firstname, setfirstname] = useState('')
+    // const [secondname, setsecondname] = useState('')
+    // const [phonenumber, setphonenumber] = useState('')
+
     const [password, setPassword] = useState('')
     const [btn, setBtn] = useState(false);
-    
+    const [btnValue, setBtnValue] = useState('Восстановить');
 
     const {  status } = useSelector((state) => state.auth)
     console.log('status',status)
@@ -53,10 +54,8 @@ export const RecoveryPage = () => {
             
             const { data } = await axios.post('/auth/recovery', {
               
-                username,
-                firstname,
-                secondname,
-                phonenumber
+                usernameOrNumber,
+                
             })
 
             console.log(data);
@@ -73,59 +72,28 @@ export const RecoveryPage = () => {
         >
             <h1 className='text-lg text-black text-center'>Восстановление пароля</h1>
 
-            <h3 className='mt-2 text-xs opacity-80 '>Для подтверждения личности введите логин, имя, фамилию и номер телефона, указанные при регистрации</h3>
+            <h3 className='mt-2 text-xs opacity-80 '>Введите логин или номер телефона</h3>
             <label className='text-xs text-gray-400'>
-                Логин:
                 <input
                     type='text'
-                    value={username}
+                    value={usernameOrNumber}
                     onChange={(e) => setUsername(e.target.value)}
-                    placeholder='Логин'
+                    placeholder='Логин или номер телефона'
                     className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
                 />
             </label>
             
-            <label className='text-xs text-gray-400'>
-                Имя:
-                <input
-                    type='text'
-                    value={firstname}
-                    onChange={(e) => setfirstname(e.target.value)}
-                    placeholder='Пароль'
-                    className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
-                />
-            </label>
-
-            <label className='text-xs text-gray-400'>
-                Фамилия:
-                <input
-                    type='text'
-                    value={secondname}
-                    onChange={(e) => setsecondname(e.target.value)}
-                    placeholder='Пароль'
-                    className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
-                />
-            </label>
-
-            <label className='text-xs text-gray-400'>
-                Номер телефона:
-                <input
-                    type='text'
-                    value={phonenumber}
-                    onChange={(e) => setphonenumber(e.target.value)}
-                    placeholder='Пароль'
-                    className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
-                />
-            </label>
+           
 
             <div className='grid gap-4 mt-7 justify-center '>
                 <div className='flex justify-center'>
                     <button
+                    
                     type='submit'
                     onClick={handleSubmit}
                     className='min-w-[100px]  text-center font-bold  text-white rounded-lg px-4 py-2 text-xs  btn-color p-1 cursor-pointer hover:bg-blue-800'
                 >
-                    Восстановить
+                    {btnValue}
                 </button>
                 </div>
                 
