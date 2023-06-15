@@ -176,14 +176,22 @@ export const sortedServicesCat = async (req, res) => {
 export const sortedServices = async (req, res) => {
     try {
         
-        console.log('req.params',req.params)
+        //console.log('req.params',req.params)
        
         const sort= req.params.name
+
+        const users = User.find(); 
+        //console.log(users);
     
         const s = sort;
         const regex = new RegExp(s, 'i') // i for case insensitive
-        
+
+        const start= new Date().getTime();
+
         const sortedServices = await Post.find({text: {$regex: regex}})
+
+        const end = new Date().getTime();
+        console.log(`Время выполнения запроса: ${end-start}ms`);
 
         for (let index = 0; index < sortedServices.length; index++) {
            

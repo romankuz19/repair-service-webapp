@@ -135,7 +135,7 @@ export const TasksPage = () => {
                 const data = await axios.get(`/tasks/sorted/${search}`);
                 console.log('data',data)
                 if(data.data.sortedTasks.length==0){
-                    toast.info('По такому запросу ничего не нашлось :( \n Попробуйте снова')
+                    toast.info(`По запросу "${search}" ничего не нашлось`)
                     setSearch('')
     
                 }

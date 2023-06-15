@@ -8,7 +8,8 @@ import {
     updateTask,
     sortedTasks,
     cancelTask,
-    completeTask
+    completeTask,
+    responseTask
    
 } from '../controllers/tasks.js'
 import { checkAuth } from '../utils/checkAuth.js'
@@ -48,6 +49,11 @@ router.patch('/:id/status_cancel', checkAuth, cancelTask)
 // Complete Task
 // http://localhost:3002/api/tasks/:id
 router.patch('/:id/status_complete', checkAuth, completeTask)
+
+// Task responses increment 
+// http://localhost:3002/api/tasks/:id
+router.patch('/:id', checkAuth, responseTask)
+
 
 
 export default router

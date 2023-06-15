@@ -282,6 +282,7 @@ export const TaskPage = () => {
                 firstUserId,
                 secondUserId,
             })
+            await axios.patch(`/tasks/${params.id}`);
         navigate(`/chats/?id=${ownerTaskUser._id}&task=${task._id}`)
             
         } catch (error) {
@@ -383,7 +384,7 @@ export const TaskPage = () => {
                                     onClick={handleRespondTask}>
                                     Откликнуться
                                 </div>
-                                <div className='text-cat-color text-m pb-1 my-1 ml-3'>Статус: {task.status == 'opened'?'Открыт':task.status == 'completed'?'Завершен':task.status == 'canceled'?'Отменен':''}</div></>
+                                <div className='text-cat-color text-m font-bold pb-1 my-1 ml-3'>Статус: {task.status == 'opened'?'Открыт':task.status == 'completed'?'Завершен':task.status == 'canceled'?'Отменен':''}</div></>
                 ) 
                 : !isAuth ? (<>
                 <   div className='flex flex-row gap-3'>
@@ -394,7 +395,7 @@ export const TaskPage = () => {
 
                                         Откликнуться
                                     </div>
-                                    <div className='text-cat-color text-m pb-1 my-1'>Статус: {task.status == 'opened'?'Открыт':task.status == 'completed'?'Завершен':task.status == 'canceled'?'Отменен':''}</div>
+                                    <div className='text-cat-color font-bold text-m pb-1 my-1'>Статус: {task.status == 'opened'?'Открыт':task.status == 'completed'?'Завершен':task.status == 'canceled'?'Отменен':''}</div>
                                     </div>
                                     </>)
                 

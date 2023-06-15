@@ -52,7 +52,7 @@ export const ServicePage = () => {
     const [avgServiceRating, setServiceAvgRating] = useState(0)
     const words = [ 'сука' , 'сучка' , 'шлюха' ]
     
-    const mat = /(?<=^|[^а-я])(([уyu]|[нзnz3][аa]|(хитро|не)?[вvwb][зz3]?[ыьъi]|[сsc][ьъ']|(и|[рpr][аa4])[зсzs]ъ?|([оo0][тбtb6]|[пp][оo0][дd9])[ьъ']?|(.\B)+?[оаеиeo])?-?([еёe][бb6](?!о[рй])|и[пб][ае][тц]).*?|([нn][иеаaie]|([дпdp]|[вv][еe3][рpr][тt])[оo0]|[рpr][аa][зсzc3]|[з3z]?[аa]|с(ме)?|[оo0]([тt]|дно)?|апч)?-?[хxh][уuy]([яйиеёюuie]|ли(?!ган)).*?|([вvw][зы3z]|(три|два|четыре)жды|(н|[сc][уuy][кk])[аa])?-?[бb6][лl]([яy](?!(х|ш[кн]|мб)[ауеыио]).*?|[еэe][дтdt][ь']?)|([рp][аa][сзc3z]|[знzn][аa]|[соsc]|[вv][ыi]?|[пp]([еe][рpr][еe]|[рrp][оиioеe]|[оo0][дd])|и[зс]ъ?|[аоao][тt])?[пpn][иеёieu][зz3][дd9].*?|([зz3][аa])?[пp][иеieu][дd][аоеaoe]?[рrp](ну.*?|[оаoa][мm]|([аa][сcs])?([иiu]([лl][иiu])?[нщктлtlsn]ь?)?|([оo](ч[еиei])?|[аa][сcs])?[кk]([оo]й)?|[юu][гg])[ауеыauyei]?|[мm][аa][нnh][дd]([ауеыayueiи]([лl]([иi][сзc3щ])?[ауеыauyei])?|[оo][йi]|[аоao][вvwb][оo](ш|sh)[ь']?([e]?[кk][ауеayue])?|юк(ов|[ауи])?)|[мm][уuy][дd6]([яyаиоaiuo0].*?|[еe]?[нhn]([ьюия'uiya]|ей))|мля([тд]ь)?|лять|([нз]а|по)х|м[ао]л[ао]фь([яию]|[её]й))(?=($|[^а-я]))/
+    const mat = /(?<=^|[^а-я])(huy)(([уyu]|[нзnz3][аa]|(хитро|не)?[вvwb][зz3]?[ыьъi]|[сsc][ьъ']|(и|[рpr][аa4])[зсzs]ъ?|([оo0][тбtb6]|[пp][оo0][дd9])[ьъ']?|(.\B)+?[оаеиeo])?-?([еёe][бb6](?!о[рй])|и[пб][ае][тц]).*?|([нn][иеаaie]|([дпdp]|[вv][еe3][рpr][тt])[оo0]|[рpr][аa][зсzc3]|[з3z]?[аa]|с(ме)?|[оo0]([тt]|дно)?|апч)?-?[хxh][уuy]([яйиеёюuie]|ли(?!ган)).*?|([вvw][зы3z]|(три|два|четыре)жды|(н|[сc][уuy][кk])[аa])?-?[бb6][лl]([яy](?!(х|ш[кн]|мб)[ауеыио]).*?|[еэe][дтdt][ь']?)|([рp][аa][сзc3z]|[знzn][аa]|[соsc]|[вv][ыi]?|[пp]([еe][рpr][еe]|[рrp][оиioеe]|[оo0][дd])|и[зс]ъ?|[аоao][тt])?[пpn][иеёieu][зz3][дd9].*?|([зz3][аa])?[пp][иеieu][дd][аоеaoe]?[рrp](ну.*?|[оаoa][мm]|([аa][сcs])?([иiu]([лl][иiu])?[нщктлtlsn]ь?)?|([оo](ч[еиei])?|[аa][сcs])?[кk]([оo]й)?|[юu][гg])[ауеыauyei]?|[мm][аa][нnh][дd]([ауеыayueiи]([лl]([иi][сзc3щ])?[ауеыauyei])?|[оo][йi]|[аоao][вvwb][оo](ш|sh)[ь']?([e]?[кk][ауеayue])?|юк(ов|[ауи])?)|[мm][уuy][дd6]([яyаиоaiuo0].*?|[еe]?[нhn]([ьюия'uiya]|ей))|мля([тд]ь)?|лять|([нз]а|по)х|м[ао]л[ао]фь([яию]|[её]й))(?=($|[^а-я])(huy))/
 
 
     const blockurl2 = /^(http|https|ftp|)\/|[a-zA-Z0-9\-\.]+\.[a-zA-Z](:[a-zA-Z0-9]*)?/
@@ -332,12 +332,12 @@ export const ServicePage = () => {
                 }
                 else if(!firstCheck || !secondCheck){
                     //alert("Данный контент нельзя вставить!")
-                    toast.info("Данный контент нельзя вставить!")
+                    toast.info("Данный контент нельзя добавить!")
                         setComment('')
                 }
                 else if(!adcheck){
                     //alert("Данный контент нельзя вставить!")
-                    toast.info("Данный контент нельзя вставить!")
+                    toast.info("Данный контент нельзя добавить!")
                         setComment('')
                 }
             }
@@ -534,7 +534,7 @@ export const ServicePage = () => {
                                     className='flex gap-2 p-2'
                                     onSubmit={(e) => e.preventDefault()}
                                 >
-                                    <input
+                                    <textarea
                                         type='text'
                                         value={message}
                                         onChange={(e) => setMessage(e.target.value)}
@@ -562,12 +562,12 @@ export const ServicePage = () => {
                         className=''
                         onSubmit={(e) => e.preventDefault()}
                     >
-                        <input
+                        <textarea
                             type='text'
                             value={comment}
                             onChange={(e) => setComment(e.target.value)}
                             placeholder='Оставьте отзыв'
-                            className='text-white w-full rounded-lg bg-blue-400 border p-2 text-xs outline-none placeholder:text-white'
+                            className='text-white w-full rounded-lg bg-blue-400 border p-2 text-xs outline-none placeholder:text-white min-h-[80px]'
                         />
                         <div className='flex justify-between items-center mt-5'>
                             <div>
@@ -598,7 +598,7 @@ export const ServicePage = () => {
                                 <button
                             type='submit'
                             onClick={handleSubmit}
-                            className='flex justify-center items-center bg-blue-400 text-xs text-white rounded-lg py-2 px-4 hover:text-black'
+                            className='flex justify-center items-center bg-blue-400 text-xs text-white rounded-lg py-2 px-4 hover:text-black hover:font-bold max-w-[85px]'
                         >
                             Отправить
                         </button>

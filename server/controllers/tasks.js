@@ -171,7 +171,7 @@ export const sortedTasks = async (req, res) => {
         const s = sort;
         const regex = new RegExp(s, 'i') // i for case insensitive
         
-        const sortedTasks = await Task.find({title: {$regex: regex}})
+        const sortedTasks = await Task.find({title: {$regex: regex}, status: 'opened'})
        
         
         if (!sort) {
@@ -186,5 +186,22 @@ export const sortedTasks = async (req, res) => {
     }
 }
 
+
+// Task response post
+export const responseTask = async (req, res) => {
+    try {
+          const task = await Task.findByIdAndUpdate(req.params.id, {
+            $inc: { responses: 1 },
+        })
+        if (!task) return res.json({ message: 'Такого задания не существует' })
+        console.log('task',task)
+
+        
+
+        res.json({ message: 'Вы откликнулись' })
+    } catch (error) {
+        res.json({ message: 'Что-то пошло не так.' })
+    }
+}
 
 

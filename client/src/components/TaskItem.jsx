@@ -128,8 +128,24 @@ export const TaskItem = ({ task, user }) => {
                 </div>
                 <div className='flex justify-between items-center my-1'>
                     
-                    <div className='text-small-color opacity-90 text-2xl  line-clamp-4 pt-1'>до {task.date}
+                    <div className='text-small-color opacity-90 text-xl  line-clamp-4 pt-1'>до {task.date}
                      </div>
+                     {task.responses == 0 ? 
+                     (<div className='text-small-color opacity-90 text-xl  line-clamp-4 pt-1'> Нет откликов
+                     </div>)
+                     :
+                     task.responses == 1 ?
+                     (<div className='text-small-color opacity-90 text-xl  line-clamp-4 pt-1'> {task.responses} отклик
+                     </div>)
+                     :
+                     (task.responses > 1 && task.responses < 5) ?
+                     (<div className='text-small-color opacity-90 text-xl  line-clamp-4 pt-1'> {task.responses} отклика
+                     </div>)
+                     : 
+                     (<div className='text-small-color opacity-90 text-xl  line-clamp-4 pt-1'> {task.responses} откликов
+                     </div>)
+                    }
+                    
                     {/* <div className='text-cat-color text-m pb-1 my-1'>Статус: {task.status == 'opened'?'Открыт':''}</div> */}
 
                     

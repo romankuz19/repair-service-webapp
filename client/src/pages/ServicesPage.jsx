@@ -41,6 +41,7 @@ const categoriesList = [
     const [cat, setCat] = useState('')
     
     const [search, setSearch] = useState('')
+    const [searchCity, setSearchCity] = useState('')
     const [sortedServices, setSortedServices]= useState([])
     const [searchServices, setSearchServices]= useState([])
     const [checkedState, setCheckedState] = useState(
@@ -48,6 +49,7 @@ const categoriesList = [
     );
     const [checkedStateAll, setCheckedStateAll] = useState(true);
     const [checkedRatingSort, setCheckedRatingSort] = useState(false);
+    const [checkedCity, setCheckedCity] = useState(false);
     const [sortCategories, setSortCategories]= useState([])
 
     
@@ -159,6 +161,7 @@ const categoriesList = [
             }
             else
             {
+                
                 const data = await axios.get(`/posts/sorted/${search}`);
                // console.log("posts",posts)
                 var searchServices = Array();
@@ -362,11 +365,26 @@ const categoriesList = [
             toast.info('Пока таких услуг нет')
         }
         else{
+
+            // var sortedServicesLocalCity = Array();
+
+            // if(checkedCity == true){
+
+            //     sortedServicesLocal.forEach(element => {
+            //         console.log(element.city)
+            //     });
+
+            // }
+
             checkedRatingSort
             ?
             setSortedServices(sortedServicesLocal.sort((a, b) => parseFloat(b.rating) - parseFloat(a.rating)))
             :
-            setSortedServices(sortedServicesLocal)
+            setSortedServices(sortedServicesLocal);
+
+
+
+
         }
         }
        
@@ -477,6 +495,7 @@ const categoriesList = [
                         <svg aria-hidden="true" className="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                     </div>
                     <input type="search" onChange={(e) => setSearch(e.target.value)} value={search} id="search" className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Поиск" ></input>
+                    
                     <div>
                     <button onClick={handleSearch} className="btn-color text-white font-bold absolute right-12 bottom-2.5  hover:bg-blue-800 rounded-lg text-sm px-4 py-2 ">Найти</button>
                     <button onClick={cancelSearch} className="btn-color text-white font-bold absolute right-1 bottom-2.5  hover:bg-blue-800  rounded-lg text-sm px-4 py-2 ">x</button>
@@ -509,6 +528,25 @@ const categoriesList = [
                         <div className=' font-bold  text-black'>
                             
                         <div className="toppings-list-item">
+                        {/* <div className="all-categories">
+                                        <input
+                                            type="checkbox"
+                                            
+                                            value="Город"
+                                            checked={checkedCity}
+                                            onChange={() => checkedCity == false ? setCheckedCity(true) : setCheckedCity(false)}
+                                        />
+                                        <label> Город</label>
+                                        </div>
+                                        {checkedCity && ( <input 
+                                        type="search" 
+                                        onChange={(e) => setSearchCity(e.target.value)} 
+                                        value={searchCity} 
+                                        id="searchCity" 
+                                        className=" p-1 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  ></input>
+                                        )} */}
+
+                       
                                         <div className="all-categories">
                                         <input
                                             type="checkbox"
@@ -520,13 +558,7 @@ const categoriesList = [
                                         <label> По рейтингу</label>
                                         </div>
                                         <div className="all-categories">
-                                        {/* <input
-                                            type="checkbox"
-                                            
-                                            value="Все категории"
-                                            checked={checkedStateAll}
-                                            onChange={() => handleOnChangeAllSort()}
-                                        /> */}
+                                        
                                         <label> Категории</label>
                                         </div>
                                         
