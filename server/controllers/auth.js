@@ -185,14 +185,12 @@ export const recoveryCheckUserExist = async (req, res) => {
 
         console.log('user',user)
        
-        
-        
        
-        res.json({user, message: 'Данные успешно изменены.',})
+        res.json({user})
 
 
     } catch (error) {
-        res.json({ message: 'Ошибка при создании пользователя.' })
+        res.json({ message: 'Ошибка' })
     }
 }
 
@@ -242,6 +240,6 @@ export const changePassword = async (req, res) => {
         res.json({message: 'Пароль успешно изменен.'})
 
     } catch (error) {
-        res.json({ message: 'Ошибка при создании пользователя.' })
+        res.json({ message: 'Ошибка' })
     }
 }

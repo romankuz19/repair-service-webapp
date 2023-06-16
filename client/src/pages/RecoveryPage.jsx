@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { checkIsAuth, loginUser } from '../redux/features/auth/authSlice'
 import { toast } from 'react-toastify'
 import axios from '../utils/axios'
+import { AiFillEye } from 'react-icons/ai'
 
 export const RecoveryPage = () => {
     const [usernameOrNumber, setUsername] = useState('')
@@ -17,6 +18,7 @@ export const RecoveryPage = () => {
     const [password2, setPassword2] = useState('')
     const [next, setNext] = useState(false);
     const [changePas, setChangePas] = useState(false);
+    const [pasType, setPasType] = useState('password')
     const [btnValue, setBtnValue] = useState('Продолжить');
     const [userId, setUserId] = useState('')
     const regexp = /(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{8,}/
@@ -53,6 +55,9 @@ export const RecoveryPage = () => {
                     setSecretQuestion(data.user.secretQuestion)
                     setUserId(data.user._id)
                 }
+                else{
+                    toast.info("Некорректные данные")
+                }
             }
             if(next == true){
 
@@ -80,7 +85,8 @@ export const RecoveryPage = () => {
                     else{
 
                         if(password.length<8) toast.info("Пароль слишком короткий")
-                        else if(password.match(regexp) === null) toast.info("Некорректный пароль")
+                        else if(password.match(regexp) === null) toast.info("Некорректный пароль." + "\n Пароль должен содержать: хотя бы одно число, один спецсимвол, заглавную и строчную латинские буквы")
+            
                         else{
                             const { data } = await axios.post('/auth/change-password', {
 
@@ -133,7 +139,7 @@ export const RecoveryPage = () => {
                     <span className='font-normal'>  {secretQuestion}</span>
                 </div>
 
-                <div className='text-xs mt-3'>
+                <div className='text-xs my-2'>
                     Введите ответ на секретный вопрос
                         <input
                             type='text'
@@ -150,24 +156,51 @@ export const RecoveryPage = () => {
 
             {changePas && (
                 <>
-            <div className='text-xs mt-3'>
-                Введите новый пароль
+             <div className="relative text-xs my-2">
+                    Введите новый пароль
                     <input
-                        type='password'
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        placeholder='Пароль'
-                        className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700' />
+                       type={pasType} 
+                       className="block w-full  text-black rounded-lg bg-blue-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700" 
+                       placeholder="Пароль" 
+                       value={password}
+                        onChange={(e) => setPassword(e.target.value)}>
+                        
+
+                       </input>
+                    
+                    <div>
+                    
+                    <button onMouseEnter={() => setPasType('text')} onMouseLeave = {() => setPasType('password')} className="absolute right-1 bottom-2 ">
+                    <AiFillEye/>
+                    </button>
+                    
+                    </div>
+                   
                 </div>
-                <div className='text-xs mt-3'>
-                Повторно введите пароль
-                    <input
-                        type='password'
+                
+
+                <div className="relative text-xs my-2 ">
+                Введите пароль еще раз:
+                        <input
+                        type={pasType} 
+                        className="block w-full  text-black rounded-lg bg-blue-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700" 
+                        placeholder="Пароль повторно" 
                         value={password2}
-                        onChange={(e) => setPassword2(e.target.value)}
-                        placeholder='Пароль'
-                        className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700' />
-                </div></>
+                            onChange={(e) => setPassword2(e.target.value)}>
+                            
+
+                        </input>
+                        
+                        <div>
+                        
+                        <button onMouseEnter={() => setPasType('text')} onMouseLeave = {() => setPasType('password')} className="absolute right-1 bottom-2 ">
+                        <AiFillEye/>
+                        </button>
+                        
+                        </div>
+                    
+                    </div>
+               </>
             )}
 
 

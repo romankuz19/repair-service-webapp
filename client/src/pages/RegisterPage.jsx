@@ -2,14 +2,17 @@ import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { registerUser, checkIsAuth } from '../redux/features/auth/authSlice'
+import { AiFillEye } from 'react-icons/ai'
 import { toast } from 'react-toastify'
 
 export const RegisterPage = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const [password2, setPassword2] = useState('')
     const [firstname, setName] = useState('')
     const [secondname, setSecondName] = useState('')
     const [city, setCity] = useState('')
+    const [pasType, setPasType] = useState('password')
     const [phoneNumber, setPhonenumber] = useState('')
     const [secretQuestion, setSecretQuestion] = useState('')
     const [secretQuestionAnswer, setSecretQuestionAnswer] = useState('')
@@ -35,13 +38,16 @@ export const RegisterPage = () => {
     const handleSubmit = () => {
         try {
             console.log(phoneNumber.length)
-            if(username.length<3 )toast.info("Логин слишком короткий")
-            else if(password.length<8) toast.info("Пароль слишком короткий")
-            else if(password.match(regexp) === null) toast.info("Некорректный пароль")
-            else if(username.match(usernameRegex) === null) toast.info("Некорректный логин")
+            if(username.length<3 )toast.info("Логин менее 3-х символов ")
+            else if(username.match(usernameRegex) === null) toast.info("Некорректный логин. Логин может включать только цифры и латинские буквы")
+            else if(password.length<8) toast.info("Пароль менее 8-ми символов")
+            else if(password.match(regexp) === null) toast.info("Некорректный пароль." + "\n Пароль должен содержать: хотя бы одно число, один спецсимвол, заглавную и строчную латинские буквы")
+            else if(password !== password2) toast.info("Пароли не совпадают!")
             else if(phoneNumber.length != 11) toast.info("Некорректный номер телефона")
             else if (firstname.length < 3) toast.info("Некорректное имя")
             else if (secondname.length < 3) toast.info("Некорректная фамилия")
+            else if(secretQuestion.length < 5) toast.info("Секретный вопрос слишком короткий")
+            else if(secretQuestionAnswer.length == 0) toast.info("Нет ответа на секретный вопрос")
             else{
             dispatch(registerUser({ username, password,firstname,secondname,city,phoneNumber,secretQuestion, secretQuestionAnswer }))
             setPassword('')
@@ -66,7 +72,7 @@ export const RegisterPage = () => {
             <h1 className='text-lg text-black text-center'>Регистрация</h1>
 
             <label className='text-xs text-gray-400'>
-                Логин:
+                Введите логин:
                 <input
                     type='text'
                     value={username}
@@ -77,17 +83,62 @@ export const RegisterPage = () => {
             </label>
 
             <label className='text-xs text-gray-400'>
-                Пароль:
-                <input
-                    type='password'
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder='Пароль'
-                    className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
-                />
+                Введите пароль:
+                <div className="relative">
+                    
+                    <input
+                       type={pasType} 
+                       className="block w-full  text-black rounded-lg bg-blue-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700" 
+                       placeholder="Пароль" 
+                       value={password}
+                        onChange={(e) => setPassword(e.target.value)}>
+                        
+
+                       </input>
+                    
+                    <div>
+                    
+                    <button onMouseEnter={() => setPasType('text')} onMouseLeave = {() => setPasType('password')} className="absolute right-1 bottom-2 ">
+                    <AiFillEye/>
+                    </button>
+                    
+                    </div>
+                   
+                </div>
             </label>
+
             <label className='text-xs text-gray-400'>
-                Имя:
+            Введите пароль еще раз:
+
+            <div className="relative">
+                    
+                    <input
+                       type={pasType} 
+                       className="block w-full  text-black rounded-lg bg-blue-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700" 
+                       placeholder="Пароль повторно" 
+                       value={password2}
+                        onChange={(e) => setPassword2(e.target.value)}>
+                        
+
+                       </input>
+                    
+                    <div>
+                    
+                    <button onMouseEnter={() => setPasType('text')} onMouseLeave = {() => setPasType('password')} className="absolute right-1 bottom-2 ">
+                    <AiFillEye/>
+                    </button>
+                    
+                    </div>
+                   
+                </div>
+
+               
+                
+                
+            </label>
+
+            <label className='text-xs text-gray-400'>
+                Введите ваше имя:
                 <input
                     type='text'
                     value={firstname}
@@ -97,7 +148,7 @@ export const RegisterPage = () => {
                 />
             </label>
             <label className='text-xs text-gray-400'>
-                Фамилия:
+                Введите вашу фамилию:
                 <input
                     type='text'
                     value={secondname}
@@ -107,7 +158,7 @@ export const RegisterPage = () => {
                 />
             </label>
             <label className='text-xs text-gray-400'>
-                Город:
+                Введише ваш город:
                 <input
                     type='text'
                     value={city}
@@ -117,7 +168,7 @@ export const RegisterPage = () => {
                 />
             </label>
             <label className='text-xs text-gray-400'>
-                Номер телефона:
+                Введите номер телефона:
                 <input
                     type='number'
                     value={phoneNumber}

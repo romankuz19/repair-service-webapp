@@ -58,7 +58,7 @@ export const LoginPage = () => {
         >
             <h1 className='text-lg text-black text-center'>Авторизация</h1>
             <label className='text-xs text-gray-400'>
-                Логин:
+                Введите логин:
                 <input
                     type='text'
                     value={username}
@@ -69,7 +69,7 @@ export const LoginPage = () => {
             </label>
             
             <label className='text-xs text-gray-400'>
-                Пароль:
+                Введите пароль:
                 <input
                     type='password'
                     value={password}
