@@ -24,6 +24,7 @@ import { checkIsAuth, logout } from '../redux/features/auth/authSlice'
 import { createChat, getChatMessages, createMessage } from '../redux/features/chat/chatSlice'
 import { Chat } from '../components/Chat.jsx'
 import swal from 'sweetalert';
+import { SupportChat } from '../components/SupportChat'
 
 
 
@@ -494,6 +495,9 @@ export const TaskPage = () => {
             
             
         </div>
+        <SupportChat
+        userId={currentUser?._id}
+        />
         </div>
     )
 }

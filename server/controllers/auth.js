@@ -76,6 +76,10 @@ export const login = async (req, res) => {
 
         const isPasswordCorrect = await bcrypt.compare(password, user.password)
 
+        //console.log(isPasswordCorrect)
+        
+
+
         if (!isPasswordCorrect) {
             return res.json({
                 message: 'Неверный пароль.',
@@ -223,7 +227,7 @@ export const secretQuestionValidation = async (req, res) => {
 }
 
 
-export const changePassword = async (req, res) => {
+export const changePasswordRecovery = async (req, res) => {
     try {
         const { userId, password } = req.body
 
@@ -243,3 +247,57 @@ export const changePassword = async (req, res) => {
         res.json({ message: 'Ошибка' })
     }
 }
+
+
+export const changePassword = async (req, res) => {
+    try {
+        const { userId, password, passwordOld } = req.body
+        const user = await User.findById(userId)
+
+        console.log(passwordOld)
+       
+        const isPasswordCorrect = await bcrypt.compare(passwordOld, user.password)
+        
+        console.log(isPasswordCorrect)
+
+        if (!isPasswordCorrect) {
+            return res.json({
+                message: 'Неверный пароль.',
+            })
+        }
+        else{
+            
+            const salt = bcrypt.genSaltSync(10)
+            const hash = bcrypt.hashSync(password, salt)
+    
+            
+            
+            user.password = hash
+            
+            await user.save()
+    
+            res.json({message: 'Пароль успешно изменен.'})
+        }
+        
+    
+    } catch (error) {
+        res.json({ message: 'Ошибка' })
+    }
+}
+
+
+export const getAdminId = async (req, res) => {
+    try {
+    
+        const user = await User.findOne({ admin: "true" })
+
+       
+        res.json(user)
+        
+        
+    
+    } catch (error) {
+        res.json({ message: 'Ошибка' })
+    }
+}
+

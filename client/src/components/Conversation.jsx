@@ -21,6 +21,8 @@ export const Conversation = ({ chat, currentUser, chatUsers }) => {
     chatUsers.forEach(element => {
         if(element._id == secondUserId)setSecondUser(element);
     }); 
+
+
    // console.log('secondUser',secondUser);
 
     // const userId = data.find((id)=>id!==currentUser)
@@ -42,10 +44,14 @@ export const Conversation = ({ chat, currentUser, chatUsers }) => {
     // getUserData();
   }, [secondUser, secondUserId])
 
+
+
   return (
     <>
       <div className="follower conversation">
         <div>
+        
+          {secondUser?.admin == true && (<div className="text-center text-cat-color text-xs font-bold">Поддержка</div>)}
           {/* {online && <div className="online-dot"></div>} */}
           {/* <img
             src={userData?.profilePicture? process.env.REACT_APP_PUBLIC_FOLDER + userData.profilePicture : process.env.REACT_APP_PUBLIC_FOLDER + "defaultProfile.png"}

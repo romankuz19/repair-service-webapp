@@ -54,32 +54,32 @@ export const LoginPage = () => {
     return (
         <form
             onSubmit={(e) => e.preventDefault()}
-            className='w-1/4 h-70 mx-auto mt-40 border-2 shadow-lg rounded-lg p-2'
+            className='w-1/3 h-70 mx-auto mt-20 border-2 shadow-lg rounded-lg p-2'
         >
-            <h1 className='text-lg text-black text-center'>Авторизация</h1>
-            <label className='text-xs text-gray-400'>
+            <h1 className='text-2xl text-black text-center'>Авторизация</h1>
+            <label className='text-m text-gray-400'>
                 Введите логин:
                 <input
                     type='text'
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     placeholder='Логин'
-                    className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
+                    className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-m outline-none placeholder:text-gray-700'
                 />
             </label>
             
-            <label className='text-xs text-gray-400'>
+            <label className='text-m text-gray-400'>
                 Введите пароль:
                 <input
                     type='password'
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder='Пароль'
-                    className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
+                    className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-m outline-none placeholder:text-gray-700'
                 />
             </label>
 
-            <div className='mt-3 text-xs font-bold cursor-pointer hover:underline'
+            <div className='mt-3 text-m font-bold cursor-pointer hover:underline'
             onClick={() => navigate('/recovery')}>
                 Забыли пароль?
             </div>
@@ -89,7 +89,7 @@ export const LoginPage = () => {
                     <button
                     type='submit'
                     onClick={handleSubmit}
-                    className='min-w-[100px]  text-center font-bold  text-white rounded-lg px-4 py-2 text-xs  btn-color p-1 cursor-pointer hover:bg-blue-800'
+                    className='min-w-[100px]  text-center font-bold  text-white rounded-lg px-4 py-2 text-m  btn-color p-1 cursor-pointer hover:bg-blue-800'
                 >
                     Вход
                 </button>
@@ -97,7 +97,7 @@ export const LoginPage = () => {
                 <div className='flex justify-center'>
                 <Link
                     to='/register'
-                    className='min-w-[100px]  text-center font-bold  text-white rounded-lg px-4 py-2 text-xs btn-color p-1 cursor-pointer hover:bg-blue-800'
+                    className='min-w-[100px]  text-center font-bold  text-white rounded-lg px-4 py-2 text-m btn-color p-1 cursor-pointer hover:bg-blue-800'
                 >
                     Регистрация
                 </Link>
