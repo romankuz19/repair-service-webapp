@@ -64,13 +64,18 @@ export const MyProfilePage = () => {
     
     const handleSubmit = () => {
         try {
-            dispatch(updateUser({ firstname,secondname,city,phonenumber }))
-            // setPassword('')
-            // setUsername('')
-            setName('')
-            setSecondName('')
-            setCity('')
-            setPhonenumber('')
+            
+            if(phonenumber.toString().length != 11) toast.info('Некорректный номер телефона')
+            else{
+                dispatch(updateUser({ firstname,secondname,city,phonenumber }))
+                // setPassword('')
+                // setUsername('')
+                setName('')
+                setSecondName('')
+                setCity('')
+                setPhonenumber('')
+            }
+           
         } catch (error) {
             console.log(error)
         }

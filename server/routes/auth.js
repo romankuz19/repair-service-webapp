@@ -13,7 +13,7 @@ router.post('/login', login)
 
 // Login
 // http://localhost:3002/api/auth/updateuser
-router.put('/updateuser',checkAuth, updateUser)
+router.patch('/updateuser',checkAuth, updateUser)
 
 // Get Me
 // http://localhost:3002/api/auth/me

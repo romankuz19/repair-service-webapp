@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { createPost } from '../redux/features/post/postSlice'
 import { CategoryItem } from '../components/CategoryItem.jsx'
 import { createTask } from '../redux/features/task/taskSlice'
+import { toast } from 'react-toastify'
 
 export const AddTaskPage = () => {
     const [title, setTitle] = useState('')
@@ -38,16 +39,22 @@ export const AddTaskPage = () => {
 
     const submitHandler = () => {
         try {
-            const data = new FormData()
-            data.append('title', title)
-            data.append('description', description)
-            data.append('date', date)
-            data.append('address', address)
-            data.append('category', cat)
-            data.append('price', price)
-            dispatch(createTask(data))
-            navigate('/tasks/my-tasks')
-            window.location.reload(false);
+            if ( title.length == 0 || description.length == 0 || price.length == 0 || cat.length == 0 || date.length == 0 || address.length == 0) {
+                toast.info("Карточка заполнена не до конца")
+            }
+            else{
+                const data = new FormData()
+                data.append('title', title)
+                data.append('description', description)
+                data.append('date', date)
+                data.append('address', address)
+                data.append('category', cat)
+                data.append('price', price)
+                dispatch(createTask(data))
+                navigate('/tasks/my-tasks')
+                window.location.reload(false);
+            }
+            
         } catch (error) {
             console.log(error)
         }

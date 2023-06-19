@@ -54,7 +54,7 @@ export const loginUser = createAsyncThunk(
 export const updateUser = createAsyncThunk('auth/updateUser',
     async ({ firstname,secondname,city,phonenumber }) => {
         try {
-            const { data } = await axios.put('/auth/updateuser', {
+            const { data } = await axios.patch('/auth/updateuser', {
               
                 firstname,
                 secondname,

@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { createPost } from '../redux/features/post/postSlice'
 import { CategoryItem } from '../components/CategoryItem.jsx'
+import { toast } from 'react-toastify'
+
 
 export const AddServicePage = () => {
     const [title, setTitle] = useState('')
@@ -23,15 +25,21 @@ export const AddServicePage = () => {
 
     const submitHandler = () => {
         try {
-            const data = new FormData()
-            data.append('title', title)
-            data.append('text', text)
-            data.append('category', cat)
-            data.append('price', price)
-            data.append('image', image)
-            dispatch(createPost(data))
-            navigate('/services/my-services')
-            window.location.reload(false);
+            if ( title.length == 0 || text.length == 0 || price.length == 0 || cat.length == 0) {
+                toast.info("Карточка заполнена не до конца")
+            }
+            else{
+                const data = new FormData()
+                data.append('title', title)
+                data.append('text', text)
+                data.append('category', cat)
+                data.append('price', price)
+                data.append('image', image)
+                dispatch(createPost(data))
+                navigate('/services/my-services')
+                window.location.reload(false);
+            }
+            
         } catch (error) {
             console.log(error)
         }

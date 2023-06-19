@@ -104,9 +104,10 @@ export const login = async (req, res) => {
 //update user
 export const updateUser = async (req, res) => {
     try {
-        const user = await User.findById(req.userId)
         const userId=req.userId
-        console.log('userId',userId)
+        const user = await User.findById(req.userId)
+        
+        console.log('req.body',req.body)
         
         const { firstname, secondname, city, phonenumber } = req.body
 
@@ -117,12 +118,18 @@ export const updateUser = async (req, res) => {
         user.secondname = secondname
         user.city = city
         user.phonenumber = phonenumber
+       // console.log('user',user)
 
+        user.markModified("firstname")
+       // console.log('111')
         await user.save()
+
+        //console.log('fsdfdsfds')
+        
         //const msg = await ChatMessage.find().where('senderId').equals(userId)
         //console.log('msgs',msg)
         await ChatMessage.updateMany( {senderId : userId}, { $set: { senderName : firstname } });
-        await Comment.updateMany( {author : userId}, { $set: { authorName : firstname } });
+        //await Review.updateMany( {author : userId}, { $set: { authorName : firstname } });
         
         // for (var i = 0; i < msg.length; i++){
         //     msg[i].senderName=firstname
@@ -131,7 +138,7 @@ export const updateUser = async (req, res) => {
         //await msg.save()
         //console.log('msgs',msg)
 
-        res.json({user, message: 'Даныне успешно изменены.',})
+        res.json({user, message: 'Данные успешно изменены.',})
 
 
     } catch (error) {
