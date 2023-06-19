@@ -31,6 +31,7 @@ import { CommentItem } from '../components/CommentItem'
 import { MessageItem } from '../components/MessageItem.jsx'
 import { checkIsAuth, logout } from '../redux/features/auth/authSlice'
 import swal from 'sweetalert';
+import { SupportChat } from '../components/SupportChat'
 
 
 export const ServicePage = () => {
@@ -50,6 +51,7 @@ export const ServicePage = () => {
     const [value, setValue] = useState('1');
     const [valueRating, setValueRating] = useState(Number | null);
     const [avgServiceRating, setServiceAvgRating] = useState(0)
+    const { status } = useSelector((state) => state.auth)
     const words = [ 'сука' , 'сучка' , 'шлюха' ]
     
     const mat = /(?<=^|[^а-я])(huy)(([уyu]|[нзnz3][аa]|(хитро|не)?[вvwb][зz3]?[ыьъi]|[сsc][ьъ']|(и|[рpr][аa4])[зсzs]ъ?|([оo0][тбtb6]|[пp][оo0][дd9])[ьъ']?|(.\B)+?[оаеиeo])?-?([еёe][бb6](?!о[рй])|и[пб][ае][тц]).*?|([нn][иеаaie]|([дпdp]|[вv][еe3][рpr][тt])[оo0]|[рpr][аa][зсzc3]|[з3z]?[аa]|с(ме)?|[оo0]([тt]|дно)?|апч)?-?[хxh][уuy]([яйиеёюuie]|ли(?!ган)).*?|([вvw][зы3z]|(три|два|четыре)жды|(н|[сc][уuy][кk])[аa])?-?[бb6][лl]([яy](?!(х|ш[кн]|мб)[ауеыио]).*?|[еэe][дтdt][ь']?)|([рp][аa][сзc3z]|[знzn][аa]|[соsc]|[вv][ыi]?|[пp]([еe][рpr][еe]|[рrp][оиioеe]|[оo0][дd])|и[зс]ъ?|[аоao][тt])?[пpn][иеёieu][зz3][дd9].*?|([зz3][аa])?[пp][иеieu][дd][аоеaoe]?[рrp](ну.*?|[оаoa][мm]|([аa][сcs])?([иiu]([лl][иiu])?[нщктлtlsn]ь?)?|([оo](ч[еиei])?|[аa][сcs])?[кk]([оo]й)?|[юu][гg])[ауеыauyei]?|[мm][аa][нnh][дd]([ауеыayueiи]([лl]([иi][сзc3щ])?[ауеыauyei])?|[оo][йi]|[аоao][вvwb][оo](ш|sh)[ь']?([e]?[кk][ауеayue])?|юк(ов|[ауи])?)|[мm][уuy][дd6]([яyаиоaiuo0].*?|[еe]?[нhn]([ьюия'uiya]|ей))|мля([тд]ь)?|лять|([нз]а|по)х|м[ао]л[ао]фь([яию]|[её]й))(?=($|[^а-я])(huy))/
@@ -65,6 +67,7 @@ export const ServicePage = () => {
     
     const navigate = useNavigate()
     const params = useParams()
+    
     //console.log('comments',comments)
     const dispatch = useDispatch()
    
@@ -134,6 +137,16 @@ export const ServicePage = () => {
         console.log(data)
     }, [params.id])
 
+    const fetchUser = useCallback (async () => {
+        const { data } = await axios.get('/auth/me')
+       
+       // console.log(data.user)
+       setCurrentOwner(data.user)
+       setCmtuser(data.user)
+
+       //setOwnerUser(user)
+    })
+
     useEffect(() => {
         fetchPost()
     }, [fetchPost])
@@ -142,20 +155,15 @@ export const ServicePage = () => {
         fetchComments()
     }, [fetchComments])
 
-
     useEffect(() => {
+        if (status) toast.info(status)
         fetchUser()
-    },[])
+    },[status])
 
-    const fetchUser = async () => {
-        const { data } = await axios.get('/auth/me')
-       
-       // console.log(data.user)
-       setCurrentOwner(data.user)
-       setCmtuser(data.user)
+    
 
-       //setOwnerUser(user)
-    }
+    
+    
 
     const handleCreateChat = async () => {
         try {
@@ -278,7 +286,11 @@ export const ServicePage = () => {
     const handleSubmit = async () => {
         try {
             if(!valueRating){
-                toast.info("Поставьте оценку")
+                toast.info("Поставьте оценку", {position: 'bottom-left'})
+            }
+            else if(comment.length == 0){
+                toast.info("Заполните отзыв", {position: 'bottom-left'})
+                
             }
             else{
                 const postId = params.id
@@ -332,13 +344,27 @@ export const ServicePage = () => {
                 }
                 else if(!firstCheck || !secondCheck){
                     //alert("Данный контент нельзя вставить!")
-                    toast.info("Данный контент нельзя добавить!")
+                    swal({
+                        title: "Данный контент нельзя добавить!",
+                        icon: "warning",
+                        button: "Потвердить",
+                        dangerMode: false,
+                      });
+                    //toast.info("Данный контент нельзя добавить!", {position: "bottom-left"})
                         setComment('')
+                        setValueRating(0)
                 }
                 else if(!adcheck){
                     //alert("Данный контент нельзя вставить!")
-                    toast.info("Данный контент нельзя добавить!")
+                    swal({
+                        title: "Данный контент нельзя добавить!",
+                        icon: "warning",
+                        button: "Потвердить",
+                        dangerMode: false,
+                      });
+                    //toast.info("Данный контент нельзя добавить!", {position: "bottom-left"})
                         setComment('')
+                        setValueRating(0)
                 }
             }
             
@@ -354,6 +380,8 @@ export const ServicePage = () => {
     const toLogin = () => {
         navigate('/login')
     }
+
+    console.log('curUser',currentUser)
 
     if (!post) {
         return (
@@ -645,7 +673,13 @@ export const ServicePage = () => {
                     {reviews.length===0 && (
                     <div>Отзывов нет</div>
                     )}
+                    <SupportChat
+                    userId = {currentUser?._id}
+                    />
                 </div> 
+                
+                
+                
         </div>
     )
 }

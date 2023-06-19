@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { register, login, updateUser, getMe, recoveryCheckUserExist, secretQuestionValidation, changePassword } from '../controllers/auth.js'
+import { register, login, updateUser, getMe, recoveryCheckUserExist, secretQuestionValidation, changePassword, changePasswordRecovery, getAdminId } from '../controllers/auth.js'
 import { checkAuth } from '../utils/checkAuth.js'
 const router = new Router()
 
@@ -29,7 +29,15 @@ router.post('/validate-secret', secretQuestionValidation)
 
 // Get Me
 // http://localhost:3002/api/auth/recovery
+router.post('/change-password-recovery', changePasswordRecovery)
+
+// Get Me
+// http://localhost:3002/api/auth/recovery
 router.post('/change-password', changePassword)
+
+// Get Me
+// http://localhost:3002/api/auth/recovery
+router.get('/admin-id', getAdminId)
 
 
 export default router

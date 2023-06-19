@@ -89,7 +89,7 @@ export const RecoveryPage = () => {
                             else if(password.match(regexp) === null) toast.info("Некорректный пароль." + "\n Пароль должен содержать: хотя бы одно число, один спецсимвол, заглавную и строчную латинские буквы")
                 
                             else{
-                                const { data } = await axios.post('/auth/change-password', {
+                                const { data } = await axios.post('/auth/change-password-recovery', {
     
                                     userId,
                                     password
@@ -122,9 +122,9 @@ export const RecoveryPage = () => {
     return (
         <form
             onSubmit={(e) => e.preventDefault()}
-            className='w-1/4 h-70 mx-auto mt-40 border-2 shadow-lg rounded-lg p-2'
+            className='w-1/3 h-70 mx-auto mt-20 border-2 shadow-lg rounded-lg p-2'
         >
-            <h1 className='text-xl font-bold  text-black text-center'>Восстановление пароля</h1>
+            <h1 className='text-2xl font-bold  text-black text-center'>Восстановление пароля</h1>
 
             <h3 className='mt-2 text-m opacity-80 '>Введите логин или номер телефона</h3>
             <label className='text-m text-gray-400'>
@@ -217,7 +217,7 @@ export const RecoveryPage = () => {
                     
                     type='submit'
                     onClick={handleSubmit}
-                    className='min-w-[100px]  text-center font-bold  text-white rounded-lg px-4 py-2 text-xs  btn-color p-1 cursor-pointer hover:bg-blue-800'
+                    className='min-w-[100px]  text-center font-bold  text-white rounded-lg px-4 py-2 text-m  btn-color p-1 cursor-pointer hover:bg-blue-800'
                 >
                     {btnValue}
                 </button>

@@ -67,28 +67,28 @@ export const RegisterPage = () => {
     return (
         <form
             onSubmit={(e) => e.preventDefault()}
-            className='w-1/4 mx-auto mt-40 border-2 shadow-lg rounded-lg p-2'
+            className='w-1/3 mx-auto mt-20 border-2 shadow-lg rounded-lg p-2'
         >
-            <h1 className='text-lg text-black text-center'>Регистрация</h1>
+            <h1 className='text-2xl text-black text-center'>Регистрация</h1>
 
-            <label className='text-xs text-gray-400'>
+            <label className='text-m text-gray-400'>
                 Введите логин:
                 <input
                     type='text'
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     placeholder='Логин'
-                    className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
+                    className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-m outline-none placeholder:text-gray-700'
                 />
             </label>
 
-            <label className='text-xs text-gray-400'>
+            <label className='text-m text-gray-400'>
                 Введите пароль:
                 <div className="relative">
                     
                     <input
                        type={pasType} 
-                       className="block w-full  text-black rounded-lg bg-blue-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700" 
+                       className="block w-full  text-black rounded-lg bg-blue-100 border py-1 px-2 text-m outline-none placeholder:text-gray-700" 
                        placeholder="Пароль" 
                        value={password}
                         onChange={(e) => setPassword(e.target.value)}>
@@ -107,14 +107,14 @@ export const RegisterPage = () => {
                 </div>
             </label>
 
-            <label className='text-xs text-gray-400'>
+            <label className='text-m text-gray-400'>
             Введите пароль еще раз:
 
             <div className="relative">
                     
                     <input
                        type={pasType} 
-                       className="block w-full  text-black rounded-lg bg-blue-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700" 
+                       className="block w-full  text-black rounded-lg bg-blue-100 border py-1 px-2 text-m outline-none placeholder:text-gray-700" 
                        placeholder="Пароль повторно" 
                        value={password2}
                         onChange={(e) => setPassword2(e.target.value)}>
@@ -137,66 +137,66 @@ export const RegisterPage = () => {
                 
             </label>
 
-            <label className='text-xs text-gray-400'>
+            <label className='text-m text-gray-400'>
                 Введите ваше имя:
                 <input
                     type='text'
                     value={firstname}
                     onChange={(e) => setName(e.target.value)}
                     placeholder='Имя'
-                    className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
+                    className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-m outline-none placeholder:text-gray-700'
                 />
             </label>
-            <label className='text-xs text-gray-400'>
+            <label className='text-m text-gray-400'>
                 Введите вашу фамилию:
                 <input
                     type='text'
                     value={secondname}
                     onChange={(e) => setSecondName(e.target.value)}
                     placeholder='Фамилия'
-                    className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
+                    className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-m outline-none placeholder:text-gray-700'
                 />
             </label>
-            <label className='text-xs text-gray-400'>
+            <label className='text-m text-gray-400'>
                 Введише ваш город:
                 <input
                     type='text'
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
                     placeholder='Город'
-                    className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
+                    className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-m outline-none placeholder:text-gray-700'
                 />
             </label>
-            <label className='text-xs text-gray-400'>
+            <label className='text-m text-gray-400'>
                 Введите номер телефона:
                 <input
                     type='number'
                     value={phoneNumber}
                     onChange={(e) => setPhonenumber(e.target.value)}
                     placeholder='Номер телефона'
-                    className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
+                    className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-m outline-none placeholder:text-gray-700'
                 />
             </label>
 
-            <label className='text-xs text-gray-400'>
+            <label className='text-m text-gray-400'>
                 Введите секретный вопрос:
                 <input
                     type='text'
                     value={secretQuestion}
                     onChange={(e) => setSecretQuestion(e.target.value)}
                     placeholder='Например: "Кличка собаки"'
-                    className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
+                    className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-m outline-none placeholder:text-gray-700'
                 />
             </label>
 
-            <label className='text-xs text-gray-400'>
+            <label className='text-m text-gray-400'>
                 Введите ответ на секретный вопрос:
                 <input
                     type='text'
                     value={secretQuestionAnswer}
                     onChange={(e) => setSecretQuestionAnswer(e.target.value)}
                     placeholder=''
-                    className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
+                    className='mt-1 text-black w-full rounded-lg bg-blue-100 border py-1 px-2 text-m outline-none placeholder:text-gray-700'
                 />
             </label>
 
@@ -206,7 +206,7 @@ export const RegisterPage = () => {
                     <button
                     type='submit'
                     onClick={handleSubmit}
-                    className='  text-center font-bold  text-white rounded-lg px-4 py-2 text-xs  btn-color p-1 cursor-pointer hover:bg-blue-800'
+                    className='  text-center font-bold  text-white rounded-lg px-4 py-2 text-m  btn-color p-1 cursor-pointer hover:bg-blue-800'
                 >
                     Подтвердить
                 </button>
@@ -214,7 +214,7 @@ export const RegisterPage = () => {
                 <div className='flex justify-center'>
                 <Link
                     to='/login'
-                    className='  text-center font-bold  text-white rounded-lg px-4 py-2 text-xs btn-color p-1 cursor-pointer hover:bg-blue-800'
+                    className='  text-center font-bold  text-white rounded-lg px-4 py-2 text-m btn-color p-1 cursor-pointer hover:bg-blue-800'
                 >
                     Есть аккаунт ?
                 </Link>
